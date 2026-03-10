@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+.vinxi/
+.output/
+.solid/
+dist/
+
+# Bundlers/locks
+package-lock.json
+pnpm-lock.yaml
+bun.lockb
+
+# Local env files
+.env
+.env*.local
+
+# IDEs
+.vscode/
+.idea/
+
+# Scripts
+*.py
+
+# System
+.DS_Store
+Thumbs.db
