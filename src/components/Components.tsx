@@ -21,3 +21,4 @@ export * from "./navigation/SideNavButton";
 export * from "./navigation/SideNavButtonGroup";
 export * from "./navigation/SideNav";
 export * from "./navigation/TopNav";
+export * from "./navigation/PersonalizationPanel";

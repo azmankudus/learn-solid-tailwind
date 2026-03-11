@@ -5,13 +5,19 @@ import "./app.css";
 
 import { PublicLayout } from "./components/Components";
 
+import { MetaProvider, Title, Meta } from "@solidjs/meta";
+
 export default function App() {
   return (
     <Router
       root={props => (
-        <PublicLayout>
-          <Suspense>{props.children}</Suspense>
-        </PublicLayout>
+        <MetaProvider>
+          <Title>UI-DEN | Premium Design System</Title>
+          <Meta name="description" content="A premium, modern design system built with SolidJS and Tailwind CSS v4." />
+          <PublicLayout>
+            <Suspense>{props.children}</Suspense>
+          </PublicLayout>
+        </MetaProvider>
       )}
     >
       <FileRoutes />

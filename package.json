@@ -5,9 +5,13 @@
     "dev": "vite dev",
     "build": "vite build",
     "start": "vite start",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.15.0",
     "@solidjs/start": "2.0.0-alpha.2",
     "nitro": "3.0.1-alpha.2",
@@ -16,8 +20,14 @@
     "vite": "^7.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@solidjs/testing-library": "^0.8.10",
     "@tailwindcss/vite": "^4.0.7",
-    "tailwindcss": "^4.0.7"
+    "@vitest/ui": "^4.0.18",
+    "jsdom": "^28.1.0",
+    "tailwindcss": "^4.0.7",
+    "vite-plugin-solid": "^2.11.10",
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=22"

@@ -1,10 +1,12 @@
 import { HeadingText, Card } from "~/components/Components";
 import { HiSolidCog6Tooth } from "solid-icons/hi";
 import { t } from "~/lib/i18n";
+import { Title } from "@solidjs/meta";
 
 export default function Settings() {
   return (
     <div class="flex flex-col space-y-6 pb-20">
+      <Title>{t("dash.settings.title")} | UI-DEN</Title>
       <div class="flex items-center space-x-3 mb-4">
         <div class="h-10 w-10 rounded-xl bg-theme/10 text-theme flex items-center justify-center">
           <HiSolidCog6Tooth size={24} />
