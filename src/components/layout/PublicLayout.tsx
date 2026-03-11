@@ -1,5 +1,5 @@
 import { ParentProps, createSignal, onMount } from "solid-js";
-import { TopNav } from "../Components";
+import { TopNav } from "../navigation/TopNav";
 import { bg, view } from "~/lib/store";
 
 export function PublicLayout(props: ParentProps) {

@@ -1,7 +1,7 @@
 import { ParentProps, JSX } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { A } from "@solidjs/router";
-import { Tooltip } from "../Components";
+import { Tooltip } from "../display/Tooltip";
 
 export interface SideNavButtonProps extends ParentProps {
   href: string;
@@ -9,6 +9,7 @@ export interface SideNavButtonProps extends ParentProps {
   icon?: (props: any) => JSX.Element;
   collapsed?: boolean;
   onDblClick?: (e: MouseEvent) => void;
+  onClick?: (e: MouseEvent) => void;
   tooltip?: string;
   class?: string;
   isSubItem?: boolean;
@@ -23,6 +24,7 @@ export function SideNavButton(props: SideNavButtonProps) {
         href={props.href}
         end={true}
         onDblClick={props.onDblClick}
+        onClick={props.onClick}
         activeClass="bg-surface text-main shadow-md backdrop-blur-2xl"
         inactiveClass="text-muted hover:bg-surface/50 hover:text-main backdrop-blur-md"
         class={`flex items-center rounded-xl group border-none cursor-pointer h-8 w-full px-0 justify-start overflow-hidden transition-all duration-300 ${props.class || ""} ${props.active ? 'bg-surface text-main shadow-md' : ''}`}

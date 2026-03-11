@@ -243,15 +243,9 @@ main {
 
 /* Mobile menu overlay animation */
 .mobile-menu-overlay {
-  opacity: 0;
-  transform: translateY(-16px);
-  pointer-events: none;
-  transition: opacity 0.2s ease-out,
-              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
-.mobile-menu-overlay--open {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+.dark .mobile-menu-overlay {
+  background-color: rgba(15, 23, 42, 0.95);
 }

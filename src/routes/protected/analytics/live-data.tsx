@@ -1,5 +1,7 @@
 import { For, createSignal } from "solid-js";
-import { HeadingText, Card, IconButton } from "~/components/Components";
+import { HeadingText } from "~/components/display/Heading";
+import { Card } from "~/components/display/Card";
+import { IconButton } from "~/components/input/Button";
 import { HiSolidArrowPath, HiSolidArrowTrendingUp, HiSolidBolt } from "solid-icons/hi";
 import { Title } from "@solidjs/meta";
 import { text } from "~/lib/i18n";

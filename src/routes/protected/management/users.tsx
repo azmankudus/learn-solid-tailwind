@@ -1,4 +1,6 @@
-import { HeadingText, Card } from "~/components/Components";
+import { HeadingText } from "~/components/display/Heading";
+import { Card } from "~/components/display/Card";
+import { IconButton } from "~/components/input/Button";
 import { HiSolidUsers } from "solid-icons/hi";
 import { text } from "~/lib/i18n";
 

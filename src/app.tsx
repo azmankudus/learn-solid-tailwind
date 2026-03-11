@@ -3,7 +3,7 @@ import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
 import "./app.css";
 
-import { PublicLayout } from "./components/Components";
+import { PublicLayout } from "./components/layout/PublicLayout";
 
 import { MetaProvider, Title, Meta } from "@solidjs/meta";
 

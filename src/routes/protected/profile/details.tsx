@@ -1,5 +1,8 @@
 import { createSignal } from "solid-js";
-import { HeadingText, Card, TextField, Button } from "~/components/Components";
+import { HeadingText } from "~/components/display/Heading";
+import { Card } from "~/components/display/Card";
+import { TextField } from "~/components/input/TextField";
+import { Button } from "~/components/input/Button";
 import { HiSolidIdentification } from "solid-icons/hi";
 import { text } from "~/lib/i18n";
 

@@ -1,5 +1,5 @@
 import { ParentProps } from "solid-js";
-import { Tooltip } from "../Components";
+import { Tooltip } from "../display/Tooltip";
 
 export interface ButtonProps extends ParentProps {
   class?: string;

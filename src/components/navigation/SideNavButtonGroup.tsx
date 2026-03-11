@@ -1,7 +1,7 @@
 import { ParentProps, JSX } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { HiSolidChevronDown } from "solid-icons/hi";
-import { Tooltip } from "../Components";
+import { Tooltip } from "../display/Tooltip";
 
 export interface SideNavButtonGroupProps extends ParentProps {
   label: string;

@@ -1,9 +1,13 @@
-import { A } from "@solidjs/router";
-import { HeadingText, PageWrapper, Button } from "~/components/Components";
+import { A, useNavigate } from "@solidjs/router";
+import { isLoggedIn, setIsLoginModalOpen } from "~/lib/store";
+import { HeadingText } from "~/components/display/Heading";
+import { PageWrapper } from "~/components/layout/PageWrapper";
+import { Button } from "~/components/input/Button";
 import { HiSolidArrowSmallRight, HiSolidSquare3Stack3d } from "solid-icons/hi";
 import { text } from "~/lib/i18n";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <PageWrapper class="relative overflow-hidden pt-6 pb-24 sm:pt-10 sm:pb-32 lg:pt-12 lg:pb-40">
       {/* Background Orbs for atmosphere */}
@@ -20,11 +24,18 @@ export default function Home() {
               {text("landing.desc")}
             </p>
             <div class="flex flex-wrap gap-4 sm:justify-center lg:justify-start">
-              <A href="/protected">
-                <Button class="px-8 py-3.5 text-base shadow-md flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:scale-[1.02]">
-                  {text("landing.cta")} <HiSolidArrowSmallRight size={20} />
-                </Button>
-              </A>
+              <Button 
+                onClick={() => {
+                  if (isLoggedIn()) {
+                    navigate("/protected");
+                  } else {
+                    setIsLoginModalOpen(true);
+                  }
+                }}
+                class="px-8 py-3.5 text-base shadow-md flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+              >
+                {text("landing.cta")} <HiSolidArrowSmallRight size={20} />
+              </Button>
               <button class="flex items-center justify-center px-8 py-3.5 text-base font-semibold text-main bg-surface/80 border-none backdrop-blur-md rounded-xl hover:bg-surface transition-all duration-300 active:scale-95 shadow-sm cursor-pointer">
                 {text("landing.learn")}
               </button>

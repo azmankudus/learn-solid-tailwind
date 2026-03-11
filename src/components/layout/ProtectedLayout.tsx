@@ -1,7 +1,8 @@
 import { ParentProps, createEffect, onMount, createSignal } from "solid-js";
 import { useLocation, useNavigate } from "@solidjs/router";
-import { isLoggedIn, setIsLoginModalOpen, setRedirectUrl, isLoaded, view } from "~/lib/store";
-import { SideNav, PageWrapper } from "../Components";
+import { isLoggedIn, setRedirectUrl, isLoaded, view } from "~/lib/store";
+import { SideNav } from "../navigation/SideNav";
+import { PageWrapper } from "./PageWrapper";
 
 export function ProtectedLayout(props: ParentProps) {
   const location = useLocation();
@@ -16,7 +17,6 @@ export function ProtectedLayout(props: ParentProps) {
     if (isLoaded() && !isLoggedIn()) {
       setRedirectUrl(location.pathname);
       navigate("/", { replace: true });
-      setTimeout(() => setIsLoginModalOpen(true), 100);
     }
   });
 

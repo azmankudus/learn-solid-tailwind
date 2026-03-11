@@ -53,6 +53,24 @@ if (typeof window !== "undefined") {
       console.error("Failed to load settings from localStorage", e);
     }
 
+    // Event listener for cross-tab synchronization
+    window.addEventListener("storage", (e) => {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          const saved = JSON.parse(e.newValue);
+          if (saved.isLoggedIn !== undefined) setIsLoggedIn(saved.isLoggedIn);
+          if (saved.isSidebarCollapsed !== undefined) setIsSidebarCollapsed(saved.isSidebarCollapsed);
+          if (saved.mode !== undefined) setMode(saved.mode);
+          if (saved.bg !== undefined) setBg(saved.bg);
+          if (saved.color !== undefined) setColor(saved.color);
+          if (saved.lang !== undefined) setLang(saved.lang);
+          if (saved.view !== undefined) setView(saved.view);
+        } catch (e) {
+          console.error("Failed to sync settings from storage event", e);
+        }
+      }
+    });
+
     // Effect to sync state changes back to localStorage and update HTML attributes.
     // Wrapped in createRoot to prevent "computations created outside a createRoot" warning.
     createEffect(() => {

@@ -1,0 +1,19 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="256" y1="256" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded Base to match product logo in nav -->
+  <rect width="256" height="256" rx="64" fill="url(#logoGradient)"/>
+  
+  <!-- Stack 1 (Top) -->
+  <path d="M128 44L212 92L128 140L44 92L128 44Z" fill="white" />
+  
+  <!-- Stack 2 (Middle) -->
+  <path d="M128 172L44 124V140L128 188L212 140V124L128 172Z" fill="white" fill-opacity="0.85" />
+  
+  <!-- Stack 3 (Bottom) -->
+  <path d="M128 212L44 164V180L128 228L212 180V164L128 212Z" fill="white" fill-opacity="0.7" />
+</svg>

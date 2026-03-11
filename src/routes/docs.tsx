@@ -1,5 +1,7 @@
 import { For } from "solid-js";
-import { HeadingText, Card, PageWrapper } from "~/components/Components";
+import { HeadingText } from "~/components/display/Heading";
+import { Card } from "~/components/display/Card";
+import { PageWrapper } from "~/components/layout/PageWrapper";
 import { HiSolidRocketLaunch, HiSolidBookOpen, HiSolidLightBulb, HiSolidShieldCheck, HiSolidArrowSmallRight } from "solid-icons/hi";
 import { text } from "~/lib/i18n";
 

@@ -1,5 +1,5 @@
 import { For } from "solid-js";
-import { HeadingText } from "~/components/Components";
+import { HeadingText } from "~/components/display/Heading";
 import { HiSolidCube } from "solid-icons/hi";
 import { text } from "~/lib/i18n";
 

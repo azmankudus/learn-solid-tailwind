@@ -2,7 +2,9 @@ import { Show, For, createSignal, onMount } from "solid-js";
 import { useLocation } from "@solidjs/router";
 import { isSidebarCollapsed, setIsSidebarCollapsed } from "~/lib/store";
 import { text } from "~/lib/i18n";
-import { SideNavButton, SideNavButtonGroup, Tooltip } from "../Components";
+import { SideNavButton } from "./SideNavButton";
+import { SideNavButtonGroup } from "./SideNavButtonGroup";
+import { Tooltip } from "../display/Tooltip";
 import { SIDE_NAV_ITEMS, NavItem } from "~/lib/navigation";
 import { HiSolidChevronLeft } from "solid-icons/hi";
 

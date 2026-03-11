@@ -1,6 +1,7 @@
 import { For } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import { HeadingText, Card } from "~/components/Components";
+import { HeadingText } from "~/components/display/Heading";
+import { Card } from "~/components/display/Card";
 import { HiSolidChartBar, HiSolidUsers, HiSolidShoppingBag, HiSolidBolt } from "solid-icons/hi";
 import { text } from "~/lib/i18n";
 

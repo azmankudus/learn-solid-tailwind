@@ -1,6 +1,7 @@
 import { mode, setMode, bg, setBg, color, setColor, lang, setLang, view, setView } from "~/lib/store";
 import { text, LANGUAGES } from "~/lib/i18n";
-import { Dropdown, SegmentedToggle } from "../Components";
+import { Dropdown } from "../input/Dropdown";
+import { SegmentedToggle } from "../input/SegmentedToggle";
 import { HiSolidSun, HiSolidMoon, HiSolidPaintBrush, HiSolidArrowsRightLeft, HiSolidViewColumns } from "solid-icons/hi";
 import { COLORS, BGS, getButtonBg } from "~/lib/constants";
 
