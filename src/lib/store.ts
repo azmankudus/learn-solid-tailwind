@@ -1,6 +1,6 @@
 import { createSignal, createEffect, createRoot } from "solid-js";
 
-const STORAGE_KEY = "antigravity-settings";
+const STORAGE_KEY = "ui-den-settings";
 
 const defaultSettings = {
   isLoggedIn: false,
@@ -8,7 +8,8 @@ const defaultSettings = {
   mode: "light",
   bg: "solid",
   color: "indigo",
-  lang: "en-US"
+  lang: "en-US",
+  view: "wide"
 };
 
 // Initialize with default settings to ensure Server-Side Rendering (SSR)
@@ -19,6 +20,7 @@ export const [mode, setMode] = createSignal<"light" | "dark">(defaultSettings.mo
 export const [bg, setBg] = createSignal(defaultSettings.bg);
 export const [color, setColor] = createSignal(defaultSettings.color);
 export const [lang, setLang] = createSignal(defaultSettings.lang);
+export const [view, setView] = createSignal<"center" | "wide">(defaultSettings.view as "center" | "wide");
 export const [isLoginModalOpen, setIsLoginModalOpen] = createSignal(false);
 export const [redirectUrl, setRedirectUrl] = createSignal("");
 export const [isLoaded, setIsLoaded] = createSignal(false);
@@ -41,8 +43,9 @@ if (typeof window !== "undefined") {
           if (saved.bg !== undefined) setBg(saved.bg);
           if (saved.color !== undefined) setColor(saved.color);
           if (saved.lang !== undefined) setLang(saved.lang);
+          if (saved.view !== undefined) setView(saved.view);
           setIsLoaded(true);
-        }, 0);
+        }, 50);
       } else {
         setIsLoaded(true);
       }
@@ -60,6 +63,7 @@ if (typeof window !== "undefined") {
         bg: bg(),
         color: color(),
         lang: lang(),
+        view: view(),
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
 

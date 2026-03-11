@@ -1,5 +1,5 @@
 import { A } from "@solidjs/router";
-import { HeadingText, Button, PageWrapper } from "~/components/ThemeComponents";
+import { HeadingText, Button, PageWrapper } from "~/components/Components";
 import { t } from "~/lib/i18n";
 import { HiSolidHome } from "solid-icons/hi";
 

@@ -1,5 +1,5 @@
 {
-  "name": "example-with-tailwindcss",
+  "name": "ui-den",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -13,7 +13,6 @@
     "nitro": "3.0.1-alpha.2",
     "solid-icons": "^1.2.0",
     "solid-js": "^1.9.5",
-    "solid-motionone": "^1.0.4",
     "vite": "^7.0.0"
   },
   "devDependencies": {

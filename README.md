@@ -1,32 +1,71 @@
-# SolidStart
+# 🏛️ UI-DEN (Foundation)
 
-Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
+> **A High-Performance, Aesthetic UI Foundation for Professional Dashboards.**
 
-## Creating a project
+UI-DEN is not just a template; it's a solid architectural foundation for building premium web applications. Developed with **SolidJS**, **SolidStart**, and **Tailwind CSS**, it combines extreme performance with high-end design aesthetics.
 
+---
+
+## 💎 Features
+
+- **🚀 Performance First**: Built on SolidJS for lightning-fast, reactive updates without the overhead of a Virtual DOM.
+- **🎨 Glassmorphic Design**: Modern, premium aesthetic featuring blurred backdrops, soft shadows, and vibrant gradients.
+- **🌗 Smart Theming**: Full support for Light and Dark modes with a built-in palette system to instantly change your brand color across the entire app.
+- **🌍 Internationalization (i18n)**: Out-of-the-box support for **English**, **Malay (Bahasa Melayu)**, and **Chinese (Simplified)**.
+- **📐 Flexible Layouts**: Toggle between **Wide** and **Centered** view modes. Perfect for adapting to different content types.
+- **📱 Fully Responsive**: A unified navigation experience that seamlessly transitions from a powerful sidebar on desktop to a condensed hamburger menu on mobile.
+
+---
+
+## 🛠️ Stack
+
+- **Core**: [SolidJS](https://www.solidjs.com/) & [SolidStart](https://start.solidjs.com/)
+- **Styling**: [Tailwind CSS v4.0](https://tailwindcss.com/)
+- **Animation**: [Motion One](https://motion.dev/)
+- **Icons**: [Solid Icons (Heroicons)](https://solid-icons.github.io/solid-icons/)
+- **State Management**: Zero-dependency Root Signals
+
+---
+
+## 🚀 Getting Started
+
+### 1. Installation
 ```bash
-# create a new project in the current directory
-npm init solid@latest
-
-# create a new project in my-app
-npm init solid@latest my-app
+npm install
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+### 2. Development
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+### 3. Production Build
+```bash
+npm run build
+npm run start
+```
 
-Solid apps are built with _presets_, which optimise your project for deployment to different environments.
+---
 
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different preset, add it to the `devDependencies` in `package.json` and specify in your `app.config.js`.
+## 📂 Project Structure
 
-## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
+- `src/components`: Reusable UI components including the theme engine.
+- `src/lib`: Core logic, stores, constants, and message bundles.
+- `src/routes`: High-performance routing system with protected area logic.
+- `public`: Static assets and textures.
+
+---
+
+## 🔒 Authenticated Routes
+The dashboard includes a full mock authentication flow. Try logging in with the following credentials to explore the protected layout:
+- **Username**: `admin`
+- **Password**: `admin`
+
+---
+
+## 🎨 UI Alignment & Quality
+UI-DEN focuses on perfect pixel alignment. Every container, button, and navigation item is carefully calculated to maintain stability across different view modes and screen sizes, ensuring a high-quality user experience.
+
+---
+
+*Built with ❤️ for developers who value aesthetics and performance.*

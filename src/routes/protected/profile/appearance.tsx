@@ -1,85 +1,94 @@
-import { createSignal } from "solid-js";
-import { mode, setMode, color, setColor, bg, setBg, lang, setLang } from "~/lib/store";
+import { mode, setMode, color, setColor, bg, setBg, lang, setLang, view, setView } from "~/lib/store";
 import { t, LANGUAGES } from "~/lib/i18n";
-import { HeadingText, Card, CustomDropdown } from "~/components/ThemeComponents";
-import { 
-  HiSolidSun, HiSolidMoon, HiSolidSwatch, HiSolidPaintBrush 
+import { HeadingText, Card, Dropdown, Toggle, SegmentedToggle } from "~/components/Components";
+import {
+  HiSolidSun, HiSolidMoon, HiSolidSwatch, HiSolidPaintBrush, HiSolidArrowsRightLeft, HiSolidViewColumns
 } from "solid-icons/hi";
 import { COLORS, BGS, getButtonBg } from "~/lib/constants";
 
-
-
 export default function ProfileAppearance() {
   const renderColorIcon = (v: string) => (
-    <div class="h-5 w-5 rounded-full shadow-lg border border-white/20" style={{ background: getButtonBg(v) }} />
+    <div class="h-5 w-5 rounded-full shadow-lg shadow-black/10 border border-white/20" style={{ background: getButtonBg(v) }} />
   );
 
   const renderBgIcon = (v: string) => {
     const Icon = BGS.find(b => b.value === v)?.icon || HiSolidPaintBrush;
-    return <span class="text-xs text-theme-solid opacity-80"><Icon /></span>;
+    return <span class="text-theme opacity-80 group-hover:text-white transition-colors"><Icon size={20} /></span>;
   };
 
+  const toggleMode = () => setMode(mode() === 'dark' ? 'light' : 'dark');
+  const toggleView = () => setView(view() === 'wide' ? 'center' : 'wide');
+
   return (
-    <div class="space-y-6">
-      <div class="flex items-center space-x-3 mb-8">
+    <div class="flex flex-col space-y-6 pb-20">
+      <div class="flex items-center space-x-3 mb-4">
         <div class="h-10 w-10 rounded-xl bg-theme/10 text-theme flex items-center justify-center">
           <HiSolidSwatch size={24} />
         </div>
         <HeadingText level={2} class="text-3xl">{t("appearance.title")}</HeadingText>
       </div>
 
-      <Card class="p-8 max-w-2xl" overflowVisible={true}>
+      <Card class="p-8 border-none shadow-sm" overflowVisible={true}>
         <div class="space-y-8">
-          <div>
-            <h4 class="text-xs font-bold uppercase tracking-widest text-muted mb-4 ml-1">{t("appearance.themeMode")}</h4>
-            <button
-              onClick={() => setMode(mode() === "light" ? "dark" : "light")}
-              class="w-full flex items-center justify-between p-4 rounded-xl bg-surface hover:bg-black/5 transition-all group border border-border-theme shadow-sm"
-            >
-              <div class="flex items-center space-x-3">
-                <div class="text-theme">
-                  {mode() === 'dark' ? <HiSolidMoon size={24} /> : <HiSolidSun size={24} />}
-                </div>
-                <span class="text-xs font-semibold text-main tracking-widest">
-                  {mode() === 'dark' ? t("appearance.darkMode") : t("appearance.lightMode")}
-                </span>
-              </div>
-              <div class={`h-7 w-12 rounded-full relative p-1.5 transition-colors ${mode() === 'dark' ? 'bg-theme' : 'bg-black/10 shadow-inner'}`}>
-                <div class={`h-4 w-4 rounded-full transition-all duration-300 shadow-md bg-white border-none ${mode() === 'dark' ? 'translate-x-5' : 'translate-x-0'}`}></div>
-              </div>
-            </button>
-          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            {/* Theme Mode Toggle (Matches TopNav design) */}
+            <div class="space-y-4">
+              <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{t("appearance.themeMode")}</h4>
+              <SegmentedToggle 
+                value={mode()}
+                onChange={setMode}
+                options={[
+                  { id: 'light', label: t("appearance.light"), icon: (props) => <HiSolidSun {...props} /> },
+                  { id: 'dark', label: t("appearance.dark"), icon: (props) => <HiSolidMoon {...props} /> }
+                ]}
+              />
+            </div>
 
-          <div>
-            <h4 class="text-xs font-bold uppercase tracking-widest text-muted mb-4 ml-1">{t("appearance.themePalette")}</h4>
-            <CustomDropdown
-              value={color()}
-              options={COLORS}
-              onChange={setColor}
-              renderIcon={renderColorIcon}
-            />
-          </div>
+            {/* Layout Type Toggle (Matches TopNav design) */}
+            <div class="space-y-4">
+              <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{t("appearance.layoutType")}</h4>
+              <SegmentedToggle 
+                value={view()}
+                onChange={(v) => setView(v)}
+                options={[
+                  { id: 'center', label: t("appearance.center"), icon: (props) => <HiSolidViewColumns {...props} /> },
+                  { id: 'wide', label: t("appearance.wide"), icon: (props) => <HiSolidArrowsRightLeft {...props} /> }
+                ]}
+              />
+            </div>
 
-          <div>
-            <h4 class="text-xs font-bold uppercase tracking-widest text-muted mb-4 ml-1">{t("appearance.backdropArt")}</h4>
-            <CustomDropdown
-              value={bg()}
-              options={BGS}
-              onChange={setBg}
-              renderIcon={renderBgIcon}
-            />
-          </div>
-
-          <div>
-            <h4 class="text-xs font-bold uppercase tracking-widest text-muted mb-4 ml-1">{t("appearance.language")}</h4>
-            <CustomDropdown
-              value={lang()}
-              options={LANGUAGES}
-              onChange={setLang}
-            />
+            <div class="space-y-4">
+              <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{t("appearance.accentColor")}</h4>
+              <Dropdown
+                value={color()}
+                options={COLORS}
+                onChange={setColor}
+                renderIcon={renderColorIcon}
+              />
+            </div>
+            <div class="space-y-4">
+              <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{t("appearance.background")}</h4>
+              <Dropdown
+                value={bg()}
+                options={BGS}
+                onChange={setBg}
+                renderIcon={renderBgIcon}
+              />
+            </div>
+            <div class="space-y-4">
+              <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{t("appearance.language")}</h4>
+              <Dropdown
+                value={lang()}
+                options={LANGUAGES}
+                onChange={setLang}
+              />
+            </div>
           </div>
         </div>
       </Card>
+
+      {/* Footer spacer */}
+      <div class="h-32 w-full" />
     </div>
   );
 }

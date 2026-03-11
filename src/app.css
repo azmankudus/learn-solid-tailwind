@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-fade-in-left: fade-in-left 0.4s ease-out;
   --animate-bounce-subtle: bounce-subtle 2s infinite ease-in-out;
 
   --color-base: var(--bg-base);
@@ -11,10 +12,18 @@
   --color-main: var(--text-main);
   --color-muted: var(--text-muted);
   --color-border-theme: var(--border-color);
+  --color-input: var(--bg-input);
+  --color-input-border: var(--border-input);
+  --color-input-shadow: var(--input-shadow);
 
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in-left {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
   }
 
   @keyframes bounce-subtle {
@@ -27,13 +36,16 @@
   --bg-base: #f8fafc;
   --bg-surface: rgba(255, 255, 255, 0.7);
   --bg-solid: #ffffff;
+  --bg-input: #edf2f7;
   --bg-hover: rgba(15, 23, 42, 0.05);
   --bg-nav: rgba(255, 255, 255, 0.65);
   --text-main: #0f172a;
   --text-muted: #64748b;
   --border-color: rgba(15, 23, 42, 0.03);
+  --border-input: rgba(15, 23, 42, 0.06);
   --accent-muted: rgba(15, 23, 42, 0.04);
   --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05), 0 0 20px 0 rgba(0, 0, 0, 0.02);
+  --input-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03);
   --glass-border: rgba(255, 255, 255, 0.5);
 }
 
@@ -41,13 +53,19 @@
   --bg-base: #020617;
   --bg-surface: rgba(15, 23, 42, 0.6);
   --bg-solid: #0f172a;
-  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-input: rgba(255, 255, 255, 0.12);
+  --color-input: rgba(255, 255, 255, 0.12);
+  --bg-hover: rgba(255, 255, 255, 0.08);
   --bg-nav: rgba(15, 23, 42, 0.55);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --border-color: rgba(255, 255, 255, 0.03);
+  --border-input: rgba(255, 255, 255, 0.15);
+  --color-input-border: rgba(255, 255, 255, 0.15);
   --accent-muted: rgba(255, 255, 255, 0.04);
   --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  --input-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  --color-input-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4);
   --glass-border: rgba(255, 255, 255, 0.05);
 }
 
@@ -155,4 +173,85 @@ main {
   background: var(--text-muted);
   opacity: 0.3;
   border-radius: 10px;
+}
+
+/* SideNav group expand/collapse — CSS grid rows for smooth GPU animation */
+.sidenav-group-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.15s ease;
+  opacity: 0;
+}
+
+.sidenav-group-panel--open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.sidenav-group-panel__inner {
+  overflow: hidden;
+}
+
+/* Layout view transition (center ↔ wide) */
+.layout-view-transition {
+  transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: max-width;
+}
+
+/* Dropdown panel animation */
+.dropdown-panel {
+  opacity: 0;
+  transform: scale(0.95) translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.15s ease-out,
+              transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-panel--open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* Modal overlay + content animation */
+.modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-overlay--open .modal-content {
+  animation: modal-enter 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Mobile menu overlay animation */
+.mobile-menu-overlay {
+  opacity: 0;
+  transform: translateY(-16px);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out,
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-overlay--open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }

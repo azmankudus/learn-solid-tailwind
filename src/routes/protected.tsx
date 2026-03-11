@@ -1,5 +1,5 @@
 import { ParentProps } from "solid-js";
-import ProtectedLayout from "~/components/ProtectedLayout";
+import { ProtectedLayout } from "~/components/Components";
 
 export default function Layout(props: ParentProps) {
   return (
