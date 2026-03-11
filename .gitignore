@@ -1,26 +1,30 @@
-# Node modules
+*
+
+!.gitignore
+
+!package.json
+!tsconfig.json
+!vite.config.ts
+!vitest.config.ts
+!README.md
+!LICENSE
+!eslint.config.js
+
+!src/**/*
+!public/**/*
+
 node_modules/
 .vinxi/
 .output/
 .solid/
 dist/
-
-# Bundlers/locks
-package-lock.json
-pnpm-lock.yaml
-bun.lockb
-
-# Local env files
-.env
-.env*.local
-
-# IDEs
 .vscode/
 .idea/
 
-# Scripts
-*.py
+.env
+.env*.local
 
-# System
 .DS_Store
 Thumbs.db
+*.log
+*.log*

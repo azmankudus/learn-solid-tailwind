@@ -2,13 +2,13 @@ import { For } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { HeadingText, Card } from "~/components/Components";
 import { HiSolidChartBar, HiSolidUsers, HiSolidShoppingBag, HiSolidBolt } from "solid-icons/hi";
-import { t } from "~/lib/i18n";
+import { text } from "~/lib/i18n";
 
 export default function DashboardOverview() {
   const stats = [
-    { label: t("dash.stats.users"), value: "12,456", change: "+12%", icon: HiSolidUsers },
-    { label: t("dash.stats.revenue"), value: "$45,231", change: "+8%", icon: HiSolidShoppingBag },
-    { label: t("dash.stats.activeNow"), value: "847", change: "+24%", icon: HiSolidBolt },
+    { label: text("dash.stats.users"), value: "12,456", change: "+12%", icon: HiSolidUsers },
+    { label: text("dash.stats.revenue"), value: "$45,231", change: "+8%", icon: HiSolidShoppingBag },
+    { label: text("dash.stats.activeNow"), value: "847", change: "+24%", icon: HiSolidBolt },
   ];
 
   const recentActivities = [
@@ -23,7 +23,7 @@ export default function DashboardOverview() {
         <div class="h-10 w-10 rounded-xl bg-theme/10 text-theme flex items-center justify-center">
           <HiSolidChartBar size={24} />
         </div>
-        <HeadingText level={2} class="text-3xl">{t("dash.pageTitle")}</HeadingText>
+        <HeadingText level={2} class="text-3xl">{text("dash.pageTitle")}</HeadingText>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -60,8 +60,8 @@ export default function DashboardOverview() {
 
       <Card class="border-none shadow-sm">
         <div class="mb-6 flex items-center justify-between">
-          <HeadingText level={3} class="text-xl">{t("dash.recentActivity")}</HeadingText>
-          <button class="text-xs font-bold text-theme hover:underline">{t("dash.viewAll")}</button>
+          <HeadingText level={3} class="text-xl">{text("dash.recentActivity")}</HeadingText>
+          <button class="text-xs font-bold text-theme hover:underline">{text("dash.viewAll")}</button>
         </div>
         <div class="space-y-1">
           <For each={recentActivities}>

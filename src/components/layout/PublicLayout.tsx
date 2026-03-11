@@ -1,10 +1,9 @@
-import { ParentProps, createEffect, on, For, createSignal, onMount } from "solid-js";
-import { useLocation } from "@solidjs/router";
-import { TopNav } from "../navigation/TopNav";
+import { ParentProps, createSignal, onMount } from "solid-js";
+import { TopNav } from "../Components";
 import { bg, view } from "~/lib/store";
 
 export function PublicLayout(props: ParentProps) {
-  const location = useLocation();
+
   const [isMounted, setIsMounted] = createSignal(false);
 
   onMount(() => {

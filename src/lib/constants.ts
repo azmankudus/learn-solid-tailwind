@@ -1,56 +1,56 @@
-import { t } from "./i18n";
-import { 
-  HiSolidPaintBrush, HiSolidStop, HiSolidTableCells, HiSolidQueueList, 
-  HiSolidCloud, HiSolidSparkles, HiSolidSun, HiSolidMoon, HiSolidGlobeAlt, 
-  HiSolidArrowPath, HiSolidInboxStack, HiSolidSquare2Stack, HiSolidFire, 
-  HiSolidViewfinderCircle, HiSolidArrowTrendingUp, HiSolidEye, HiSolidCube, 
-  HiSolidCheckCircle, HiSolidBolt 
+import { text } from "./i18n";
+import {
+  HiSolidPaintBrush, HiSolidStop, HiSolidTableCells, HiSolidQueueList,
+  HiSolidCloud, HiSolidSparkles, HiSolidSun, HiSolidMoon, HiSolidGlobeAlt,
+  HiSolidArrowPath, HiSolidInboxStack, HiSolidSquare2Stack, HiSolidFire,
+  HiSolidViewfinderCircle, HiSolidArrowTrendingUp, HiSolidEye, HiSolidCube,
+  HiSolidCheckCircle, HiSolidBolt
 } from "solid-icons/hi";
 
 export const COLORS = [
-  { value: "indigo", get label() { return t("color.indigo"); } },
-  { value: "blue", get label() { return t("color.blue"); } },
-  { value: "sky", get label() { return t("color.sky"); } },
-  { value: "teal", get label() { return t("color.teal"); } },
-  { value: "emerald", get label() { return t("color.emerald"); } },
-  { value: "yellow", get label() { return t("color.yellow"); } },
-  { value: "orange", get label() { return t("color.orange"); } },
-  { value: "red", get label() { return t("color.red"); } },
-  { value: "pink", get label() { return t("color.pink"); } },
-  { value: "slate", get label() { return t("color.slate"); } },
-  { value: "sunset", get label() { return t("color.sunset"); } },
-  { value: "ocean", get label() { return t("color.ocean"); } },
-  { value: "forest", get label() { return t("color.forest"); } },
-  { value: "midnight", get label() { return t("color.midnight"); } },
-  { value: "cherry", get label() { return t("color.cherry"); } },
-  { value: "lemon", get label() { return t("color.lemon"); } },
-  { value: "aqua", get label() { return t("color.aqua"); } },
-  { value: "nebula", get label() { return t("color.nebula"); } },
-  { value: "lava", get label() { return t("color.lava"); } },
-  { value: "cosmic", get label() { return t("color.cosmic"); } }
+  { value: "indigo", get label() { return text("color.indigo"); } },
+  { value: "blue", get label() { return text("color.blue"); } },
+  { value: "sky", get label() { return text("color.sky"); } },
+  { value: "teal", get label() { return text("color.teal"); } },
+  { value: "emerald", get label() { return text("color.emerald"); } },
+  { value: "yellow", get label() { return text("color.yellow"); } },
+  { value: "orange", get label() { return text("color.orange"); } },
+  { value: "red", get label() { return text("color.red"); } },
+  { value: "pink", get label() { return text("color.pink"); } },
+  { value: "slate", get label() { return text("color.slate"); } },
+  { value: "sunset", get label() { return text("color.sunset"); } },
+  { value: "ocean", get label() { return text("color.ocean"); } },
+  { value: "forest", get label() { return text("color.forest"); } },
+  { value: "midnight", get label() { return text("color.midnight"); } },
+  { value: "cherry", get label() { return text("color.cherry"); } },
+  { value: "lemon", get label() { return text("color.lemon"); } },
+  { value: "aqua", get label() { return text("color.aqua"); } },
+  { value: "nebula", get label() { return text("color.nebula"); } },
+  { value: "lava", get label() { return text("color.lava"); } },
+  { value: "cosmic", get label() { return text("color.cosmic"); } }
 ];
 
 export const BGS = [
-  { value: "solid", get label() { return t("bg.solid"); }, icon: HiSolidPaintBrush },
-  { value: "dots", get label() { return t("bg.dots"); }, icon: HiSolidStop },
-  { value: "grid", get label() { return t("bg.grid"); }, icon: HiSolidTableCells },
-  { value: "diagonal", get label() { return t("bg.diagonal"); }, icon: HiSolidQueueList },
-  { value: "soft", get label() { return t("bg.soft"); }, icon: HiSolidCloud },
-  { value: "aurora", get label() { return t("bg.aurora"); }, icon: HiSolidSparkles },
-  { value: "glow", get label() { return t("bg.glow"); }, icon: HiSolidSun },
-  { value: "twilight", get label() { return t("bg.twilight"); }, icon: HiSolidMoon },
-  { value: "mesh", get label() { return t("bg.mesh"); }, icon: HiSolidGlobeAlt },
-  { value: "float", get label() { return t("bg.float"); }, icon: HiSolidArrowPath },
-  { value: "depth", get label() { return t("bg.depth"); }, icon: HiSolidInboxStack },
-  { value: "glass", get label() { return t("bg.glass"); }, icon: HiSolidSquare2Stack },
-  { value: "flare", get label() { return t("bg.flare"); }, icon: HiSolidFire },
-  { value: "horizon", get label() { return t("bg.horizon"); }, icon: HiSolidViewfinderCircle },
-  { value: "mist", get label() { return t("bg.mist"); }, icon: HiSolidCloud },
-  { value: "elevate", get label() { return t("bg.elevate"); }, icon: HiSolidArrowTrendingUp },
-  { value: "focus", get label() { return t("bg.focus"); }, icon: HiSolidEye },
-  { value: "sweep", get label() { return t("bg.sweep"); }, icon: HiSolidCube },
-  { value: "calm", get label() { return t("bg.calm"); }, icon: HiSolidCheckCircle },
-  { value: "active", get label() { return t("bg.active"); }, icon: HiSolidBolt }
+  { value: "solid", get label() { return text("bg.solid"); }, icon: HiSolidPaintBrush },
+  { value: "dots", get label() { return text("bg.dots"); }, icon: HiSolidStop },
+  { value: "grid", get label() { return text("bg.grid"); }, icon: HiSolidTableCells },
+  { value: "diagonal", get label() { return text("bg.diagonal"); }, icon: HiSolidQueueList },
+  { value: "soft", get label() { return text("bg.soft"); }, icon: HiSolidCloud },
+  { value: "aurora", get label() { return text("bg.aurora"); }, icon: HiSolidSparkles },
+  { value: "glow", get label() { return text("bg.glow"); }, icon: HiSolidSun },
+  { value: "twilight", get label() { return text("bg.twilight"); }, icon: HiSolidMoon },
+  { value: "mesh", get label() { return text("bg.mesh"); }, icon: HiSolidGlobeAlt },
+  { value: "float", get label() { return text("bg.float"); }, icon: HiSolidArrowPath },
+  { value: "depth", get label() { return text("bg.depth"); }, icon: HiSolidInboxStack },
+  { value: "glass", get label() { return text("bg.glass"); }, icon: HiSolidSquare2Stack },
+  { value: "flare", get label() { return text("bg.flare"); }, icon: HiSolidFire },
+  { value: "horizon", get label() { return text("bg.horizon"); }, icon: HiSolidViewfinderCircle },
+  { value: "mist", get label() { return text("bg.mist"); }, icon: HiSolidCloud },
+  { value: "elevate", get label() { return text("bg.elevate"); }, icon: HiSolidArrowTrendingUp },
+  { value: "focus", get label() { return text("bg.focus"); }, icon: HiSolidEye },
+  { value: "sweep", get label() { return text("bg.sweep"); }, icon: HiSolidCube },
+  { value: "calm", get label() { return text("bg.calm"); }, icon: HiSolidCheckCircle },
+  { value: "active", get label() { return text("bg.active"); }, icon: HiSolidBolt }
 ];
 
 export function getButtonBg(c: string) {

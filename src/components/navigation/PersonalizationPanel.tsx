@@ -1,10 +1,6 @@
-import { JSX } from "solid-js";
-import { 
-  mode, setMode, bg, setBg, color, setColor, lang, setLang, view, setView 
-} from "~/lib/store";
-import { t, LANGUAGES } from "~/lib/i18n";
-import { Dropdown } from "../input/Dropdown";
-import { SegmentedToggle } from "../input/SegmentedToggle";
+import { mode, setMode, bg, setBg, color, setColor, lang, setLang, view, setView } from "~/lib/store";
+import { text, LANGUAGES } from "~/lib/i18n";
+import { Dropdown, SegmentedToggle } from "../Components";
 import { HiSolidSun, HiSolidMoon, HiSolidPaintBrush, HiSolidArrowsRightLeft, HiSolidViewColumns } from "solid-icons/hi";
 import { COLORS, BGS, getButtonBg } from "~/lib/constants";
 
@@ -25,22 +21,22 @@ export function PersonalizationPanel() {
           value={mode()}
           onChange={setMode}
           options={[
-            { id: 'light', label: t("appearance.light"), icon: (props) => <HiSolidSun {...props} /> },
-            { id: 'dark', label: t("appearance.dark"), icon: (props) => <HiSolidMoon {...props} /> }
+            { id: 'light', label: text("appearance.light"), icon: (props) => <HiSolidSun {...props} /> },
+            { id: 'dark', label: text("appearance.dark"), icon: (props) => <HiSolidMoon {...props} /> }
           ]}
         />
       </div>
 
       <div class="flex flex-col gap-2">
         <span class="text-[10px] font-bold uppercase tracking-widest text-muted pl-1">
-          {t("appearance.layout")}
+          {text("appearance.layout")}
         </span>
         <SegmentedToggle
           value={view()}
           onChange={(v) => setView(v)}
           options={[
-            { id: 'center', label: t("appearance.center"), icon: (props) => <HiSolidViewColumns {...props} /> },
-            { id: 'wide', label: t("appearance.wide"), icon: (props) => <HiSolidArrowsRightLeft {...props} /> }
+            { id: 'center', label: text("appearance.center"), icon: (props) => <HiSolidViewColumns {...props} /> },
+            { id: 'wide', label: text("appearance.wide"), icon: (props) => <HiSolidArrowsRightLeft {...props} /> }
           ]}
         />
       </div>

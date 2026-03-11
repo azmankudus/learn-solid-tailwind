@@ -1,7 +1,7 @@
 import { For } from "solid-js";
 import { HeadingText, Card, IconButton } from "~/components/Components";
 import { HiSolidDocumentChartBar, HiSolidArrowDownTray, HiSolidArrowTopRightOnSquare } from "solid-icons/hi";
-import { t } from "~/lib/i18n";
+import { text } from "~/lib/i18n";
 
 export default function Reports() {
   const reports = [
@@ -20,14 +20,14 @@ export default function Reports() {
           </div>
           <div>
             <HeadingText level={1} class="text-3xl sm:text-4xl">
-              {t("dash.reports.title")}
+              {text("dash.reports.title")}
             </HeadingText>
-            <p class="text-sm text-muted mt-1">{t("dash.reports.desc")}</p>
+            <p class="text-sm text-muted mt-1">{text("dash.reports.desc")}</p>
           </div>
         </div>
 
         <button class="bg-theme text-white text-xs font-bold px-6 py-2.5 rounded-xl flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-md shadow-primary/20 border-none">
-          {t("dash.reports.generate")}
+          {text("dash.reports.generate")}
         </button>
       </div>
 
@@ -51,10 +51,10 @@ export default function Reports() {
                 </div>
 
                 <div class="flex items-center gap-2">
-                  <IconButton tooltip={t("dash.reports.download")} class="hover:bg-theme/10 hover:text-theme border-none">
+                  <IconButton tooltip={text("dash.reports.download")} class="hover:bg-theme/10 hover:text-theme border-none">
                     <HiSolidArrowDownTray size={18} />
                   </IconButton>
-                  <IconButton tooltip={t("dash.reports.open")} class="hover:bg-theme/10 hover:text-theme border-none">
+                  <IconButton tooltip={text("dash.reports.open")} class="hover:bg-theme/10 hover:text-theme border-none">
                     <HiSolidArrowTopRightOnSquare size={18} />
                   </IconButton>
                 </div>

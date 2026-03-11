@@ -1,7 +1,7 @@
-import { ParentProps, JSX, Show } from "solid-js";
+import { ParentProps, JSX } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { A } from "@solidjs/router";
-import { Tooltip } from "../display/Tooltip";
+import { Tooltip } from "../Components";
 
 export interface SideNavButtonProps extends ParentProps {
   href: string;
@@ -17,17 +17,15 @@ export interface SideNavButtonProps extends ParentProps {
 export function SideNavButton(props: SideNavButtonProps) {
   const iconSize = () => props.isSubItem ? '16px' : '24px';
 
-
-
   return (
     <div class="relative flex items-center w-full">
       <A
         href={props.href}
         end={true}
         onDblClick={props.onDblClick}
-        activeClass={!props.collapsed ? "bg-surface text-main shadow-md backdrop-blur-2xl" : ""}
-        inactiveClass={!props.collapsed ? "text-muted hover:bg-surface/50 hover:text-main backdrop-blur-md" : "text-muted"}
-        class={`flex items-center rounded-xl group border-none cursor-pointer h-8 w-full px-0 justify-start overflow-hidden transition-all duration-300 ${props.class || ""} ${props.active && !props.collapsed ? 'bg-surface text-main shadow-md' : ''}`}
+        activeClass="bg-surface text-main shadow-md backdrop-blur-2xl"
+        inactiveClass="text-muted hover:bg-surface/50 hover:text-main backdrop-blur-md"
+        class={`flex items-center rounded-xl group border-none cursor-pointer h-8 w-full px-0 justify-start overflow-hidden transition-all duration-300 ${props.class || ""} ${props.active ? 'bg-surface text-main shadow-md' : ''}`}
       >
         <Tooltip text={props.tooltip!} position="right" disabled={!props.collapsed || !props.tooltip}>
           <div class="w-full px-0">

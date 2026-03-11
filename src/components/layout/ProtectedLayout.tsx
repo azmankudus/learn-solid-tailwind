@@ -1,8 +1,7 @@
-import { ParentProps, createEffect, onMount, createSignal, Show } from "solid-js";
+import { ParentProps, createEffect, onMount, createSignal } from "solid-js";
 import { useLocation, useNavigate } from "@solidjs/router";
 import { isLoggedIn, setIsLoginModalOpen, setRedirectUrl, isLoaded, view } from "~/lib/store";
-import { SideNav } from "../navigation/SideNav";
-import { PageWrapper } from "./PageWrapper";
+import { SideNav, PageWrapper } from "../Components";
 
 export function ProtectedLayout(props: ParentProps) {
   const location = useLocation();

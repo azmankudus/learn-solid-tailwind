@@ -1,7 +1,7 @@
-import { ParentProps, JSX, Show } from "solid-js";
+import { ParentProps, JSX } from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { HiSolidChevronDown } from "solid-icons/hi";
-import { Tooltip } from "../display/Tooltip";
+import { Tooltip } from "../Components";
 
 export interface SideNavButtonGroupProps extends ParentProps {
   label: string;
@@ -21,10 +21,10 @@ export function SideNavButtonGroup(props: SideNavButtonGroupProps) {
     <button
       onClick={() => props.onToggle?.(props.label)}
       onDblClick={props.onDblClick}
-      class={`flex items-center rounded-xl group border-none cursor-pointer h-8 w-full px-0 justify-start overflow-hidden transition-all duration-300 ${props.active && !isCollapsed
-        ? 'bg-surface text-main shadow-md backdrop-blur-2xl'
-        : (!isCollapsed ? 'text-muted hover:bg-surface/50 hover:text-main backdrop-blur-md' : 'text-muted')
-        }`}
+      class={`flex items-center rounded-xl group border-none cursor-pointer h-8 w-full px-0 justify-start overflow-hidden transition-all duration-300 ${props.active
+          ? 'bg-surface text-main shadow-md backdrop-blur-2xl'
+          : ('text-muted hover:bg-surface/50 hover:text-main backdrop-blur-md')
+          }`}
     >
       <Tooltip text={props.label} position="right" disabled={!isCollapsed}>
         <div class="w-full px-0">

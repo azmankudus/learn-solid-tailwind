@@ -1,6 +1,6 @@
 import { A } from "@solidjs/router";
 import { HeadingText, Button, PageWrapper } from "~/components/Components";
-import { t } from "~/lib/i18n";
+import { text } from "~/lib/i18n";
 import { HiSolidHome } from "solid-icons/hi";
 
 export default function NotFound() {
@@ -11,15 +11,15 @@ export default function NotFound() {
           404
         </HeadingText>
         <HeadingText level={2} class="text-3xl md:text-4xl mb-4">
-          {t("error.title")}
+          {text("error.title")}
         </HeadingText>
         <p class="text-muted text-lg mb-8 max-w-md mx-auto">
-          {t("error.desc")}
+          {text("error.desc")}
         </p>
         <A href="/">
           <Button class="flex items-center gap-2 mx-auto">
             <HiSolidHome size={20} />
-            {t("error.back")}
+            {text("error.back")}
           </Button>
         </A>
       </div>

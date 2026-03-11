@@ -1,7 +1,7 @@
 import { A } from "@solidjs/router";
-import { HeadingText, PageWrapper, Button, Card } from "~/components/Components";
+import { HeadingText, PageWrapper, Button } from "~/components/Components";
 import { HiSolidArrowSmallRight, HiSolidSquare3Stack3d } from "solid-icons/hi";
-import { t } from "~/lib/i18n";
+import { text } from "~/lib/i18n";
 
 export default function Home() {
   return (
@@ -13,26 +13,20 @@ export default function Home() {
       <div class="px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="lg:grid lg:grid-cols-12 lg:gap-24 items-center">
           <div class="sm:text-center md:mx-auto md:max-w-3xl lg:col-span-6 lg:text-left">
-            <div class="mb-8 flex sm:justify-center lg:justify-start">
-              <span class="bg-primary/5 text-theme-solid px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider border-none shadow-sm relative overflow-hidden">
-                <div class="absolute inset-0 bg-theme/10 blur-xl pointer-events-none" />
-                <span class="relative z-10">{t("landing.badge")}</span>
-              </span>
-            </div>
             <HeadingText level={1} class="text-5xl sm:text-6xl md:text-7xl leading-tight mb-8">
-              {t("landing.title1")} <span class="text-theme">{t("landing.title2")}</span> {t("landing.title3")}
+              {text("landing.title1")} <span class="text-theme">{text("landing.title2")}</span> {text("landing.title3")}
             </HeadingText>
             <p class="text-lg text-muted sm:text-xl leading-relaxed font-medium mb-10 max-w-2xl sm:mx-auto lg:mx-0">
-              {t("landing.desc")}
+              {text("landing.desc")}
             </p>
             <div class="flex flex-wrap gap-4 sm:justify-center lg:justify-start">
               <A href="/protected">
                 <Button class="px-8 py-3.5 text-base shadow-md flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:scale-[1.02]">
-                  {t("landing.cta")} <HiSolidArrowSmallRight size={20} />
+                  {text("landing.cta")} <HiSolidArrowSmallRight size={20} />
                 </Button>
               </A>
               <button class="flex items-center justify-center px-8 py-3.5 text-base font-semibold text-main bg-surface/80 border-none backdrop-blur-md rounded-xl hover:bg-surface transition-all duration-300 active:scale-95 shadow-sm cursor-pointer">
-                {t("landing.learn")}
+                {text("landing.learn")}
               </button>
             </div>
           </div>
@@ -60,8 +54,8 @@ export default function Home() {
                   </div>
 
                   <div class="relative z-10">
-                    <HeadingText level={3} class="text-2xl mb-2">{t("landing.feature.title")}</HeadingText>
-                    <p class="text-sm text-muted font-medium">{t("landing.feature.desc")}</p>
+                    <HeadingText level={3} class="text-2xl mb-2">{text("landing.feature.title")}</HeadingText>
+                    <p class="text-sm text-muted font-medium">{text("landing.feature.desc")}</p>
                   </div>
                 </div>
               </div>

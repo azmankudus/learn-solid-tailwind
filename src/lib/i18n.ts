@@ -15,7 +15,7 @@ export const LANGUAGES = [
   { value: "zh-CN", label: "中文" }
 ];
 
-export function t(key: string): string {
+export function text(key: string): string {
   const currentLang = lang() || "en-US";
   return messages[currentLang]?.[key] || messages["en-US"][key] || key;
 }

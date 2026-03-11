@@ -1,20 +1,16 @@
-import { For, createSignal, onCleanup, onMount } from "solid-js";
-import { HeadingText, Card, Button, IconButton } from "~/components/Components";
-import { HiSolidArrowPath, HiSolidArrowTrendingUp, HiSolidArrowTrendingDown, HiSolidBolt } from "solid-icons/hi";
+import { For, createSignal } from "solid-js";
+import { HeadingText, Card, IconButton } from "~/components/Components";
+import { HiSolidArrowPath, HiSolidArrowTrendingUp, HiSolidBolt } from "solid-icons/hi";
 import { Title } from "@solidjs/meta";
+import { text } from "~/lib/i18n";
 
 export default function LiveData() {
-  const [data, setData] = createSignal([
-    { name: t("dash.analytics.visits"), value: 2400, color: "theme" },
-    { name: t("dash.analytics.sessions"), value: 1398, color: "sky-500" },
-    { name: t("dash.analytics.users"), value: 9800, color: "emerald-500" }
+  const [data] = createSignal([
+    { name: text("dash.analytics.visits"), value: 2400, color: "theme" },
+    { name: text("dash.analytics.sessions"), value: 1398, color: "sky-500" },
+    { name: text("dash.analytics.users"), value: 9800, color: "emerald-500" }
   ]);
 
-  // Note: t() usage in signal initialization might need correction if i18n is not loaded yet,
-  // but for this demo it should be fine.
-  
-  // Real implementation of t() check
-  const t = (key: string) => key; // Fallback or import
 
   return (
     <div class="flex flex-col space-y-8 animate-fade-in pb-20">
@@ -30,7 +26,7 @@ export default function LiveData() {
           <HiSolidArrowPath size={20} />
         </IconButton>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <For each={data()}>
           {(item) => (

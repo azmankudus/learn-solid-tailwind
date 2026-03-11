@@ -1,11 +1,11 @@
-import { 
+import {
   HiSolidChartBar, HiSolidUsers, HiSolidCog6Tooth, HiSolidShoppingBag,
-  HiSolidChartPie, HiSolidBolt, HiSolidDocumentChartBar, 
+  HiSolidChartPie, HiSolidBolt, HiSolidDocumentChartBar,
   HiSolidCube, HiSolidUserCircle, HiSolidIdentification, HiSolidSwatch,
   HiSolidSquare3Stack3d, HiSolidShieldCheck, HiSolidBookOpen, HiSolidGlobeAlt,
   HiSolidHome, HiSolidQuestionMarkCircle
 } from "solid-icons/hi";
-import { t } from "./i18n";
+import { text } from "./i18n";
 
 export interface NavItem {
   href?: string;
@@ -15,44 +15,44 @@ export interface NavItem {
 }
 
 export const TOP_NAV_ITEMS: NavItem[] = [
-  { href: "/", get label() { return t("nav.home") || "Home"; }, icon: HiSolidHome },
-  { href: "/docs", get label() { return t("nav.docs") || "Documentation"; }, icon: HiSolidDocumentChartBar },
-  { href: "/help", get label() { return t("nav.help") || "Help"; }, icon: HiSolidQuestionMarkCircle },
+  { href: "/", get label() { return text("nav.home") || "Home"; }, icon: HiSolidHome },
+  { href: "/docs", get label() { return text("nav.docs") || "Documentation"; }, icon: HiSolidDocumentChartBar },
+  { href: "/help", get label() { return text("nav.help") || "Help"; }, icon: HiSolidQuestionMarkCircle },
 ];
 
 export const SIDE_NAV_ITEMS: NavItem[] = [
-  { href: "/protected", get label() { return t("menu.overview") || "Overview"; }, icon: HiSolidChartBar },
+  { href: "/protected", get label() { return text("menu.overview") || "Overview"; }, icon: HiSolidChartBar },
   {
-    get label() { return t("menu.management") || "Management"; },
+    get label() { return text("menu.management") || "Management"; },
     icon: HiSolidCube,
     children: [
-      { href: "/protected/management/users", get label() { return t("menu.users") || "Users"; }, icon: HiSolidUsers },
-      { href: "/protected/management/products", get label() { return t("menu.products") || "Products"; }, icon: HiSolidShoppingBag },
+      { href: "/protected/management/users", get label() { return text("menu.users") || "Users"; }, icon: HiSolidUsers },
+      { href: "/protected/management/products", get label() { return text("menu.products") || "Products"; }, icon: HiSolidShoppingBag },
     ]
   },
   {
-    get label() { return t("menu.analytics") || "Analytics"; },
+    get label() { return text("menu.analytics") || "Analytics"; },
     icon: HiSolidChartPie,
     children: [
-      { href: "/protected/analytics/live-data", get label() { return t("menu.liveData") || "Live Data"; }, icon: HiSolidBolt },
-      { href: "/protected/analytics/reports", get label() { return t("menu.reports") || "Reports"; }, icon: HiSolidDocumentChartBar },
+      { href: "/protected/analytics/live-data", get label() { return text("menu.liveData") || "Live Data"; }, icon: HiSolidBolt },
+      { href: "/protected/analytics/reports", get label() { return text("menu.reports") || "Reports"; }, icon: HiSolidDocumentChartBar },
     ]
   },
   {
-    get label() { return t("menu.profile") || "Profile"; },
+    get label() { return text("menu.profile") || "Profile"; },
     icon: HiSolidUserCircle,
     children: [
-      { href: "/protected/profile/details", get label() { return t("menu.details") || "Details"; }, icon: HiSolidIdentification },
-      { href: "/protected/profile/appearance", get label() { return t("menu.appearance") || "Appearance"; }, icon: HiSolidSwatch },
+      { href: "/protected/profile/details", get label() { return text("menu.details") || "Details"; }, icon: HiSolidIdentification },
+      { href: "/protected/profile/appearance", get label() { return text("menu.appearance") || "Appearance"; }, icon: HiSolidSwatch },
     ]
   },
-  { href: "/protected/settings", get label() { return t("menu.settings") || "Settings"; }, icon: HiSolidCog6Tooth },
+  { href: "/protected/settings", get label() { return text("menu.settings") || "Settings"; }, icon: HiSolidCog6Tooth },
   {
-    get label() { return t("menu.testing") || "Testing"; },
+    get label() { return text("menu.testing") || "Testing"; },
     icon: HiSolidBolt,
     children: [
-      { href: "/protected/test/scrolling", get label() { return t("menu.scrolling") || "Scrolling"; }, icon: HiSolidDocumentChartBar },
-      { href: "/protected/test/grid", get label() { return t("menu.gridScrolling") || "Grid Scrolling"; }, icon: HiSolidCube },
+      { href: "/protected/test/scrolling", get label() { return text("menu.scrolling") || "Scrolling"; }, icon: HiSolidDocumentChartBar },
+      { href: "/protected/test/grid", get label() { return text("menu.gridScrolling") || "Grid Scrolling"; }, icon: HiSolidCube },
     ]
   },
   {

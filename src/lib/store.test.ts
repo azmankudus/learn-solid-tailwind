@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { createRoot } from "solid-js";
+
 import * as store from "./store";
 
 describe("Global Store", () => {

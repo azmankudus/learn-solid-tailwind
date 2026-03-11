@@ -1,6 +1,6 @@
 import { HeadingText, Card } from "~/components/Components";
 import { HiSolidUsers } from "solid-icons/hi";
-import { t } from "~/lib/i18n";
+import { text } from "~/lib/i18n";
 
 export default function Users() {
   return (
@@ -9,12 +9,12 @@ export default function Users() {
         <div class="h-10 w-10 rounded-xl bg-theme/10 text-theme flex items-center justify-center">
           <HiSolidUsers size={24} />
         </div>
-        <HeadingText level={1} class="text-3xl sm:text-4xl">{t("dash.users.title")}</HeadingText>
+        <HeadingText level={1} class="text-3xl sm:text-4xl">{text("dash.users.title")}</HeadingText>
       </div>
 
       <Card class="border-none shadow-sm">
         <div class="p-6 bg-surface/30 rounded-2xl border border-input-border/20">
-          <p class="text-muted font-medium">{t("dash.users.desc")}</p>
+          <p class="text-muted font-medium">{text("dash.users.desc")}</p>
         </div>
       </Card>
 
