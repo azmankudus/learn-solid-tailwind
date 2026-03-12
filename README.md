@@ -39,7 +39,7 @@ A global configuration engine allows users to tailor their experience in real-ti
 - **View Modes**: Switch between **Wide** (maximized space) and **Centered** (focused layout).
 - **Fullscreen Mode**: Native Browser Fullscreen integration (F11 equivalent) for immersive dashboards.
 - **Theme Toggles**: Instant seamless Dark/Light mode switching.
-- **Multi-Lingual**: Fully reactive i18n supporting English, Malay, and Chinese.
+- **Multi-Lingual**: Fully reactive i18n supporting 10+ languages (EN, MY, CN, KR, JP, RU, AR, TH, DE, GR).
 
 ---
 
