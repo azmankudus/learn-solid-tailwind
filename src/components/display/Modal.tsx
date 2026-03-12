@@ -1,6 +1,7 @@
 import { createEffect, onCleanup, Show, JSX } from "solid-js";
 import { Portal, isServer } from "solid-js/web";
-import { HiSolidXMark } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_X_MARK } from "~/lib/icons";
 
 export interface ModalProps {
   isOpen: boolean;
@@ -55,7 +56,7 @@ export function Modal(props: ModalProps) {
                 onClick={props.onClose}
                 class="h-8 w-8 flex items-center justify-center rounded-lg hover:bg-black/5 text-muted hover:text-rose-500 transition-colors border-none cursor-pointer"
               >
-                <HiSolidXMark size={20} />
+                <Icon icon={ICON_X_MARK} width={20} height={20} />
               </button>
             </div>
             <div class="p-6 overflow-y-auto custom-scrollbar flex flex-col gap-4">

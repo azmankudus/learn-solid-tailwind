@@ -2,8 +2,10 @@ import { For } from "solid-js";
 import { HeadingText } from "~/components/display/Heading";
 import { Card } from "~/components/display/Card";
 import { IconButton } from "~/components/input/Button";
-import { HiSolidDocumentChartBar, HiSolidArrowDownTray, HiSolidArrowTopRightOnSquare } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_DOCUMENT_CHART, ICON_ARROW_DOWN_TRAY, ICON_ARROW_TOP_RIGHT } from "~/lib/icons";
 import { text } from "~/lib/i18n";
+import { PageWrapper } from "~/components/layout/PageWrapper";
 
 export default function Reports() {
   const reports = [
@@ -14,11 +16,11 @@ export default function Reports() {
   ];
 
   return (
-    <div class="flex flex-col space-y-6 pb-20">
+    <PageWrapper class="flex flex-col space-y-6 pb-20">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-4">
         <div class="flex items-center gap-4">
           <div class="h-12 w-12 rounded-2xl bg-theme/10 text-theme flex items-center justify-center shadow-sm">
-            <HiSolidDocumentChartBar size={28} />
+            <Icon icon={ICON_DOCUMENT_CHART} width={28} height={28} />
           </div>
           <div>
             <HeadingText level={1} class="text-3xl sm:text-4xl">
@@ -40,7 +42,7 @@ export default function Reports() {
               <div class="flex items-start justify-between">
                 <div class="flex items-center gap-4">
                   <div class="h-14 w-14 rounded-2xl bg-surface/50 flex items-center justify-center text-theme group-hover:bg-theme group-hover:text-white transition-all duration-300 shadow-sm">
-                    <HiSolidDocumentChartBar size={32} />
+                    <Icon icon={ICON_DOCUMENT_CHART} width={32} height={32} />
                   </div>
                   <div>
                     <h4 class="text-base font-bold text-main mb-1 group-hover:text-theme transition-colors">{report.title}</h4>
@@ -54,10 +56,10 @@ export default function Reports() {
 
                 <div class="flex items-center gap-2">
                   <IconButton tooltip={text("dash.reports.download")} class="hover:bg-theme/10 hover:text-theme border-none">
-                    <HiSolidArrowDownTray size={18} />
+                    <Icon icon={ICON_ARROW_DOWN_TRAY} width={18} height={18} />
                   </IconButton>
                   <IconButton tooltip={text("dash.reports.open")} class="hover:bg-theme/10 hover:text-theme border-none">
-                    <HiSolidArrowTopRightOnSquare size={18} />
+                    <Icon icon={ICON_ARROW_TOP_RIGHT} width={18} height={18} />
                   </IconButton>
                 </div>
               </div>
@@ -76,6 +78,6 @@ export default function Reports() {
 
       {/* Footer test */}
       <div class="h-96 w-full" />
-    </div>
+    </PageWrapper>
   );
 }

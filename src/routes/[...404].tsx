@@ -3,7 +3,8 @@ import { HeadingText } from "~/components/display/Heading";
 import { Button } from "~/components/input/Button";
 import { PageWrapper } from "~/components/layout/PageWrapper";
 import { text } from "~/lib/i18n";
-import { HiSolidHome } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_HOME } from "~/lib/icons";
 
 export default function NotFound() {
   return (
@@ -20,7 +21,7 @@ export default function NotFound() {
         </p>
         <A href="/">
           <Button class="flex items-center gap-2 mx-auto">
-            <HiSolidHome size={20} />
+            <Icon icon={ICON_HOME} width={20} height={20} />
             {text("error.back")}
           </Button>
         </A>

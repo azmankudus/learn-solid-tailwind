@@ -23,7 +23,7 @@ describe("i18n utility", () => {
   it("should fall back to English if the key is missing in the current language", () => {
     (lang as any).mockReturnValue("ms-MY");
     // Using a key that definitely exists in English but might be missing in others
-    const key = "nav.dashboard"; 
+    const key = "nav.dashboard";
     const result = text(key);
     expect(result).toBeDefined();
     expect(typeof result).toBe("string");

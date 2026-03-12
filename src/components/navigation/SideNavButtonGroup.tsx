@@ -1,11 +1,11 @@
-import { ParentProps, JSX } from "solid-js";
-import { Dynamic } from "solid-js/web";
-import { HiSolidChevronDown } from "solid-icons/hi";
+import { ParentProps } from "solid-js";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_CHEVRON_DOWN } from "~/lib/icons";
 import { Tooltip } from "../display/Tooltip";
 
 export interface SideNavButtonGroupProps extends ParentProps {
   label: string;
-  icon: (props: any) => JSX.Element;
+  icon: any;
   collapsed?: boolean;
   active?: boolean;
   isOpen?: boolean;
@@ -31,7 +31,7 @@ export function SideNavButtonGroup(props: SideNavButtonGroupProps) {
           <div class="flex items-center w-full min-w-0 pl-0 pr-2.5">
             <div class={`flex items-center justify-center rounded-lg shrink-0 w-8 h-8 transition-transform duration-300 ${props.active ? 'bg-theme text-white shadow-md' : 'bg-surface/50 group-hover:bg-accent-muted'}`}>
               <div class="flex items-center justify-center" style={{ width: iconSize(), height: iconSize() }}>
-                <Dynamic component={props.icon} size={iconSize()} />
+                <Icon icon={props.icon} width={26} height={26} />
               </div>
             </div>
 
@@ -41,7 +41,7 @@ export function SideNavButtonGroup(props: SideNavButtonGroupProps) {
                 class="shrink-0 opacity-60 flex items-center justify-center transition-transform duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]"
                 classList={{ "rotate-180": props.isOpen }}
               >
-                <HiSolidChevronDown size={14} />
+                <Icon icon={ICON_CHEVRON_DOWN} width={14} height={14} />
               </div>
             </div>
           </div>

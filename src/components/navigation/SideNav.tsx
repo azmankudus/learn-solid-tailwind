@@ -6,7 +6,8 @@ import { SideNavButton } from "./SideNavButton";
 import { SideNavButtonGroup } from "./SideNavButtonGroup";
 import { Tooltip } from "../display/Tooltip";
 import { SIDE_NAV_ITEMS, NavItem } from "~/lib/navigation";
-import { HiSolidChevronLeft } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_CHEVRON_LEFT } from "~/lib/icons";
 
 
 export function SideNav() {
@@ -100,7 +101,7 @@ export function SideNav() {
             >
               <span class="text-[10px] font-bold uppercase tracking-wider">{text("menu.collapse")}</span>
               <div class="flex items-center justify-center transition-transform duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]">
-                <HiSolidChevronLeft size={18} />
+                <Icon icon={ICON_CHEVRON_LEFT} width={18} height={18} />
               </div>
             </button>
           }>
@@ -110,7 +111,7 @@ export function SideNav() {
                 class="flex h-8 w-8 items-center rounded-xl bg-surface/80 border-none hover:bg-surface text-muted hover:text-main transition-all active:scale-95 shadow-sm group hover:scale-[1.02] cursor-pointer justify-center"
               >
                 <div class="flex items-center justify-center px-0.5 rotate-180 transition-transform ease-[cubic-bezier(0.4,0,0.2,1)]">
-                  <HiSolidChevronLeft size={20} />
+                  <Icon icon={ICON_CHEVRON_LEFT} width={20} height={20} />
                 </div>
               </button>
             </Tooltip>

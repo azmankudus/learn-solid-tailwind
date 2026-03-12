@@ -1,7 +1,8 @@
 import { For } from "solid-js";
 import { HeadingText } from "~/components/display/Heading";
 import { Card } from "~/components/display/Card";
-import { HiSolidDocumentChartBar } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_DOCUMENT_CHART } from "~/lib/icons";
 import { text } from "~/lib/i18n";
 
 export default function ScrollingTest() {
@@ -15,7 +16,7 @@ export default function ScrollingTest() {
     <div class="flex flex-col space-y-6 pb-20">
       <div class="flex items-center space-x-3 mb-4">
         <div class="h-10 w-10 rounded-xl bg-theme/10 text-theme flex items-center justify-center">
-          <HiSolidDocumentChartBar size={24} />
+          <Icon icon={ICON_DOCUMENT_CHART} width={24} height={24} />
         </div>
         <HeadingText level={2} class="text-3xl">{text("menu.scrolling")}</HeadingText>
       </div>
@@ -27,7 +28,7 @@ export default function ScrollingTest() {
               <div class="p-8 hover:bg-surface/80 hover:backdrop-blur-xl transition-all duration-300 group cursor-default border-none">
                 <div class="flex items-center space-x-6">
                   <div class="h-14 w-14 rounded-2xl bg-theme/5 flex items-center justify-center text-theme transition-all duration-500 group-hover:scale-110 group-hover:bg-theme group-hover:text-white shadow-sm">
-                    <HiSolidDocumentChartBar size={28} />
+                    <Icon icon={ICON_DOCUMENT_CHART} width={28} height={28} />
                   </div>
                   <div class="flex-1">
                     <h4 class="text-base font-bold text-main mb-1.5 group-hover:text-theme transition-colors">{item.title}</h4>

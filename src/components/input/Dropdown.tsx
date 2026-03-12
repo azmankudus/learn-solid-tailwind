@@ -1,6 +1,7 @@
 import { createSignal, createEffect, onCleanup, For, Show, JSX } from "solid-js";
 import { isServer } from "solid-js/web";
-import { HiSolidChevronDown } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_CHEVRON_DOWN, ICON_CHECK } from "~/lib/icons";
 
 export interface DropdownOption {
   value: string;
@@ -13,9 +14,11 @@ export interface DropdownProps {
   onChange: (value: string) => void;
   renderIcon?: (value: string) => JSX.Element;
   class?: string;
+  variant?: "absolute" | "inline";
 }
 
 export function Dropdown(props: DropdownProps) {
+  const variant = () => props.variant || "absolute";
   const [isOpen, setIsOpen] = createSignal(false);
   const selectedOption = () => props.options.find(o => o.value === props.value) || props.options[0];
 
@@ -56,33 +59,59 @@ export function Dropdown(props: DropdownProps) {
           </div>
           <span>{selectedOption()?.label}</span>
         </div>
-        <HiSolidChevronDown class={`transition-transform duration-200 ${isOpen() ? 'rotate-180' : ''}`} size={20} />
+        <Icon icon={ICON_CHEVRON_DOWN} class={`transition-transform duration-200 ${isOpen() ? 'rotate-180' : ''}`} width={20} height={20} />
       </button>
 
       <div
-        ref={optionsRef}
-        class="absolute top-full left-0 right-0 mt-2 max-h-64 overflow-y-auto rounded-2xl bg-solid border border-input-border shadow-2xl z-[150] custom-scrollbar p-2 dropdown-panel"
-        classList={{ "dropdown-panel--open": isOpen() }}
+        classList={{
+          "absolute top-full left-0 right-0 z-[150]": variant() === "absolute",
+          "relative": variant() === "inline"
+        }}
       >
-        <Show when={isOpen()}>
-          <For each={props.options}>
-            {(option) => (
-              <button
-                onClick={() => {
-                  props.onChange(option.value);
-                  setIsOpen(false);
-                }}
-                data-selected={props.value === option.value}
-                class={`w-full flex items-center gap-4 p-3 rounded-xl transition-all duration-300 text-xs font-medium hover:bg-theme/5 cursor-pointer ${props.value === option.value ? 'bg-theme/10 text-theme font-bold shadow-sm' : 'text-main border-none'}`}
-              >
-              <div class="flex items-center justify-center w-5 h-5">
-                {props.renderIcon ? props.renderIcon(option.value) : <div class="h-5 w-5 rounded-full bg-theme shadow-sm"></div>}
-              </div>
-              {option.label}
-            </button>
-            )}
-          </For>
-        </Show>
+        <div 
+          class="grid transition-all duration-300 ease-in-out"
+          style={{ 
+            "grid-template-rows": isOpen() ? "1fr" : "0fr",
+            "opacity": isOpen() ? "1" : "0",
+            "visibility": isOpen() ? "visible" : "hidden"
+          }}
+        >
+          <div class="overflow-hidden">
+            <div
+              ref={optionsRef}
+              class="mt-2 max-h-64 overflow-y-auto rounded-2xl bg-solid border border-input-border shadow-2xl z-[150] custom-scrollbar p-2"
+            >
+              <For each={props.options}>
+                {(option) => (
+                  <button
+                    onClick={() => {
+                      props.onChange(option.value);
+                      setIsOpen(false);
+                    }}
+                    data-selected={props.value === option.value}
+                    class="w-full flex items-center justify-between p-3 rounded-xl transition-all duration-300 text-xs font-medium cursor-pointer border border-transparent"
+                    classList={{
+                      "hover:bg-black/5 dark:hover:bg-white/10": props.value !== option.value,
+                      "text-theme font-bold shadow-sm scale-[1.01]": props.value === option.value,
+                      "text-main": props.value !== option.value
+                    }}
+                    style={props.value === option.value ? { "background-color": "color-mix(in srgb, var(--primary), transparent 85%)", "border-color": "color-mix(in srgb, var(--primary), transparent 80%)" } : {}}
+                  >
+                    <div class="flex items-center gap-4">
+                      <div class="flex items-center justify-center w-5 h-5">
+                        {props.renderIcon ? props.renderIcon(option.value) : <div class="h-5 w-5 rounded-full bg-theme shadow-sm"></div>}
+                      </div>
+                      {option.label}
+                    </div>
+                    <Show when={props.value === option.value}>
+                      <Icon icon={ICON_CHECK} width={16} height={16} class="text-theme" />
+                    </Show>
+                  </button>
+                )}
+              </For>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

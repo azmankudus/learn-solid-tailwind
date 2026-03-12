@@ -28,10 +28,3 @@
 /.env
 /.env*.local
 
-/.DS_Store
-/Thumbs.db
-**/*.log
-**/*.log*
-!**/*.lock
-!**/*.lock*
-!**/*-lock.*

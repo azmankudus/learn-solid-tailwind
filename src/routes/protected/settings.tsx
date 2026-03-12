@@ -1,16 +1,18 @@
 import { HeadingText } from "~/components/display/Heading";
 import { Card } from "~/components/display/Card";
-import { HiSolidCog6Tooth } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_COG } from "~/lib/icons";
 import { text } from "~/lib/i18n";
 import { Title } from "@solidjs/meta";
+import { PageWrapper } from "~/components/layout/PageWrapper";
 
 export default function Settings() {
   return (
-    <div class="flex flex-col space-y-6 pb-20">
+    <PageWrapper class="flex flex-col space-y-6 pb-20">
       <Title>{text("dash.settings.title")} | UI-DEN</Title>
       <div class="flex items-center space-x-3 mb-4">
         <div class="h-10 w-10 rounded-xl bg-theme/10 text-theme flex items-center justify-center">
-          <HiSolidCog6Tooth size={24} />
+          <Icon icon={ICON_COG} width={24} height={24} />
         </div>
         <HeadingText level={1} class="text-3xl sm:text-4xl">{text("dash.settings.title")}</HeadingText>
       </div>
@@ -50,6 +52,6 @@ export default function Settings() {
           </div>
         </Card>
       </div>
-    </div>
+    </PageWrapper>
   );
 }

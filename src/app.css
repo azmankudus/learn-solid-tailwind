@@ -149,6 +149,44 @@
 [data-bg="calm"]::before { background: linear-gradient(135deg, var(--bg-base), var(--bg-surface)); opacity: 1; }
 [data-bg="active"]::before { background: radial-gradient(at 50% 100%, var(--primary) 0, transparent 50%); opacity: 0.1; }
 
+/* Dropdown option styles */
+.dropdown-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: var(--text-main);
+  background-color: transparent;
+}
+
+.dropdown-option:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+.dropdown-option--selected {
+  font-weight: 700;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transform: scale(1.01);
+  background-color: color-mix(in srgb, var(--primary), transparent 85%);
+  border-color: color-mix(in srgb, var(--primary), transparent 80%);
+}
+
+.dropdown-option--selected span,
+.dropdown-option--selected div {
+   color: var(--primary) !important;
+}
+
+.dark .dropdown-option--selected {
+  background-color: color-mix(in srgb, var(--primary), transparent 80%);
+}
+
 /* Global Styles */
 body {
   margin: 0;

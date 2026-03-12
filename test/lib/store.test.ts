@@ -37,7 +37,7 @@ describe("Global Data Store", () => {
   it("should persistently update visual themes", () => {
     setMode("dark");
     expect(mode()).toBe("dark");
-    
+
     setColor("rose");
     expect(color()).toBe("rose");
   });
@@ -45,7 +45,7 @@ describe("Global Data Store", () => {
   it("should have correct side effects on the environment", () => {
     setMode("dark");
     expect(document.documentElement.classList.contains("dark")).toBe(true);
-    
+
     setMode("light");
     expect(document.documentElement.classList.contains("dark")).toBe(false);
   });

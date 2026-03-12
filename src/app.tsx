@@ -4,6 +4,7 @@ import { Suspense } from "solid-js";
 import "./app.css";
 
 import { PublicLayout } from "./components/layout/PublicLayout";
+import { RedirectHandler } from "./components/navigation/RedirectHandler";
 
 import { MetaProvider, Title, Meta } from "@solidjs/meta";
 
@@ -12,6 +13,7 @@ export default function App() {
     <Router
       root={props => (
         <MetaProvider>
+          <RedirectHandler />
           <Title>UI-DEN | Premium Design System</Title>
           <Meta name="description" content="A premium, modern design system built with SolidJS and Tailwind CSS v4." />
           <PublicLayout>

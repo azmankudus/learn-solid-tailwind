@@ -1,16 +1,16 @@
 import { Show, createSignal, onCleanup, For, createEffect } from "solid-js";
 import { isServer } from "solid-js/web";
 import { A, useNavigate, useLocation } from "@solidjs/router";
-import { isLoggedIn, setIsLoggedIn, isLoginModalOpen, setIsLoginModalOpen, view } from "~/lib/store";
+import { isLoggedIn, setIsLoggedIn, view, loginModalView, setLoginModalView } from "~/lib/store";
 import { text } from "~/lib/i18n";
 import { IconButton, Button } from "../input/Button";
 import { Modal } from "../display/Modal";
 import { PersonalizationPanel } from "./PersonalizationPanel";
 import { LoginForm } from "../composite/LoginForm";
 import { MobileMenu } from "./MobileMenu";
-import { HiSolidMagnifyingGlass, HiSolidArrowLeftOnRectangle, HiSolidUser, HiSolidBars3, HiSolidXMark, HiSolidSquare3Stack3d } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_MAGNIFYING_GLASS, ICON_LOGOUT, ICON_USER, ICON_BARS_3, ICON_X_MARK, ICON_SQUARE_3_STACK, ICON_PALETTE, ICON_KEY, ICON_USER_PLUS } from "~/lib/icons";
 import { TOP_NAV_ITEMS, SIDE_NAV_ITEMS } from "~/lib/navigation";
-import { TbOutlinePalette } from "solid-icons/tb";
 
 export function TopNav() {
   const [showDropdown, setShowDropdown] = createSignal(false);
@@ -73,7 +73,7 @@ export function TopNav() {
           <div class="flex items-center gap-3">
             <A href="/" class="flex items-center space-x-3 transition-all hover:scale-102 group">
               <div class="h-10 w-10 rounded-xl flex items-center justify-center shadow-xl shadow-primary/20 transition-all bg-theme group-hover:rotate-6">
-                <HiSolidSquare3Stack3d size={24} class="text-white" />
+                <Icon icon={ICON_SQUARE_3_STACK} width={24} height={24} class="text-white" />
               </div>
               <span class="text-3xl font-black tracking-tight text-theme px-1 uppercase">
                 UI-DEN
@@ -99,7 +99,7 @@ export function TopNav() {
             {/* Group 3: Icon buttons - now on the right, no background */}
             <div class="hidden md:flex items-center gap-1.5">
               <IconButton tooltip={text("nav.search")}>
-                <HiSolidMagnifyingGlass size={20} class="text-main group-hover:text-theme-solid transition-colors" />
+                <Icon icon={ICON_MAGNIFYING_GLASS} width={20} height={20} class="text-main group-hover:text-theme-solid transition-colors" />
               </IconButton>
 
               <div class="relative">
@@ -112,7 +112,7 @@ export function TopNav() {
                     <div class="absolute inset-0 bg-theme/10 rounded-xl blur-lg animate-pulse" />
                   </Show>
                   <div class="relative z-10 flex items-center justify-center">
-                    <TbOutlinePalette size={20} class={showDropdown() ? 'text-theme-solid' : 'text-main group-hover:text-theme-solid transition-colors'} />
+                    <Icon icon={ICON_PALETTE} width={20} height={20} class={showDropdown() ? 'text-theme-solid' : 'text-main group-hover:text-theme-solid transition-colors'} />
                   </div>
                 </IconButton>
 
@@ -134,7 +134,7 @@ export function TopNav() {
                 onClick={() => setShowMobileMenu(!showMobileMenu())}
                 class={`relative z-[110] transition-colors ${showMobileMenu() ? 'text-theme' : 'text-main'}`}
               >
-                {showMobileMenu() ? <HiSolidXMark size={20} /> : <HiSolidBars3 size={20} />}
+                {showMobileMenu() ? <Icon icon={ICON_X_MARK} width={20} height={20} /> : <Icon icon={ICON_BARS_3} width={20} height={20} />}
               </IconButton>
             </div>
 
@@ -146,9 +146,9 @@ export function TopNav() {
                   <Button
                     onClick={() => {
                       if (isLoggedIn()) {
-                        navigate("/protected");
+                        navigate("/protected/dashboard");
                       } else {
-                        setIsLoginModalOpen(true);
+                        navigate("/user/login");
                       }
                     }}
                     class="px-5 py-2 text-xs font-bold shadow-sm"
@@ -158,7 +158,7 @@ export function TopNav() {
                 }
               >
                 <div class="flex items-center gap-2">
-                  <A href="/protected">
+                  <A href="/protected/dashboard">
                     <Button class="px-5 py-2 font-bold text-xs shadow-md bg-theme text-white border-none transition-all active:scale-95 hover:brightness-110">
                       {text("nav.dashboard")}
                     </Button>
@@ -169,7 +169,7 @@ export function TopNav() {
                     tooltip={text("nav.logout")}
                     class="!bg-rose-500 !text-white hover:!bg-rose-600 shadow-md border-none transition-all active:scale-95"
                   >
-                    <HiSolidArrowLeftOnRectangle size={20} />
+                    <Icon icon={ICON_LOGOUT} width={20} height={20} />
                   </IconButton>
                 </div>
               </Show>
@@ -180,15 +180,6 @@ export function TopNav() {
 
       {/* Mobile Menu Standalone Component */}
       <MobileMenu isOpen={showMobileMenu()} onClose={() => setShowMobileMenu(false)} />
-
-      <Modal
-        isOpen={isLoginModalOpen()}
-        onClose={() => setIsLoginModalOpen(false)}
-        title={text("auth.title")}
-        icon={<HiSolidUser size={20} />}
-      >
-        <LoginForm onCancel={() => setIsLoginModalOpen(false)} />
-      </Modal>
     </>
   );
 }

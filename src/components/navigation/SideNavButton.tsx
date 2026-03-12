@@ -1,12 +1,12 @@
-import { ParentProps, JSX } from "solid-js";
-import { Dynamic } from "solid-js/web";
+import { ParentProps } from "solid-js";
 import { A } from "@solidjs/router";
 import { Tooltip } from "../display/Tooltip";
+import { Icon } from "@iconify-icon/solid";
 
 export interface SideNavButtonProps extends ParentProps {
   href: string;
   active?: boolean;
-  icon?: (props: any) => JSX.Element;
+  icon?: any;
   collapsed?: boolean;
   onDblClick?: (e: MouseEvent) => void;
   onClick?: (e: MouseEvent) => void;
@@ -16,7 +16,7 @@ export interface SideNavButtonProps extends ParentProps {
 }
 
 export function SideNavButton(props: SideNavButtonProps) {
-  const iconSize = () => props.isSubItem ? '16px' : '24px';
+  const iconSize = () => props.isSubItem ? 16 : 24;
 
   return (
     <div class="relative flex items-center w-full">
@@ -34,8 +34,8 @@ export function SideNavButton(props: SideNavButtonProps) {
             <div class="flex items-center w-full min-w-0 pl-0 pr-4">
               <div class={`flex items-center justify-center rounded-lg shrink-0 w-8 h-8 transition-transform duration-300 ${props.active ? 'bg-theme text-white shadow-md' : 'bg-surface/50 group-hover:bg-accent-muted'}`}>
                 {props.icon && (
-                  <div class="flex items-center justify-center" style={{ width: iconSize(), height: iconSize() }}>
-                    <Dynamic component={props.icon} size={iconSize()} />
+                  <div class="flex items-center justify-center" style={{ width: `${iconSize()}px`, height: `${iconSize()}px` }}>
+                    <Icon icon={props.icon} width={iconSize()} height={iconSize()} />
                   </div>
                 )}
               </div>

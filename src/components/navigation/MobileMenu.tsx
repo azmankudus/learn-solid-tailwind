@@ -1,15 +1,15 @@
 import { Show, For, createSignal, createEffect } from "solid-js";
 import { isServer, } from "solid-js/web";
 import { useLocation, useNavigate } from "@solidjs/router";
-import { isLoggedIn, setIsLoggedIn, setIsLoginModalOpen } from "~/lib/store";
+import { isLoggedIn, setIsLoggedIn } from "~/lib/store";
 import { text } from "~/lib/i18n";
 import { Button } from "../input/Button";
 import { PersonalizationPanel } from "./PersonalizationPanel";
 import { SideNavButton } from "./SideNavButton";
 import { SideNavButtonGroup } from "./SideNavButtonGroup";
-import { HiSolidMagnifyingGlass, HiSolidArrowLeftOnRectangle } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_MAGNIFYING_GLASS, ICON_LOGOUT, ICON_PALETTE } from "~/lib/icons";
 import { TOP_NAV_ITEMS, SIDE_NAV_ITEMS } from "~/lib/navigation";
-import { TbOutlinePalette } from "solid-icons/tb";
 
 export interface MobileMenuProps {
   isOpen: boolean;
@@ -71,7 +71,7 @@ export function MobileMenu(props: MobileMenuProps) {
               <h4 class="text-[10px] font-bold uppercase tracking-widest text-muted px-2 mb-2">Tools</h4>
               <div class="flex flex-col space-y-2 relative">
                 <Button class="w-full py-4 text-xs font-bold bg-surface/80 border border-input-border/50 text-main flex items-center justify-center gap-2 hover:bg-solid/100 shadow-sm transition-colors">
-                  <HiSolidMagnifyingGlass size={18} />
+                  <Icon icon={ICON_MAGNIFYING_GLASS} width={18} height={18} />
                   <span>{text("nav.search")}</span>
                 </Button>
 
@@ -80,7 +80,7 @@ export function MobileMenu(props: MobileMenuProps) {
                     onClick={() => setShowDropdown(!showDropdown())}
                     class={`w-full py-4 text-xs font-bold border flex items-center justify-center gap-2 shadow-sm transition-colors ${showDropdown() ? 'bg-theme/10 text-theme border-primary' : 'bg-surface/80 border-input-border/50 text-main hover:bg-solid/100'}`}
                   >
-                    <TbOutlinePalette size={18} />
+                    <Icon icon={ICON_PALETTE} width={18} height={18} />
                     <span>{text("nav.personalize")}</span>
                   </Button>
 
@@ -93,8 +93,8 @@ export function MobileMenu(props: MobileMenuProps) {
                     }}
                   >
                     <div class="overflow-hidden">
-                      <div class="mt-3 w-full rounded-2xl bg-solid border border-black/5 p-6 shadow-xl relative z-[110]">
-                        <PersonalizationPanel />
+                      <div class="mt-3 w-full rounded-2xl bg-solid relative z-[110]">
+                        <PersonalizationPanel dropdownVariant="inline" />
                       </div>
                     </div>
                   </div>
@@ -179,9 +179,9 @@ export function MobileMenu(props: MobileMenuProps) {
                     <Button
                       onClick={() => {
                         if (isLoggedIn()) {
-                          navigate("/protected");
+                          navigate("/protected/dashboard");
                         } else {
-                          setIsLoginModalOpen(true);
+                          navigate("/user/login");
                         }
                         props.onClose();
                       }}
@@ -193,16 +193,10 @@ export function MobileMenu(props: MobileMenuProps) {
                 >
                   <div class="flex flex-col space-y-2">
                     <Button
-                      onClick={() => { navigate("/protected"); props.onClose(); }}
-                      class="w-full py-3.5 font-bold shadow-md shadow-primary/20 transition-all active:scale-95"
-                    >
-                      {text("nav.dashboard")}
-                    </Button>
-                    <Button
                       onClick={handleLogout}
                       class="w-full py-3.5 font-bold !bg-none !bg-rose-500 !text-white hover:!bg-rose-600 shadow-md shadow-rose-500/20 border-none transition-all active:scale-95 flex items-center justify-center gap-2"
                     >
-                      <HiSolidArrowLeftOnRectangle size={20} style={{ transform: "scaleX(-1)" }} />
+                      <Icon icon={ICON_LOGOUT} width={20} height={20} style={{ transform: "scaleX(-1)" }} />
                       {text("nav.logout")}
                     </Button>
                   </div>

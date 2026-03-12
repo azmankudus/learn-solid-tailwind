@@ -1,9 +1,10 @@
 import { A, useNavigate } from "@solidjs/router";
-import { isLoggedIn, setIsLoginModalOpen } from "~/lib/store";
+import { isLoggedIn } from "~/lib/store";
 import { HeadingText } from "~/components/display/Heading";
 import { PageWrapper } from "~/components/layout/PageWrapper";
 import { Button } from "~/components/input/Button";
-import { HiSolidArrowSmallRight, HiSolidSquare3Stack3d } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_ARROW_RIGHT, ICON_SQUARE_3_STACK } from "~/lib/icons";
 import { text } from "~/lib/i18n";
 
 export default function Home() {
@@ -27,14 +28,14 @@ export default function Home() {
               <Button 
                 onClick={() => {
                   if (isLoggedIn()) {
-                    navigate("/protected");
+                    navigate("/protected/dashboard");
                   } else {
-                    setIsLoginModalOpen(true);
+                    navigate("/user/login");
                   }
                 }}
                 class="px-8 py-3.5 text-base shadow-md flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:scale-[1.02]"
               >
-                {text("landing.cta")} <HiSolidArrowSmallRight size={20} />
+                {text("landing.cta")} <Icon icon={ICON_ARROW_RIGHT} width={20} height={20} />
               </Button>
               <button class="flex items-center justify-center px-8 py-3.5 text-base font-semibold text-main bg-surface/80 border-none backdrop-blur-md rounded-xl hover:bg-surface transition-all duration-300 active:scale-95 shadow-sm cursor-pointer">
                 {text("landing.learn")}
@@ -60,7 +61,7 @@ export default function Home() {
                 <div class="h-[24rem] sm:h-[30rem] flex flex-col items-center justify-center p-10 text-center relative bg-surface/20">
                   <div class="h-32 w-32 rounded-3xl bg-theme shadow-md shadow-primary/20 flex items-center justify-center mb-8 relative transition-all duration-500 hover:scale-105">
                     <div class="text-white">
-                      <HiSolidSquare3Stack3d size={64} />
+                      <Icon icon={ICON_SQUARE_3_STACK} width={64} height={64} />
                     </div>
                   </div>
 

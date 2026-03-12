@@ -21,7 +21,6 @@ export const [bg, setBg] = createSignal(defaultSettings.bg);
 export const [color, setColor] = createSignal(defaultSettings.color);
 export const [lang, setLang] = createSignal(defaultSettings.lang);
 export const [view, setView] = createSignal<"center" | "wide">(defaultSettings.view as "center" | "wide");
-export const [isLoginModalOpen, setIsLoginModalOpen] = createSignal(false);
 export const [redirectUrl, setRedirectUrl] = createSignal("");
 export const [isLoaded, setIsLoaded] = createSignal(false);
 
@@ -83,7 +82,12 @@ if (typeof window !== "undefined") {
         lang: lang(),
         view: view(),
       };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+
+      // Only save to localStorage if we have finished loading the initial state.
+      // This prevents defaultSettings from overwriting saved preferences during hydration.
+      if (isLoaded()) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+      }
 
       const html = document.documentElement;
       if (mode() === "dark") {

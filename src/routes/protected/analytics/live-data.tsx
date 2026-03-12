@@ -2,9 +2,11 @@ import { For, createSignal } from "solid-js";
 import { HeadingText } from "~/components/display/Heading";
 import { Card } from "~/components/display/Card";
 import { IconButton } from "~/components/input/Button";
-import { HiSolidArrowPath, HiSolidArrowTrendingUp, HiSolidBolt } from "solid-icons/hi";
+import { Icon } from "@iconify-icon/solid";
+import { ICON_ARROW_PATH, ICON_TRENDING_UP, ICON_BOLT } from "~/lib/icons";
 import { Title } from "@solidjs/meta";
 import { text } from "~/lib/i18n";
+import { PageWrapper } from "~/components/layout/PageWrapper";
 
 export default function LiveData() {
   const [data] = createSignal([
@@ -15,17 +17,17 @@ export default function LiveData() {
 
 
   return (
-    <div class="flex flex-col space-y-8 animate-fade-in pb-20">
+    <PageWrapper class="flex flex-col space-y-8 pb-20">
       <Title>Live Analytics | UI-DEN</Title>
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-2">
         <div class="flex items-center space-x-3">
           <div class="h-10 w-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-            <HiSolidBolt size={24} />
+            <Icon icon={ICON_BOLT} width={24} height={24} />
           </div>
           <HeadingText level={1} class="text-3xl sm:text-4xl">Live Data</HeadingText>
         </div>
         <IconButton tooltip="Refresh Data">
-          <HiSolidArrowPath size={20} />
+          <Icon icon={ICON_ARROW_PATH} width={20} height={20} />
         </IconButton>
       </div>
 
@@ -38,7 +40,7 @@ export default function LiveData() {
                 <p class="text-xs font-bold uppercase tracking-widest text-muted mb-1">{item.name}</p>
                 <h3 class="text-3xl font-black text-main">{item.value.toLocaleString()}</h3>
                 <div class="flex items-center gap-1 text-emerald-500 text-xs font-bold mt-2">
-                  <HiSolidArrowTrendingUp size={14} />
+                  <Icon icon={ICON_TRENDING_UP} width={14} height={14} />
                   <span>+12.5%</span>
                 </div>
               </div>
@@ -46,6 +48,6 @@ export default function LiveData() {
           )}
         </For>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
