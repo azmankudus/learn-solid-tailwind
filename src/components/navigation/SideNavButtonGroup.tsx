@@ -26,7 +26,7 @@ export function SideNavButtonGroup(props: SideNavButtonGroupProps) {
           : ('text-muted hover:bg-surface/50 hover:text-main backdrop-blur-md')
           }`}
     >
-      <Tooltip text={props.label} position="right" disabled={!isCollapsed}>
+      <Tooltip text={props.label} position="right" disabled={!isCollapsed} class="w-full">
         <div class="w-full px-0">
           <div class="flex items-center w-full min-w-0 pl-0 pr-2.5">
             <div class={`flex items-center justify-center rounded-lg shrink-0 w-8 h-8 transition-transform duration-300 ${props.active ? 'bg-theme text-white shadow-md' : 'bg-surface/50 group-hover:bg-accent-muted'}`}>

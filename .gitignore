@@ -18,6 +18,8 @@
 !/public/**
 !/test/
 !/test/**
+!/.agent/
+!/.agent/**
 
 /node_modules/
 /.vinxi/
