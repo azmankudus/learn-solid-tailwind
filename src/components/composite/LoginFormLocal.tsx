@@ -95,7 +95,7 @@ export function LoginFormLocal(props: LoginFormLocalProps) {
         </div>
       </div>
 
-      <div class="mt-8 flex flex-col gap-4 border-t border-black/5 pt-6 -mx-6 px-6 bg-surface/30">
+      <div class="mt-8 flex flex-col gap-4 border-t border-black/5 pt-6 -mx-8 px-8 bg-surface/30">
         <Button class="w-full py-3" type="submit">
           {text("auth.submit")}
         </Button>

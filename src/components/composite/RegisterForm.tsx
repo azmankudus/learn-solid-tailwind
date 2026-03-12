@@ -96,7 +96,7 @@ export function RegisterForm(props: RegisterFormProps) {
         </div>
         <h3 class="text-xl font-bold">{text("auth.registerSuccess")}</h3>
         <p class="text-sm text-muted">{text("auth.registerSuccessDesc").replace("{username}", username())}</p>
-        <Button onClick={() => navigate("/user/login")} class="mt-4 w-full py-3">{text("auth.returnToLogin")}</Button>
+        <Button onClick={() => navigate("/user/login-local")} class="mt-4 w-full py-3">{text("auth.returnToLogin")}</Button>
       </div>
     );
   }
@@ -135,22 +135,14 @@ export function RegisterForm(props: RegisterFormProps) {
         />
       </div>
 
-      <div class="mt-8 flex items-center justify-between border-t border-black/5 pt-6 -mx-6 px-6 bg-surface/30">
-        <div class="flex items-center gap-4">
-          <button 
-            type="button" 
-            class="text-xs font-bold text-muted hover:text-main bg-transparent border-none cursor-pointer flex items-center gap-1"
-            onClick={() => navigate("/user/login")}
-          >
-            ← {text("auth.backToLogin")}
-          </button>
-          <button 
-            type="reset" 
-            class="text-xs font-bold text-rose-500 hover:text-rose-600 bg-transparent border-none cursor-pointer"
-          >
-            {text("auth.resetFields")}
-          </button>
-        </div>
+      <div class="mt-8 flex items-center justify-between border-t border-black/5 pt-6 -mx-8 px-8 bg-surface/30">
+        <button
+          type="button"
+          class="text-xs font-bold text-muted hover:text-main bg-transparent border-none cursor-pointer flex items-center gap-1"
+          onClick={() => navigate("/user/login-local")}
+        >
+          ← {text("auth.backToLogin")}
+        </button>
         <Button type="submit">
           {text("auth.createAccount")}
         </Button>

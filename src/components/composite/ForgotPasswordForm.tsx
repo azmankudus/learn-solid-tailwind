@@ -53,15 +53,15 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
         )}
       </div>
 
-      <div class="mt-8 flex items-center justify-between border-t border-black/5 pt-6 -mx-6 px-6 bg-surface/30">
-        <button 
-          type="button" 
+      <div class="mt-8 flex items-center justify-between border-t border-black/5 pt-6 -mx-8 px-8 bg-surface/30">
+        <button
+          type="button"
           class="text-xs font-bold text-muted hover:text-main bg-transparent border-none cursor-pointer flex items-center gap-1"
-          onClick={() => navigate("/user/login")}
+          onClick={() => navigate("/user/login-local")}
         >
-          ← {text("auth.backToLogin")}
+          {text("auth.backToLogin")}
         </button>
-        <Button onClick={!isSuccess() ? handleReset : () => navigate("/user/login")}>
+        <Button onClick={!isSuccess() ? handleReset : () => navigate("/user/login-local")}>
           {isSuccess() ? "Done" : text("auth.resetPassword")}
         </Button>
       </div>

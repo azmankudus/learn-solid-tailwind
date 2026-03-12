@@ -117,7 +117,7 @@ export function TopNav() {
                 </IconButton>
 
                 <div
-                  class="personalize-dropdown absolute right-0 mt-3 w-80 rounded-2xl bg-solid border border-black/5 p-8 z-[101] dropdown-panel"
+                  class="personalize-dropdown absolute right-0 mt-3 w-100 rounded-2xl bg-solid border border-black/5 p-8 z-[101] dropdown-panel"
                   classList={{ "dropdown-panel--open": showDropdown() }}
                   style={{ "box-shadow": "var(--card-shadow)" }}
                 >

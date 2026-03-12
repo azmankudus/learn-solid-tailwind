@@ -6,6 +6,7 @@ export interface TooltipProps {
   children: JSX.Element;
   position?: "top" | "right" | "bottom";
   disabled?: boolean;
+  class?: string;
 }
 
 export function Tooltip(props: TooltipProps) {
@@ -57,7 +58,7 @@ export function Tooltip(props: TooltipProps) {
   return (
     <div 
       ref={triggerRef}
-      class="relative flex items-center justify-start w-full h-full"
+      class={`relative inline-flex items-center ${props.class || ""}`}
       onMouseEnter={() => !props.disabled && setShow(true)}
       onMouseLeave={() => setShow(false)}
     >

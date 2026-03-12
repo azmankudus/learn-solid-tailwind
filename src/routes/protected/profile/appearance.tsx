@@ -1,11 +1,11 @@
-import { mode, setMode, color, setColor, bg, setBg, lang, setLang, view, setView } from "~/lib/store";
+import { mode, setMode, color, setColor, bg, setBg, lang, setLang, view, setView, windowMode, setWindowMode } from "~/lib/store";
 import { text, LANGUAGES } from "~/lib/i18n";
 import { HeadingText } from "~/components/display/Heading";
 import { Card } from "~/components/display/Card";
 import { Dropdown } from "~/components/input/Dropdown";
 import { SegmentedToggle } from "~/components/input/SegmentedToggle";
 import { Icon } from "@iconify-icon/solid";
-import { ICON_SUN, ICON_MOON, ICON_SWATCH, ICON_PAINT_BRUSH, ICON_ARROWS_RIGHT_LEFT, ICON_VIEW_COLUMNS } from "~/lib/icons";
+import { ICON_SUN, ICON_MOON, ICON_SWATCH, ICON_PAINT_BRUSH, ICON_ARROWS_RIGHT_LEFT, ICON_VIEW_COLUMNS, ICON_WINDOW, ICON_ARROWS_EXPAND } from "~/lib/icons";
 import { COLORS, BGS, getButtonBg } from "~/lib/constants";
 import { PageWrapper } from "~/components/layout/PageWrapper";
 
@@ -58,6 +58,19 @@ export default function ProfileAppearance() {
                 options={[
                   { id: 'center', label: text("appearance.center"), icon: () => <Icon icon={ICON_VIEW_COLUMNS} width={20} height={20} /> },
                   { id: 'wide', label: text("appearance.wide"), icon: () => <Icon icon={ICON_ARROWS_RIGHT_LEFT} width={20} height={20} /> }
+                ]}
+              />
+            </div>
+
+            {/* Window Mode Toggle */}
+            <div class="space-y-4">
+              <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{text("appearance.windowMode")}</h4>
+              <SegmentedToggle
+                value={windowMode()}
+                onChange={(v) => setWindowMode(v as "windowed" | "fullscreen")}
+                options={[
+                  { id: 'windowed', label: text("appearance.windowed"), icon: () => <Icon icon={ICON_WINDOW} width={20} height={20} /> },
+                  { id: 'fullscreen', label: text("appearance.fullscreen"), icon: () => <Icon icon={ICON_ARROWS_EXPAND} width={20} height={20} /> }
                 ]}
               />
             </div>

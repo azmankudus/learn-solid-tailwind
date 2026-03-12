@@ -11,8 +11,14 @@ export interface ButtonProps extends ParentProps {
 }
 
 export function Button(props: ButtonProps) {
+  const isFull = () => props.class?.includes("w-full");
   return (
-    <Tooltip text={props.tooltip!} position={props.tooltipPosition} disabled={!props.tooltip}>
+    <Tooltip 
+      text={props.tooltip!} 
+      position={props.tooltipPosition} 
+      disabled={!props.tooltip}
+      class={isFull() ? "w-full" : ""}
+    >
       <button
         type={props.type || "button"}
         onClick={props.onClick}

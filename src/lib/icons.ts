@@ -68,6 +68,7 @@ export const ICON_ROCKET_LAUNCH = getIcon(hiIcons, "rocket-launch-solid");
 export const ICON_LIGHT_BULB = getIcon(hiIcons, "light-bulb-solid");
 export const ICON_ARROW_RIGHT = getIcon(hiIcons, "arrow-small-right-solid");
 export const ICON_CHECK = getIcon(hiIcons, "check-solid");
+export const ICON_ARROWS_EXPAND = getIcon(hiIcons, "arrows-pointing-out-solid");
 
 export const ICON_STOP = getIcon(hiIcons, "stop-solid");
 export const ICON_TABLE_CELLS = getIcon(hiIcons, "table-cells-solid");
@@ -83,6 +84,7 @@ export const ICON_CHECK_CIRCLE = getIcon(hiIcons, "check-circle-solid");
 
 // Tabler Icons
 export const ICON_PALETTE = getIcon(tbIcons, "palette");
+export const ICON_WINDOW = getIcon(tbIcons, "window");
 
 // Flag Icons
 export const ICON_FLAG_US = getIcon(flagIcons, "us-4x3");

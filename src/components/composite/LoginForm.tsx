@@ -29,7 +29,7 @@ export function LoginForm() {
       <div class="flex flex-col gap-6 py-2">
 
         {/* Enterprise Providers */}
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 -mx-8 px-8 py-4 bg-surface/30 border-b border-black/5">
           <Button class="w-full py-3.5 bg-surface border border-input-border text-main hover:bg-theme/5 flex items-center justify-center gap-2 transition-all shadow-sm">
             <Icon icon={ICON_SHIELD_CHECK} width={20} height={20} class="text-blue-500" />
             <span>{text("auth.enterprise")}</span>
@@ -53,7 +53,7 @@ export function LoginForm() {
               <button
                 type="button"
                 title={`${text("nav.login")} with ${provider.name}`}
-                class="h-12 flex items-center justify-center rounded-xl border border-input-border bg-surface hover:bg-theme/5 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+                class="h-12 flex items-center justify-center rounded-xl border border-input-border bg-white hover:bg-theme/5 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
               >
                 <Icon icon={provider.icon} width={24} height={24} />
               </button>
@@ -62,7 +62,7 @@ export function LoginForm() {
         </div>
 
         {/* Local Login */}
-        <div class="flex flex-col gap-3 mt-2">
+        <div class="mt-8 flex flex-col gap-4 border-t border-black/5 pt-6 -mx-8 px-8 bg-surface/30">
           <Button
             class="w-full py-3.5 bg-theme text-white border-none transition-all shadow-md active:scale-95 flex items-center justify-center gap-2"
             onClick={() => navigate("/user/login-local")}

@@ -9,7 +9,8 @@ const defaultSettings = {
   bg: "solid",
   color: "indigo",
   lang: "en-US",
-  view: "wide"
+  view: "wide",
+  windowMode: "windowed"
 };
 
 // Initialize with default settings to ensure Server-Side Rendering (SSR)
@@ -21,6 +22,7 @@ export const [bg, setBg] = createSignal(defaultSettings.bg);
 export const [color, setColor] = createSignal(defaultSettings.color);
 export const [lang, setLang] = createSignal(defaultSettings.lang);
 export const [view, setView] = createSignal<"center" | "wide">(defaultSettings.view as "center" | "wide");
+export const [windowMode, setWindowMode] = createSignal<"windowed" | "fullscreen">(defaultSettings.windowMode as "windowed" | "fullscreen");
 export const [redirectUrl, setRedirectUrl] = createSignal("");
 export const [isLoaded, setIsLoaded] = createSignal(false);
 
@@ -43,6 +45,7 @@ if (typeof window !== "undefined") {
           if (saved.color !== undefined) setColor(saved.color);
           if (saved.lang !== undefined) setLang(saved.lang);
           if (saved.view !== undefined) setView(saved.view);
+          if (saved.windowMode !== undefined) setWindowMode(saved.windowMode);
           setIsLoaded(true);
         }, 50);
       } else {
@@ -64,6 +67,7 @@ if (typeof window !== "undefined") {
           if (saved.color !== undefined) setColor(saved.color);
           if (saved.lang !== undefined) setLang(saved.lang);
           if (saved.view !== undefined) setView(saved.view);
+          if (saved.windowMode !== undefined) setWindowMode(saved.windowMode);
         } catch (e) {
           console.error("Failed to sync settings from storage event", e);
         }
@@ -81,6 +85,7 @@ if (typeof window !== "undefined") {
         color: color(),
         lang: lang(),
         view: view(),
+        windowMode: windowMode(),
       };
 
       // Only save to localStorage if we have finished loading the initial state.
@@ -95,9 +100,45 @@ if (typeof window !== "undefined") {
       } else {
         html.classList.remove("dark");
       }
+
+      if (windowMode() === "fullscreen") {
+        html.classList.add("is-fullscreen");
+      } else {
+        html.classList.remove("is-fullscreen");
+      }
       
       html.setAttribute("data-theme", color());
       html.setAttribute("data-bg", bg());
+    });
+
+    // Handle browser-level fullscreen (like F11)
+    createEffect(() => {
+      const mode = windowMode();
+      // Only execute on client-side
+      if (typeof document === 'undefined') return;
+
+      if (mode === "fullscreen") {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.warn(`Error attempting to enable full-screen mode: ${err.message}`);
+          });
+        }
+      } else {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(err => {
+            // Might fail if not in fullscreen, which is fine
+          });
+        }
+      }
+    });
+
+    // Sync windowMode signal if user exits fullscreen manually (e.g., ESC key)
+    window.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement && windowMode() === "fullscreen") {
+        setWindowMode("windowed");
+      } else if (document.fullscreenElement && windowMode() === "windowed") {
+        setWindowMode("fullscreen");
+      }
     });
   });
 }

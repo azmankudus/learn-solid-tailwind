@@ -2,6 +2,7 @@
 
 !/.gitignore
 
+!/app.config.ts
 !/package.json
 !/tsconfig.json
 !/vite.config.ts
@@ -9,6 +10,7 @@
 !/README.md
 !/LICENSE
 !/eslint.config.js
+!/postcss.config.js
 
 !/src/
 !/src/**
