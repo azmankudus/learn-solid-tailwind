@@ -90,6 +90,13 @@ export const ICON_WINDOW = getIcon(tbIcons, "window");
 export const ICON_FLAG_US = getIcon(flagIcons, "us-4x3");
 export const ICON_FLAG_MY = getIcon(flagIcons, "my-4x3");
 export const ICON_FLAG_CN = getIcon(flagIcons, "cn-4x3");
+export const ICON_FLAG_KR = getIcon(flagIcons, "kr-4x3");
+export const ICON_FLAG_JP = getIcon(flagIcons, "jp-4x3");
+export const ICON_FLAG_RU = getIcon(flagIcons, "ru-4x3");
+export const ICON_FLAG_SA = getIcon(flagIcons, "sa-4x3");
+export const ICON_FLAG_TH = getIcon(flagIcons, "th-4x3");
+export const ICON_FLAG_DE = getIcon(flagIcons, "de-4x3");
+export const ICON_FLAG_GR = getIcon(flagIcons, "gr-4x3");
 
 // System Additions
 export const ICON_SERVER = getIcon(hiIcons, "server-solid");
