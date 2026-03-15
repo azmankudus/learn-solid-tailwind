@@ -1,4 +1,14 @@
-# UI-DEN Architecture & Patterns
+# UI-DEN Governance & Architecture
+
+> [!IMPORTANT]
+> **Project Context**: UI-DEN is a premium analytical foundation. We prioritize "Aesthetic Performance"—fine-grained reactivity (SolidJS) paired with elite design (Glassmorphism). Every component must be reactive, theme-aware, and performant at 60fps.
+
+## 🤖 Agent Operational Guidelines
+*   **Aesthetics**: Default to `backdrop-blur-xl`, `bg-surface/50`, and `duration-300`.
+*   **Patterns**: Group related changes (Component + Logic + Sample) into atomic commits.
+*   **Prompt Template**: Use "Implement `[ComponentName]` following the `ui-design` skill and include a `ComponentViewer` example."
+
+## 🏛️ Technical Patterns
 
 This document serves as the primary technical context for agents working on the UI-DEN project. Following these patterns ensures consistency and prevents architectural fragmentation.
 
