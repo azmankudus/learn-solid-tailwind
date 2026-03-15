@@ -43,6 +43,17 @@ A global configuration engine allows users to tailor their experience in real-ti
 - **Geographical Sync**: Deep URL state synchronization for map filters, allowing shareable/bookmarkable analytical views.
 - **Searchable Controls**: Advanced dropdown filtering with wildcard support (`*`) and case-insensitive matching.
 
+### 🛠️ Developer Experience: Interactive Documentation
+UI-DEN prioritizes developer velocity with integrated documentation tools:
+- **ComponentViewer**: A built-in utility for all sample pages that toggles between **Live Preview** and **JSX/HTML Source**.
+- **Atomic Inputs**: A full suite of premium, controlled components:
+  - `Button`: Multi-variant (Success, Error, etc.) with flexible icon layouts and 4-way tooltips.
+  - `Slider`: Customizable ranges with discrete step support and animated tracks.
+  - `ColorPicker`: Hex-based selection with visual feedback and integrated presets.
+  - `FilePicker`: Drag-and-drop enabled with multiple file batch support.
+  - `DatePicker`: Native-powered, theme-aware calendar selection.
+  - `Radio`: Animated sliding selectors for binary or short-list choices.
+
 ---
 
 ## 🛠️ Modern Tech Stack

@@ -32,6 +32,8 @@ File: `src/lib/navigation.tsx`
 ## 说明 (Layout & Components)
 - **PageWrapper**: Every route should be wrapped in `PageWrapper` for consistent transitions and padding.
 - **ProtectedLayout**: Injects `SideNav` and handles redirect if not logged in.
+- **ComponentViewer**: Use `src/components/content/ComponentViewer.tsx` for creating interactive documentation. It takes a `title`, a `code` string, and rendered `children`.
+- **Input Atoms**: Specialized components in `src/components/input/` (Slider, FilePicker, ColorPicker, DatePicker) follow a controlled pattern using `value` and `onChange/onInput` props.
 - **Design Aesthetic**: Premium glassmorphism. Use `backdrop-blur`, `bg-surface/50`, and `shadow-md` frequently.
 
 ## 样式规范 (Styling Rules)

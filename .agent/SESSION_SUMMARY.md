@@ -2,22 +2,27 @@
 
 This document should be updated at the end of every significant session to provide a "handoff" for the next agent.
 
-## Current State (2026-03-15)
-- **i18n**: 10 languages supported.
-- **Geographical Module**: Refactored to a headless `useGeoFilter` hook with deep URL state synchronization.
-- **Dropdown Search**: Added wildcard support (`*`) and optimized sticky search header UI.
-- **QA**: Introduced Vitest for geographical utility functions (`geoUtils.test.ts`).
+## Current State (2026-03-16)
+- **i18n**: 10 languages supported with flag integration.
+- **Geographical Module**: Support for multi-country, multi-state, and district-level hierarchies with lazy loading.
+- **Input Library**: Fully expanded with `Slider`, `FilePicker`, `ColorPicker`, and `DatePicker`.
+- **Button Component**: Enhanced with semantic variants (Success, Error, etc.), icon layouts, and 4-way tooltips (Left/Right/Top/Bottom).
+- **Interactive Docs**: Introduced `ComponentViewer` to all input sample pages for live preview/code inspection.
+- **Dropdown Search**: Wildcard support (`*`) and optimized sticky search header UI.
+- **QA**: Vitest coverage for geographical utility functions (`geoUtils.test.ts`).
 
 ## Recent Architectural Decisions
-- **Headless Logic Extraction**: Moved geographical selection logic and hierarchy prediction out of the view layer into a reusable hook.
-- **Universal URL Syncing**: Selection state is now "URL-first", ensuring every map filter change is reflected in the address bar for shareability.
-- **Lazy GeoJSON Fetching**: Implemented a dynamic `GEO_LOADERS` pattern to prevent large world/country GeoJSON files from bloating the initial bundle.
+- **Data Granularity**: Split geographical data from a single country level into state and district files to optimize loading and memory usage.
+- **Interactive Documentation Pattern**: Standardized the use of `ComponentViewer` to provide a "story-like" development experience directly in the sample pages.
+- **Variant-Based Styling**: Adopted a robust variant system for buttons and inputs to handle semantic states without style leakage.
 
 ## Pending Tasks / Roadmap
-- [ ] RTL Support check for Arabic (ar-SA).
-- [ ] Implement E2E tests for the full geographical hierarchy flow.
+- [ ] Refactor monolithic Chart components into granular atoms (Bar, Pie, Line, Map).
+- [ ] Implement `useChart` hook for common ECharts logic (resize, theme, events).
+- [ ] Verify RTL Support for Arabic (ar-SA).
 - [ ] Add "Export to Image" feature for the Map component.
 
 ## Agent Notes
-- When adding a route, remember to add it to `SIDE_NAV_ITEMS` in `src/lib/navigation.tsx` if it's part of the dashboard.
-- Always check `isLoaded()` in the store before saving to `localStorage` to prevent default state from overwriting saved user data.
+- When adding a route, remember to add it to `SIDE_NAV_ITEMS` in `src/lib/navigation.tsx`.
+- Use the `ComponentViewer` for any new UI samples to maintain documentation standards.
+- Ensure any new geographical data follow the `country/state/district.json` hierarchy pattern.
