@@ -10,12 +10,12 @@ const loadStateDistricts = async (country: string, stateName?: string) => {
   if (!stateName || stateName === "All") return null;
   try {
     const manifest = (await import(`./countries/${country.toLowerCase()}/manifest.json`)).default;
-    const filename = manifest[stateName];
-    if (filename) {
-      return (await import(`./countries/${country.toLowerCase()}/${filename}`)).default;
+    const folder = manifest[stateName];
+    if (folder) {
+      return (await import(`./countries/${country.toLowerCase()}/${folder}/districts.json`)).default;
     }
   } catch (e) {
-    console.warn(`Manifest or state file not found for ${country}/${stateName}`);
+    console.warn(`Manifest or state folder not found for ${country}/${stateName}`);
   }
   return null;
 };
@@ -25,43 +25,43 @@ export const GEO_LOADERS: Record<string, CountryConfig> = {
     states: async () => (await import("./countries/world.json")).default
   },
   "Malaysia": {
-    states: async () => (await import("./countries/malaysia-states.json")).default,
+    states: async () => (await import("./countries/malaysia/states.json")).default,
     districts: (state) => loadStateDistricts("malaysia", state)
   },
   "United States of America": {
-    states: async () => (await import("./countries/usa-states.json")).default,
+    states: async () => (await import("./countries/usa/states.json")).default,
     districts: (state) => loadStateDistricts("usa", state)
   },
   "China": {
-    states: async () => (await import("./countries/china-states.json")).default,
+    states: async () => (await import("./countries/china/states.json")).default,
     districts: (state) => loadStateDistricts("china", state)
   },
   "Germany": {
-    states: async () => (await import("./countries/germany-states.json")).default,
+    states: async () => (await import("./countries/germany/states.json")).default,
     districts: (state) => loadStateDistricts("germany", state)
   },
   "Japan": {
-    states: async () => (await import("./countries/japan-states.json")).default,
+    states: async () => (await import("./countries/japan/states.json")).default,
     districts: (state) => loadStateDistricts("japan", state)
   },
   "Russia": {
-    states: async () => (await import("./countries/russia-states.json")).default,
+    states: async () => (await import("./countries/russia/states.json")).default,
     districts: (state) => loadStateDistricts("russia", state)
   },
   "Thailand": {
-    states: async () => (await import("./countries/thailand-states.json")).default,
+    states: async () => (await import("./countries/thailand/states.json")).default,
     districts: (state) => loadStateDistricts("thailand", state)
   },
   "South Korea": {
-    states: async () => (await import("./countries/korea-states.json")).default,
+    states: async () => (await import("./countries/korea/states.json")).default,
     districts: (state) => loadStateDistricts("korea", state)
   },
   "Saudi Arabia": {
-    states: async () => (await import("./countries/saudi_arabia-states.json")).default,
+    states: async () => (await import("./countries/saudi_arabia/states.json")).default,
     districts: (state) => loadStateDistricts("saudi_arabia", state)
   },
   "Greece": {
-    states: async () => (await import("./countries/greece-states.json")).default,
+    states: async () => (await import("./countries/greece/states.json")).default,
     districts: (state) => loadStateDistricts("greece", state)
   },
 };
