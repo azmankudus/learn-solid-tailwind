@@ -3,7 +3,13 @@ import {
   ICON_CHART_PIE, ICON_BOLT, ICON_DOCUMENT_CHART,
   ICON_CUBE, ICON_USER_CIRCLE, ICON_IDENTIFICATION, ICON_SWATCH,
   ICON_SQUARE_3_STACK, ICON_SHIELD_CHECK, ICON_BOOK_OPEN, ICON_GLOBE_ALT,
-  ICON_HOME, ICON_QUESTION
+  ICON_HOME, ICON_QUESTION, ICON_CURSOR_ARROW_RAYS, ICON_QUEUE_LIST,
+  ICON_CHECK_CIRCLE, ICON_DOCUMENT_TEXT, ICON_SQUARE_2_STACK,
+  ICON_ARROW_DOWN_TRAY, ICON_CALENDAR, ICON_ADJUSTMENTS_HORIZONTAL,
+  ICON_CREDIT_CARD, ICON_WINDOW, ICON_CHAT_BUBBLE, ICON_TRENDING_UP,
+  ICON_SPARKLES, ICON_CHEVRON_RIGHT, ICON_VIEW_COLUMNS, ICON_TABLE_CELLS,
+  ICON_LIST_BULLET, ICON_CHART_BAR_SQUARE, ICON_VIEWFINDER_CIRCLE,
+  ICON_MAP, ICON_EXCLAMATION_TRIANGLE, ICON_HASHTAG
 } from "./icons";
 import { text } from "./i18n";
 
@@ -23,20 +29,92 @@ export const TOP_NAV_ITEMS: NavItem[] = [
 export const SIDE_NAV_ITEMS: NavItem[] = [
   { href: "/protected/dashboard", get label() { return text("menu.overview") || "Overview"; }, icon: ICON_CHART_BAR },
   {
-    get label() { return text("menu.management") || "Management"; },
-    icon: ICON_CUBE,
+    label: "Input",
+    icon: ICON_CURSOR_ARROW_RAYS,
     children: [
-      { href: "/protected/management/users", get label() { return text("menu.users") || "Users"; }, icon: ICON_USERS },
-      { href: "/protected/management/products", get label() { return text("menu.products") || "Products"; }, icon: ICON_SHOPPING_BAG },
+      { href: "/protected/input/buttons", label: "Buttons", icon: ICON_BOLT },
+      { href: "/protected/input/dropdown", label: "Dropdown", icon: ICON_QUEUE_LIST },
+      { href: "/protected/input/radio", label: "Radio", icon: ICON_CHECK_CIRCLE },
+      { href: "/protected/input/textfield", label: "TextField", icon: ICON_DOCUMENT_TEXT },
+      { href: "/protected/input/toggle", label: "Toggle", icon: ICON_SQUARE_2_STACK },
+      { href: "/protected/input/file", label: "File", icon: ICON_ARROW_DOWN_TRAY },
+      { href: "/protected/input/date-time", label: "Date & Time", icon: ICON_CALENDAR },
+      { href: "/protected/input/color", label: "Color", icon: ICON_SWATCH },
+      { href: "/protected/input/slider", label: "Slider", icon: ICON_ADJUSTMENTS_HORIZONTAL },
     ]
   },
   {
-    get label() { return text("menu.analytics") || "Analytics"; },
+    label: "Display",
+    icon: ICON_CUBE,
+    children: [
+      { href: "/protected/content/card", label: "Card", icon: ICON_CREDIT_CARD },
+      { href: "/protected/content/grid", label: "Grid", icon: ICON_SQUARE_3_STACK },
+      { href: "/protected/content/modal", label: "Modal", icon: ICON_WINDOW },
+      { href: "/protected/content/tooltip", label: "Tooltip", icon: ICON_CHAT_BUBBLE },
+      { href: "/protected/content/progress", label: "Progress", icon: ICON_TRENDING_UP },
+      { href: "/protected/content/tree", label: "Tree", icon: ICON_QUEUE_LIST },
+      { href: "/protected/content/badge", label: "Badge", icon: ICON_SPARKLES },
+      { href: "/protected/content/toast", label: "Toast", icon: ICON_BOLT },
+      { href: "/protected/content/context", label: "Context", icon: ICON_IDENTIFICATION },
+    ]
+  },
+  {
+    label: "Language",
+    icon: ICON_GLOBE_ALT,
+    href: "/protected/profile/appearance"
+  },
+  {
+    label: "Navigation",
+    icon: ICON_SQUARE_3_STACK,
+    children: [
+      { href: "/protected/navigation/breadcrumb", label: "Breadcrumb", icon: ICON_CHEVRON_RIGHT },
+      { href: "/protected/navigation/tabs", label: "Tabs", icon: ICON_SQUARE_2_STACK },
+      { href: "/protected/navigation/sidebar", label: "Sidebar", icon: ICON_VIEW_COLUMNS },
+    ]
+  },
+  {
+    label: "Data",
+    icon: ICON_TABLE_CELLS,
+    children: [
+      { href: "/protected/data/list", label: "List", icon: ICON_LIST_BULLET },
+      { href: "/protected/data/table", label: "Table", icon: ICON_TABLE_CELLS },
+    ]
+  },
+  {
+    label: "Chart",
     icon: ICON_CHART_PIE,
     children: [
-      { href: "/protected/analytics/live-data", get label() { return text("menu.liveData") || "Live Data"; }, icon: ICON_BOLT },
-      { href: "/protected/analytics/reports", get label() { return text("menu.reports") || "Reports"; }, icon: ICON_DOCUMENT_CHART },
+      { href: "/protected/chart/bar", label: "Bar Chart", icon: ICON_CHART_BAR_SQUARE },
+      { href: "/protected/chart/line", label: "Line Chart", icon: ICON_TRENDING_UP },
+      { href: "/protected/chart/pie", label: "Pie Chart", icon: ICON_CHART_PIE },
+      { href: "/protected/chart/donut", label: "Donut Chart", icon: ICON_VIEWFINDER_CIRCLE },
+      { href: "/protected/chart/map", label: "Map Chart", icon: ICON_MAP },
+      { href: "/protected/chart/nightangle", label: "Nightingale Chart", icon: ICON_CHART_PIE },
+      { href: "/protected/chart/area", label: "Area Chart", icon: ICON_TRENDING_UP },
+      { href: "/protected/chart/scatter", label: "Scatter Chart", icon: ICON_SPARKLES },
+      { href: "/protected/chart/stackedbar", label: "Stacked Bar Chart", icon: ICON_CHART_BAR_SQUARE },
+      { href: "/protected/chart/candlestick", label: "CandleStick Chart", icon: ICON_TRENDING_UP },
+      { href: "/protected/chart/radar", label: "Radar Chart", icon: ICON_VIEWFINDER_CIRCLE },
+      { href: "/protected/chart/boxplot", label: "BoxPlot Chart", icon: ICON_TABLE_CELLS },
+      { href: "/protected/chart/heatmap", label: "HeatMap Chart", icon: ICON_SWATCH },
+      { href: "/protected/chart/treemap", label: "TreeMap Chart", icon: ICON_SQUARE_3_STACK },
+      { href: "/protected/chart/sunburst", label: "Sunburst Chart", icon: ICON_CUBE },
+      { href: "/protected/chart/funnel", label: "Funnel Chart", icon: ICON_IDENTIFICATION },
+      { href: "/protected/chart/gauge", label: "Gauge Chart", icon: ICON_BOLT },
     ]
+  },
+  {
+    label: "Error",
+    icon: ICON_EXCLAMATION_TRIANGLE,
+    children: [
+      { href: "/protected/error/404", label: "404 Not Found", icon: ICON_QUESTION },
+      { href: "/protected/error/500", label: "500 Server Error", icon: ICON_SHIELD_CHECK },
+    ]
+  },
+  {
+    label: "Markdown",
+    icon: ICON_HASHTAG,
+    href: "/protected/markdown"
   },
   {
     get label() { return text("menu.profile") || "Profile"; },
@@ -47,82 +125,4 @@ export const SIDE_NAV_ITEMS: NavItem[] = [
     ]
   },
   { href: "/protected/settings", get label() { return text("menu.settings") || "Settings"; }, icon: ICON_COG },
-  {
-    get label() { return text("menu.testing") || "Testing"; },
-    icon: ICON_BOLT,
-    children: [
-      { href: "/protected/test/scrolling", get label() { return text("menu.scrolling") || "Scrolling"; }, icon: ICON_DOCUMENT_CHART },
-      { href: "/protected/test/grid", get label() { return text("menu.gridScrolling") || "Grid Scrolling"; }, icon: ICON_CUBE },
-    ]
-  },
-  {
-    label: "Ecommerce",
-    icon: ICON_SHOPPING_BAG,
-    children: [
-      { href: "/protected/ecommerce/orders", label: "Orders", icon: ICON_CUBE },
-      { href: "/protected/ecommerce/inventory", label: "Inventory", icon: ICON_SHOPPING_BAG },
-      { href: "/protected/ecommerce/customers", label: "Customers", icon: ICON_USERS },
-      { href: "/protected/ecommerce/promos", label: "Promotions", icon: ICON_BOLT },
-    ]
-  },
-  {
-    label: "Logistics",
-    icon: ICON_DOCUMENT_CHART,
-    children: [
-      { href: "/protected/logistics/shipping", label: "Shipping", icon: ICON_CUBE },
-      { href: "/protected/logistics/tracking", label: "Tracking", icon: ICON_BOLT },
-      { href: "/protected/logistics/warehouses", label: "Warehouses", icon: ICON_SQUARE_3_STACK },
-    ]
-  },
-  {
-    label: "Security",
-    icon: ICON_SHIELD_CHECK,
-    children: [
-      { href: "/protected/security/audit", label: "Audit Logs", icon: ICON_DOCUMENT_CHART },
-      { href: "/protected/security/permissions", label: "Permissions", icon: ICON_USERS },
-      { href: "/protected/security/threats", label: "Threat Center", icon: ICON_BOLT },
-    ]
-  },
-  {
-    label: "Resource Library",
-    icon: ICON_BOOK_OPEN,
-    children: [
-      { href: "/protected/resources/docs", label: "Documentation", icon: ICON_DOCUMENT_CHART },
-      { href: "/protected/resources/assets", label: "Asset Manager", icon: ICON_CUBE },
-      { href: "/protected/resources/backups", label: "System Backups", icon: ICON_BOLT },
-    ]
-  },
-  {
-    label: "Systems Management",
-    icon: ICON_COG,
-    children: [
-      { href: "/protected/systems/status", label: "Server Status", icon: ICON_BOLT },
-      { href: "/protected/systems/logs", label: "Error Logs", icon: ICON_DOCUMENT_CHART },
-      { href: "/protected/systems/config", label: "Global Config", icon: ICON_COG },
-    ]
-  },
-  {
-    label: "Global Expansion",
-    icon: ICON_GLOBE_ALT,
-    children: [
-      { href: "/protected/global/regions", label: "Regions", icon: ICON_CUBE },
-      { href: "/protected/global/locales", label: "Localizations", icon: ICON_SWATCH },
-    ]
-  },
-  {
-    label: "Human Resources",
-    icon: ICON_USERS,
-    children: [
-      { href: "/protected/hr/employees", label: "Employee List", icon: ICON_USER_CIRCLE },
-      { href: "/protected/hr/payroll", label: "Payroll", icon: ICON_SHOPPING_BAG },
-    ]
-  },
-  {
-    label: "Financials",
-    icon: ICON_CHART_PIE,
-    children: [
-      { href: "/protected/finance/revenue", label: "Revenue", icon: ICON_BOLT },
-      { href: "/protected/finance/expenses", label: "Expenses", icon: ICON_SHOPPING_BAG },
-    ]
-  },
 ];

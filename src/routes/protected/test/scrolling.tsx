@@ -1,6 +1,6 @@
 import { For } from "solid-js";
-import { HeadingText } from "~/components/display/Heading";
-import { Card } from "~/components/display/Card";
+import { HeadingText } from "~/components/content/Heading";
+import { Card } from "~/components/content/Card";
 import { Icon } from "@iconify-icon/solid";
 import { ICON_DOCUMENT_CHART } from "~/lib/icons";
 import { text } from "~/lib/i18n";

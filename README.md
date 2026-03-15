@@ -40,6 +40,8 @@ A global configuration engine allows users to tailor their experience in real-ti
 - **Fullscreen Mode**: Native Browser Fullscreen integration (F11 equivalent) for immersive dashboards.
 - **Theme Toggles**: Instant seamless Dark/Light mode switching.
 - **Multi-Lingual**: Fully reactive i18n supporting 10+ languages (EN, MY, CN, KR, JP, RU, AR, TH, DE, GR).
+- **Geographical Sync**: Deep URL state synchronization for map filters, allowing shareable/bookmarkable analytical views.
+- **Searchable Controls**: Advanced dropdown filtering with wildcard support (`*`) and case-insensitive matching.
 
 ---
 
@@ -50,7 +52,8 @@ A global configuration engine allows users to tailor their experience in real-ti
 | **SolidJS 1.9** | True fine-grained reactivity without a Virtual DOM. |
 | **SolidStart 2.0** | The modern meta-framework for the Solid ecosystem. |
 | **Tailwind 4.0** | Next-gen utility-first CSS for rapid, maintainable styling. |
-| **Vitest** | Blazing fast unit testing with local storage and i18n coverage. |
+| **Vitest** | Blazing fast unit testing with coverage for geographical hierarchy and i18n. |
+| **ECharts 6.0** | High-performance visualization engine for geographical and statistical data. |
 | **Nitro 3.0** | The powerful server engine powering high-performance builds. |
 
 ---
@@ -75,16 +78,16 @@ A global configuration engine allows users to tailor their experience in real-ti
 
 ## 🚦 Quality Assurance
 
-UI-DEN is built with reliability in mind. Our testing suite verifies everything from core state logic to complex internationalization.
+UI-DEN is built with reliability in mind. Our testing suite verifies everything from core state logic to complex internationalization and geographical data integrity.
 
-**Run Unit Tests:**
+**Run All Tests:**
 ```bash
 npm test
 ```
 
-**E2E (Coming Soon):**
+**Run Unit Tests only:**
 ```bash
-npx playwright test
+npx vitest
 ```
 
 ---

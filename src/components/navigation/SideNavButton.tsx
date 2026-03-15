@@ -1,6 +1,6 @@
 import { ParentProps } from "solid-js";
 import { A } from "@solidjs/router";
-import { Tooltip } from "../display/Tooltip";
+import { Tooltip } from "../content/Tooltip";
 import { Icon } from "@iconify-icon/solid";
 
 export interface SideNavButtonProps extends ParentProps {
@@ -40,7 +40,7 @@ export function SideNavButton(props: SideNavButtonProps) {
                 )}
               </div>
               <div class={`flex items-center ${props.isSubItem ? 'ml-2' : 'ml-3'} flex-1 min-w-0 transition-all duration-300 transform ${props.collapsed ? 'opacity-0 translate-x-4 pointer-events-none' : 'opacity-100 translate-x-0'}`}>
-                <span class={`whitespace-nowrap overflow-hidden text-ellipsis ${props.isSubItem ? 'text-[11px]' : 'text-[13px]'}`}>{props.children}</span>
+                <span class={`whitespace-nowrap overflow-hidden text-ellipsis ${props.isSubItem ? 'text-[12px]' : 'text-[13px]'}`}>{props.children}</span>
               </div>
             </div>
           </div>

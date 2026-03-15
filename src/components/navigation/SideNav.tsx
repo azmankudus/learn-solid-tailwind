@@ -4,7 +4,7 @@ import { isSidebarCollapsed, setIsSidebarCollapsed } from "~/lib/store";
 import { text } from "~/lib/i18n";
 import { SideNavButton } from "./SideNavButton";
 import { SideNavButtonGroup } from "./SideNavButtonGroup";
-import { Tooltip } from "../display/Tooltip";
+import { Tooltip } from "../content/Tooltip";
 import { SIDE_NAV_ITEMS, NavItem } from "~/lib/navigation";
 import { Icon } from "@iconify-icon/solid";
 import { ICON_CHEVRON_LEFT } from "~/lib/icons";

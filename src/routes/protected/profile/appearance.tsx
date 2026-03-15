@@ -1,12 +1,13 @@
-import { mode, setMode, color, setColor, bg, setBg, lang, setLang, view, setView, windowMode, setWindowMode } from "~/lib/store";
+import { mode, setMode, color, setColor, bg, setBg, lang, setLang, view, setView, windowMode, setWindowMode, chartTheme, setChartTheme } from "~/lib/store";
 import { text, LANGUAGES } from "~/lib/i18n";
-import { HeadingText } from "~/components/display/Heading";
-import { Card } from "~/components/display/Card";
+import { HeadingText } from "~/components/content/Heading";
+import { Card } from "~/components/content/Card";
 import { Dropdown } from "~/components/input/Dropdown";
-import { SegmentedToggle } from "~/components/input/SegmentedToggle";
+import { Radio } from "~/components/input/Radio";
 import { Icon } from "@iconify-icon/solid";
-import { ICON_SUN, ICON_MOON, ICON_SWATCH, ICON_PAINT_BRUSH, ICON_ARROWS_RIGHT_LEFT, ICON_VIEW_COLUMNS, ICON_WINDOW, ICON_ARROWS_EXPAND } from "~/lib/icons";
+import { ICON_SUN, ICON_MOON, ICON_SWATCH, ICON_PAINT_BRUSH, ICON_ARROWS_RIGHT_LEFT, ICON_VIEW_COLUMNS, ICON_WINDOW, ICON_ARROWS_EXPAND, ICON_CHART_PIE } from "~/lib/icons";
 import { COLORS, BGS, getButtonBg } from "~/lib/constants";
+import { THEME_OPTIONS } from "~/lib/theme";
 import { PageWrapper } from "~/components/layout/PageWrapper";
 
 export default function ProfileAppearance() {
@@ -39,7 +40,7 @@ export default function ProfileAppearance() {
             {/* Theme Mode Toggle (Matches TopNav design) */}
             <div class="space-y-4">
               <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{text("appearance.themeMode")}</h4>
-              <SegmentedToggle
+              <Radio
                 value={mode()}
                 onChange={setMode}
                 options={[
@@ -52,7 +53,7 @@ export default function ProfileAppearance() {
             {/* Layout Type Toggle (Matches TopNav design) */}
             <div class="space-y-4">
               <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{text("appearance.layoutType")}</h4>
-              <SegmentedToggle
+              <Radio
                 value={view()}
                 onChange={(v) => setView(v)}
                 options={[
@@ -65,7 +66,7 @@ export default function ProfileAppearance() {
             {/* Window Mode Toggle */}
             <div class="space-y-4">
               <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{text("appearance.windowMode")}</h4>
-              <SegmentedToggle
+              <Radio
                 value={windowMode()}
                 onChange={(v) => setWindowMode(v as "windowed" | "fullscreen")}
                 options={[
@@ -100,6 +101,15 @@ export default function ProfileAppearance() {
                 options={LANGUAGES}
                 onChange={setLang}
                 renderIcon={renderLangIcon}
+              />
+            </div>
+            <div class="space-y-4">
+              <h4 class="text-xs font-bold text-muted ml-1 uppercase tracking-widest">{text("appearance.chartTheme") || "Chart Theme"}</h4>
+              <Dropdown
+                value={chartTheme()}
+                options={THEME_OPTIONS}
+                onChange={setChartTheme}
+                renderIcon={() => <Icon icon={ICON_CHART_PIE} width={20} height={20} />}
               />
             </div>
           </div>

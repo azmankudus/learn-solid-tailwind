@@ -8,7 +8,7 @@ import { PersonalizationPanel } from "./PersonalizationPanel";
 import { SideNavButton } from "./SideNavButton";
 import { SideNavButtonGroup } from "./SideNavButtonGroup";
 import { Icon } from "@iconify-icon/solid";
-import { ICON_MAGNIFYING_GLASS, ICON_LOGOUT, ICON_PALETTE } from "~/lib/icons";
+import { ICON_SEARCH_FLUENT, ICON_SETTINGS_FLUENT, ICON_LOGOUT } from "~/lib/icons";
 import { TOP_NAV_ITEMS, SIDE_NAV_ITEMS } from "~/lib/navigation";
 
 export interface MobileMenuProps {
@@ -71,7 +71,7 @@ export function MobileMenu(props: MobileMenuProps) {
               <h4 class="text-[10px] font-bold uppercase tracking-widest text-muted px-2 mb-2">Tools</h4>
               <div class="flex flex-col space-y-2 relative">
                 <Button class="w-full py-4 text-xs font-bold bg-surface/80 border border-input-border/50 text-main flex items-center justify-center gap-2 hover:bg-solid/100 shadow-sm transition-colors">
-                  <Icon icon={ICON_MAGNIFYING_GLASS} width={18} height={18} />
+                  <Icon icon={ICON_SEARCH_FLUENT} width={18} height={18} />
                   <span>{text("nav.search")}</span>
                 </Button>
 
@@ -80,7 +80,7 @@ export function MobileMenu(props: MobileMenuProps) {
                     onClick={() => setShowDropdown(!showDropdown())}
                     class={`w-full py-4 text-xs font-bold border flex items-center justify-center gap-2 shadow-sm transition-colors ${showDropdown() ? 'bg-theme/10 text-theme border-primary' : 'bg-surface/80 border-input-border/50 text-main hover:bg-solid/100'}`}
                   >
-                    <Icon icon={ICON_PALETTE} width={18} height={18} />
+                    <Icon icon={ICON_SETTINGS_FLUENT} width={18} height={18} />
                     <span>{text("nav.personalize")}</span>
                   </Button>
 

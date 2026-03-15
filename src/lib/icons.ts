@@ -2,6 +2,7 @@ import hiIcons from "@iconify-json/heroicons/icons.json";
 import tbIcons from "@iconify-json/tabler/icons.json";
 import flagIcons from "@iconify-json/flag/icons.json";
 import logosIcons from "@iconify-json/logos/icons.json";
+import fluentIcons from "@iconify-json/fluent/icons.json";
 
 /**
  * Utility to get icon data from JSON collections.
@@ -81,6 +82,17 @@ export const ICON_FIRE = getIcon(hiIcons, "fire-solid");
 export const ICON_VIEWFINDER_CIRCLE = getIcon(hiIcons, "viewfinder-circle-solid");
 export const ICON_EYE = getIcon(hiIcons, "eye-solid");
 export const ICON_CHECK_CIRCLE = getIcon(hiIcons, "check-circle-solid");
+export const ICON_CURSOR_ARROW_RAYS = getIcon(hiIcons, "cursor-arrow-rays-solid");
+export const ICON_LIST_BULLET = getIcon(hiIcons, "list-bullet-solid");
+export const ICON_EXCLAMATION_TRIANGLE = getIcon(hiIcons, "exclamation-triangle-solid");
+export const ICON_HASHTAG = getIcon(hiIcons, "hashtag-solid");
+export const ICON_MAP = getIcon(hiIcons, "map-solid");
+export const ICON_CALENDAR = getIcon(hiIcons, "calendar-solid");
+export const ICON_ADJUSTMENTS_HORIZONTAL = getIcon(hiIcons, "adjustments-horizontal-solid");
+export const ICON_BEAKER = getIcon(hiIcons, "beaker-solid");
+export const ICON_CREDIT_CARD = getIcon(hiIcons, "credit-card-solid");
+export const ICON_MAP_PIN = getIcon(hiIcons, "map-pin-solid");
+export const ICON_CHART_BAR_SQUARE = getIcon(hiIcons, "chart-bar-square-solid");
 
 // Tabler Icons
 export const ICON_PALETTE = getIcon(tbIcons, "palette");
@@ -115,3 +127,21 @@ export const ICON_LOGO_DISCORD = getIcon(logosIcons, "discord-icon");
 export const ICON_LOGO_SLACK = getIcon(logosIcons, "slack-icon");
 export const ICON_LOGO_OKTA = getIcon(logosIcons, "okta-icon");
 export const ICON_LOGO_GITLAB = getIcon(logosIcons, "gitlab-icon");
+
+// Fluent Icons (Direct String Identifiers)
+export const ICON_SEARCH_FLUENT = getIcon(fluentIcons, "search-16-regular");
+export const ICON_SETTINGS_FLUENT = getIcon(fluentIcons, "settings-16-filled");
+export const ICON_THEME_MODE_FLUENT = getIcon(fluentIcons, "dark-theme-20-filled");
+export const ICON_LIGHT_MODE_FLUENT = getIcon(fluentIcons, "weather-sunny-16-filled");
+export const ICON_DARK_MODE_FLUENT = getIcon(fluentIcons, "weather-moon-16-filled");
+export const ICON_LAYOUT_FLUENT = getIcon(fluentIcons, "auto-fit-width-20-filled");
+export const ICON_CENTER_FLUENT = getIcon(fluentIcons, "arrow-fit-in-16-filled");
+export const ICON_WIDE_FLUENT = getIcon(fluentIcons, "arrow-fit-16-filled");
+export const ICON_WINDOW_MODE_FLUENT = getIcon(fluentIcons, "window-16-filled");
+export const ICON_FULLSCREEN_FLUENT = getIcon(fluentIcons, "full-screen-maximize-16-filled");
+export const ICON_WINDOWED_FLUENT = getIcon(fluentIcons, "full-screen-minimize-16-filled");
+export const ICON_COLOR_FLUENT = getIcon(fluentIcons, "color-24-filled");
+export const ICON_BG_STYLE_FLUENT = getIcon(fluentIcons, "color-background-20-filled");
+export const ICON_CHART_COLOR_FLUENT = getIcon(fluentIcons, "chart-multiple-16-filled");
+export const ICON_LANG_FLUENT = getIcon(fluentIcons, "local-language-16-filled");
+

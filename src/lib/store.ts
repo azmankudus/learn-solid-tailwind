@@ -10,7 +10,8 @@ const defaultSettings = {
   color: "indigo",
   lang: "en-US",
   view: "wide",
-  windowMode: "windowed"
+  windowMode: "windowed",
+  chartTheme: "auto"
 };
 
 // Initialize with default settings to ensure Server-Side Rendering (SSR)
@@ -23,6 +24,7 @@ export const [color, setColor] = createSignal(defaultSettings.color);
 export const [lang, setLang] = createSignal(defaultSettings.lang);
 export const [view, setView] = createSignal<"center" | "wide">(defaultSettings.view as "center" | "wide");
 export const [windowMode, setWindowMode] = createSignal<"windowed" | "fullscreen">(defaultSettings.windowMode as "windowed" | "fullscreen");
+export const [chartTheme, setChartTheme] = createSignal(defaultSettings.chartTheme);
 export const [redirectUrl, setRedirectUrl] = createSignal("");
 export const [isLoaded, setIsLoaded] = createSignal(false);
 
@@ -46,6 +48,7 @@ if (typeof window !== "undefined") {
           if (saved.lang !== undefined) setLang(saved.lang);
           if (saved.view !== undefined) setView(saved.view);
           if (saved.windowMode !== undefined) setWindowMode(saved.windowMode);
+          if (saved.chartTheme !== undefined) setChartTheme(saved.chartTheme);
           setIsLoaded(true);
         }, 50);
       } else {
@@ -68,6 +71,7 @@ if (typeof window !== "undefined") {
           if (saved.lang !== undefined) setLang(saved.lang);
           if (saved.view !== undefined) setView(saved.view);
           if (saved.windowMode !== undefined) setWindowMode(saved.windowMode);
+          if (saved.chartTheme !== undefined) setChartTheme(saved.chartTheme);
         } catch (e) {
           console.error("Failed to sync settings from storage event", e);
         }
@@ -86,6 +90,7 @@ if (typeof window !== "undefined") {
         lang: lang(),
         view: view(),
         windowMode: windowMode(),
+        chartTheme: chartTheme(),
       };
 
       // Only save to localStorage if we have finished loading the initial state.

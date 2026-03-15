@@ -12,7 +12,7 @@ export function Toggle(props: ToggleProps) {
   return (
     <button
       onClick={props.onToggle}
-      class={`w-full flex items-center justify-between p-4 rounded-xl bg-input border border-input-border hover:bg-hover transition-all group active:scale-[0.98] cursor-pointer ${props.class || ""}`}
+      class={`w-full flex items-center justify-between p-3 rounded-xl bg-input border border-input-border hover:bg-hover transition-all group active:scale-[0.98] cursor-pointer ${props.class || ""}`}
       style={{ "box-shadow": "var(--color-input-shadow)" }}
     >
       <div class="flex items-center gap-3">

@@ -82,6 +82,7 @@ export const enUS: Record<string, string> = {
   "appearance.layoutType": "Layout Type",
   "appearance.accentColor": "Accent Color",
   "appearance.background": "Background Style",
+  "appearance.chartTheme": "Chart Theme",
   "appearance.center": "Center",
   "appearance.wide": "Wide",
   "appearance.layout": "Layout",

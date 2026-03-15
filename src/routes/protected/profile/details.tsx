@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
-import { HeadingText } from "~/components/display/Heading";
-import { Card } from "~/components/display/Card";
+import { HeadingText } from "~/components/content/Heading";
+import { Card } from "~/components/content/Card";
 import { TextField } from "~/components/input/TextField";
 import { Button } from "~/components/input/Button";
 import { Icon } from "@iconify-icon/solid";

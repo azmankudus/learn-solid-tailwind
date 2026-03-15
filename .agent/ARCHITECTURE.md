@@ -38,3 +38,12 @@ File: `src/lib/navigation.tsx`
 - Use **Tailwind v4** variables (e.g., `text-main`, `bg-nav`, `bg-surface`).
 - Avoid hardcoded colors; use the theme-aware classes defined in `index.css`.
 - Transitions should use `cubic-bezier(0.4, 0, 0.2, 1)` and `duration-300` for the premium feel.
+- **Inputs**: Use the `Dropdown` with `searchable={true}` for large datasets to maintain UX quality.
+
+## 地理位置与层级 (Geographical Data & Hierarchy)
+File: `src/lib/geoLoaders.ts` & `src/lib/hooks/useGeoFilter.ts`
+- **Hook Pattern**: Use `useGeoFilter()` for any geographical selection UI. It handles:
+  1. **URL Sync**: Automatically syncs filter state to `useSearchParams`.
+  2. **Hierarchy Prediction**: Selecting a country automatically updates its parent Continent/Subcontinent.
+  3. **Lazy Loading**: GeoJSON data is loaded via `import()` only when needed.
+- **Utility Pattern**: Core geographical calculations (filtering, hierarchy lookup) must be kept pure in `src/lib/geoUtils.ts` and covered by Vitest in `*.test.ts`.

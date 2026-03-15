@@ -1,6 +1,6 @@
 import { For } from "solid-js";
-import { HeadingText } from "~/components/display/Heading";
-import { Card } from "~/components/display/Card";
+import { HeadingText } from "~/components/content/Heading";
+import { Card } from "~/components/content/Card";
 import { PageWrapper } from "~/components/layout/PageWrapper";
 import { Icon } from "@iconify-icon/solid";
 import { ICON_ROCKET_LAUNCH, ICON_BOOK_OPEN, ICON_LIGHT_BULB, ICON_SHIELD_CHECK, ICON_ARROW_RIGHT } from "~/lib/icons";

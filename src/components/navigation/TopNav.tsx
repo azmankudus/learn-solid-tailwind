@@ -1,16 +1,14 @@
 import { Show, createSignal, onCleanup, For, createEffect } from "solid-js";
 import { isServer } from "solid-js/web";
 import { A, useNavigate, useLocation } from "@solidjs/router";
-import { isLoggedIn, setIsLoggedIn, view, loginModalView, setLoginModalView } from "~/lib/store";
+import { isLoggedIn, setIsLoggedIn, view } from "~/lib/store";
 import { text } from "~/lib/i18n";
 import { IconButton, Button } from "../input/Button";
-import { Modal } from "../display/Modal";
 import { PersonalizationPanel } from "./PersonalizationPanel";
-import { LoginForm } from "../composite/LoginForm";
 import { MobileMenu } from "./MobileMenu";
 import { Icon } from "@iconify-icon/solid";
-import { ICON_MAGNIFYING_GLASS, ICON_LOGOUT, ICON_USER, ICON_BARS_3, ICON_X_MARK, ICON_SQUARE_3_STACK, ICON_PALETTE, ICON_KEY, ICON_USER_PLUS } from "~/lib/icons";
-import { TOP_NAV_ITEMS, SIDE_NAV_ITEMS } from "~/lib/navigation";
+import { ICON_SEARCH_FLUENT, ICON_SETTINGS_FLUENT, ICON_LOGOUT, ICON_BARS_3, ICON_X_MARK, ICON_SQUARE_3_STACK } from "~/lib/icons";
+import { TOP_NAV_ITEMS } from "~/lib/navigation";
 
 export function TopNav() {
   const [showDropdown, setShowDropdown] = createSignal(false);
@@ -99,7 +97,7 @@ export function TopNav() {
             {/* Group 3: Icon buttons - now on the right, no background */}
             <div class="hidden md:flex items-center gap-1.5">
               <IconButton tooltip={text("nav.search")}>
-                <Icon icon={ICON_MAGNIFYING_GLASS} width={20} height={20} class="text-main group-hover:text-theme-solid transition-colors" />
+                <Icon icon={ICON_SEARCH_FLUENT} width={20} height={20} class="text-main group-hover:text-theme-solid transition-colors" />
               </IconButton>
 
               <div class="relative">
@@ -112,12 +110,12 @@ export function TopNav() {
                     <div class="absolute inset-0 bg-theme/10 rounded-xl blur-lg animate-pulse" />
                   </Show>
                   <div class="relative z-10 flex items-center justify-center">
-                    <Icon icon={ICON_PALETTE} width={20} height={20} class={showDropdown() ? 'text-theme-solid' : 'text-main group-hover:text-theme-solid transition-colors'} />
+                    <Icon icon={ICON_SETTINGS_FLUENT} width={20} height={20} class={showDropdown() ? 'text-theme-solid' : 'text-main group-hover:text-theme-solid transition-colors'} />
                   </div>
                 </IconButton>
 
                 <div
-                  class="personalize-dropdown absolute right-0 mt-3 w-100 rounded-2xl bg-solid border border-black/5 p-8 z-[101] dropdown-panel"
+                  class="personalize-dropdown absolute right-0 mt-3 w-72 rounded-2xl bg-solid border border-black/5 p-3 z-[101] dropdown-panel"
                   classList={{ "dropdown-panel--open": showDropdown() }}
                   style={{ "box-shadow": "var(--card-shadow)" }}
                 >

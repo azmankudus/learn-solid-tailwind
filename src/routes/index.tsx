@@ -1,6 +1,6 @@
 import { A, useNavigate } from "@solidjs/router";
 import { isLoggedIn } from "~/lib/store";
-import { HeadingText } from "~/components/display/Heading";
+import { HeadingText } from "~/components/content/Heading";
 import { PageWrapper } from "~/components/layout/PageWrapper";
 import { Button } from "~/components/input/Button";
 import { Icon } from "@iconify-icon/solid";

@@ -1,5 +1,5 @@
 import { A } from "@solidjs/router";
-import { HeadingText } from "~/components/display/Heading";
+import { HeadingText } from "~/components/content/Heading";
 import { Button } from "~/components/input/Button";
 import { PageWrapper } from "~/components/layout/PageWrapper";
 import { text } from "~/lib/i18n";

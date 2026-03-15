@@ -1,5 +1,5 @@
-import { HeadingText } from "~/components/display/Heading";
-import { Card } from "~/components/display/Card";
+import { HeadingText } from "~/components/content/Heading";
+import { Card } from "~/components/content/Card";
 import { IconButton } from "~/components/input/Button";
 import { Icon } from "@iconify-icon/solid";
 import { ICON_USERS } from "~/lib/icons";
