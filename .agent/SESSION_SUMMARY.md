@@ -8,6 +8,7 @@ This document should be updated at the end of every significant session to provi
 - **Input Library**: Fully expanded with `Slider`, `FilePicker`, `ColorPicker`, and `DatePicker`.
 - **Button Component**: Enhanced with semantic variants (Success, Error, etc.), icon layouts, and 4-way tooltips (Left/Right/Top/Bottom).
 - **Interactive Docs**: Introduced `ComponentViewer` to all input sample pages for live preview/code inspection.
+- **Agent Governance**: Created `PROMPTS.md`, `CONTEXT.md`, and `SKILLS.md` to guide future AI assistance.
 - **Dropdown Search**: Wildcard support (`*`) and optimized sticky search header UI.
 - **QA**: Vitest coverage for geographical utility functions (`geoUtils.test.ts`).
 
