@@ -90,41 +90,16 @@ export default function ButtonsPage() {
           </div>
         </Card>
 
-        {/* Premium Interactions */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6 md:col-span-2">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Premium Interactions</HeadingText>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="flex flex-col gap-4">
-              <span class="text-[10px] font-bold text-muted uppercase tracking-wider">Glow Effects (vibe reference)</span>
-              <div class="flex flex-wrap gap-2">
-                <Button variant="default" glow={true}>Default</Button>
-                <Button variant="success" glow={true}>Success</Button>
-                <IconButton variant="error" glow={true} tooltip="Danger Action">
-                   <Icon icon={ICON_TRASH} width={18} height={18} />
-                </IconButton>
-              </div>
-            </div>
-
-            <div class="flex flex-col gap-4">
-              <span class="text-[10px] font-bold text-muted uppercase tracking-wider">Reveal on Hover (vibe reference)</span>
-              <div class="flex flex-wrap gap-2">
-                <Button variant="info" icon={<Icon icon={ICON_BOLT} />} layout="reveal-right">
-                  Reveal Right
-                </Button>
-                <Button variant="accent" icon={<Icon icon={ICON_HEART} />} layout="reveal-left">
-                  Reveal Left
-                </Button>
-              </div>
-            </div>
-
-            <div class="flex flex-col gap-4">
-              <span class="text-[10px] font-bold text-muted uppercase tracking-wider">Combined Effects</span>
-              <div class="flex">
-                <Button variant="success" icon={<Icon icon={ICON_CHECK} />} layout="reveal-right" glow={true}>
-                  Confirm Action
-                </Button>
-              </div>
-            </div>
+        {/* Animated Reveal */}
+        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
+          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Animated Reveal</HeadingText>
+          <div class="flex flex-wrap gap-4">
+            <Button variant="info" icon={<Icon icon={ICON_BOLT} />} layout="reveal-right">
+              Reveal Right
+            </Button>
+            <Button variant="success" icon={<Icon icon={ICON_CHECK} />} layout="reveal-left">
+              Reveal Left
+            </Button>
           </div>
         </Card>
       </div>
