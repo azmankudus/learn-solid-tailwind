@@ -130,6 +130,40 @@ export default function ButtonsPage() {
             <Button variant="info" class="w-full">Fluid / Full Width</Button>
           </div>
         </ComponentViewer>
+
+        {/* Premium Interactions */}
+        <ComponentViewer 
+          title="Premium Interactions"
+          code={`
+<!-- Glow Effect -->
+<Button variant="accent" glow={true}>Hover for Glow</Button>
+<Button variant="success" glow={true}>Success Glow</Button>
+
+<!-- Reveal Icon on Hover -->
+<Button variant="info" icon={<Icon icon={ICON_BOLT} />} layout="reveal-icon">
+  Reveal on Hover
+</Button>
+
+<!-- IconButton Glow -->
+<IconButton variant="error" glow={true}>
+  <Icon icon={ICON_TRASH} />
+</IconButton>
+          `}
+        >
+          <div class="flex flex-wrap gap-4 items-center justify-center">
+            <Button variant="accent" glow={true}>Soft Glow</Button>
+            <Button variant="success" glow={true}>Success</Button>
+            <Button variant="error" glow={true}>Error</Button>
+            
+            <Button variant="info" icon={<Icon icon={ICON_BOLT} />} layout="reveal-icon">
+              Hover to Reveal
+            </Button>
+
+            <IconButton glow={true} tooltip="Glow Action">
+              <Icon icon={ICON_HEART} width={20} height={20} class="text-rose-500" />
+            </IconButton>
+          </div>
+        </ComponentViewer>
       </div>
     </PageWrapper>
   );

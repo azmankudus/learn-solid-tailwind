@@ -5,6 +5,7 @@
 
 ## 🤖 Agent Operational Guidelines
 *   **Aesthetics**: Default to `backdrop-blur-xl`, `bg-surface/50`, and `duration-300`.
+*   **Interactions**: Use `glow={true}` and `layout="reveal-icon"` for high-end micro-interactions.
 *   **Patterns**: Group related changes (Component + Logic + Sample) into atomic commits.
 *   **Prompt Template**: Use "Implement `[ComponentName]` following the `ui-design` skill and include a `ComponentViewer` example."
 
