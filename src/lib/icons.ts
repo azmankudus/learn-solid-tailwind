@@ -93,6 +93,9 @@ export const ICON_BEAKER = getIcon(hiIcons, "beaker-solid");
 export const ICON_CREDIT_CARD = getIcon(hiIcons, "credit-card-solid");
 export const ICON_MAP_PIN = getIcon(hiIcons, "map-pin-solid");
 export const ICON_CHART_BAR_SQUARE = getIcon(hiIcons, "chart-bar-square-solid");
+export const ICON_HEART = getIcon(hiIcons, "heart-solid");
+export const ICON_TRASH = getIcon(hiIcons, "trash-solid");
+export const ICON_PLUS = getIcon(hiIcons, "plus-solid");
 
 // Tabler Icons
 export const ICON_PALETTE = getIcon(tbIcons, "palette");
