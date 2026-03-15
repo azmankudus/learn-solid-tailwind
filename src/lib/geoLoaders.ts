@@ -1,17 +1,69 @@
 
 // Local GeoJSON Data Loaders
-export const GEO_LOADERS: Record<string, () => Promise<{ states: any, districts: any }>> = {
-  world: async () => ({ states: (await import("./countries/world.json")).default, districts: null }),
-  "Malaysia": async () => ({ states: (await import("./countries/malaysia-states.json")).default, districts: (await import("./countries/malaysia-districts.json")).default }),
-  "United States of America": async () => ({ states: (await import("./countries/usa-states.json")).default, districts: (await import("./countries/usa-districts.json")).default }),
-  "China": async () => ({ states: (await import("./countries/china-states.json")).default, districts: (await import("./countries/china-districts.json")).default }),
-  "Germany": async () => ({ states: (await import("./countries/germany-states.json")).default, districts: (await import("./countries/germany-districts.json")).default }),
-  "Japan": async () => ({ states: (await import("./countries/japan-states.json")).default, districts: (await import("./countries/japan-districts.json")).default }),
-  "Russia": async () => ({ states: (await import("./countries/russia-states.json")).default, districts: (await import("./countries/russia-districts.json")).default }),
-  "Thailand": async () => ({ states: (await import("./countries/thailand-states.json")).default, districts: (await import("./countries/thailand-districts.json")).default }),
-  "South Korea": async () => ({ states: (await import("./countries/korea-states.json")).default, districts: (await import("./countries/korea-districts.json")).default }),
-  "Saudi Arabia": async () => ({ states: (await import("./countries/saudi_arabia-states.json")).default, districts: (await import("./countries/saudi_arabia-districts.json")).default }),
-  "Greece": async () => ({ states: (await import("./countries/greece-states.json")).default, districts: (await import("./countries/greece-districts.json")).default }),
+export interface CountryConfig {
+  states: () => Promise<any>;
+  districts?: (stateName?: string) => Promise<any>;
+}
+
+// Helper to load state districts based on manifest
+const loadStateDistricts = async (country: string, stateName?: string) => {
+  if (!stateName || stateName === "All") return null;
+  try {
+    const manifest = (await import(`./countries/${country.toLowerCase()}/manifest.json`)).default;
+    const filename = manifest[stateName];
+    if (filename) {
+      return (await import(`./countries/${country.toLowerCase()}/${filename}`)).default;
+    }
+  } catch (e) {
+    console.warn(`Manifest or state file not found for ${country}/${stateName}`);
+  }
+  return null;
+};
+
+export const GEO_LOADERS: Record<string, CountryConfig> = {
+  world: {
+    states: async () => (await import("./countries/world.json")).default
+  },
+  "Malaysia": {
+    states: async () => (await import("./countries/malaysia-states.json")).default,
+    districts: (state) => loadStateDistricts("malaysia", state)
+  },
+  "United States of America": {
+    states: async () => (await import("./countries/usa-states.json")).default,
+    districts: (state) => loadStateDistricts("usa", state)
+  },
+  "China": {
+    states: async () => (await import("./countries/china-states.json")).default,
+    districts: (state) => loadStateDistricts("china", state)
+  },
+  "Germany": {
+    states: async () => (await import("./countries/germany-states.json")).default,
+    districts: (state) => loadStateDistricts("germany", state)
+  },
+  "Japan": {
+    states: async () => (await import("./countries/japan-states.json")).default,
+    districts: (state) => loadStateDistricts("japan", state)
+  },
+  "Russia": {
+    states: async () => (await import("./countries/russia-states.json")).default,
+    districts: (state) => loadStateDistricts("russia", state)
+  },
+  "Thailand": {
+    states: async () => (await import("./countries/thailand-states.json")).default,
+    districts: (state) => loadStateDistricts("thailand", state)
+  },
+  "South Korea": {
+    states: async () => (await import("./countries/korea-states.json")).default,
+    districts: (state) => loadStateDistricts("korea", state)
+  },
+  "Saudi Arabia": {
+    states: async () => (await import("./countries/saudi_arabia-states.json")).default,
+    districts: (state) => loadStateDistricts("saudi_arabia", state)
+  },
+  "Greece": {
+    states: async () => (await import("./countries/greece-states.json")).default,
+    districts: (state) => loadStateDistricts("greece", state)
+  },
 };
 
 export const COUNTRY_OPTIONS = [

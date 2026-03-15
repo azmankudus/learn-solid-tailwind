@@ -1,0 +1,13 @@
+{
+  "Baden-W\u00fcrttemberg": "Baden_W\u00fcrttemberg.json",
+  "Bayern": "Bayern.json",
+  "Unknown": "Unknown.json",
+  "Brandenburg": "Brandenburg.json",
+  "Niedersachsen": "Niedersachsen.json",
+  "Hamburg": "Hamburg.json",
+  "Hessen": "Hessen.json",
+  "Nordrhein-Westfalen": "Nordrhein_Westfalen.json",
+  "Rheinland-Pfalz": "Rheinland_Pfalz.json",
+  "Sachsen": "Sachsen.json",
+  "Sachsen-Anhalt": "Sachsen_Anhalt.json"
+}

@@ -51,13 +51,20 @@ export function useGeoFilter() {
   // 4. Data Loading Effect
   createEffect(async () => {
     const country = selectedCountry();
+    const state = selectedState();
     setIsLoading(true);
-    setCurrentCountryData({ states: null, districts: null });
 
     try {
-      if (GEO_LOADERS[country]) {
-        const data = await GEO_LOADERS[country]();
-        setCurrentCountryData(data);
+      const config = GEO_LOADERS[country];
+      if (config) {
+        const statesData = await config.states();
+        let districtsData = null;
+        
+        if (state !== "All" && config.districts) {
+          districtsData = await config.districts(state);
+        }
+        
+        setCurrentCountryData({ states: statesData, districts: districtsData });
       } else if (country !== "world") {
         const worldData = (await import("~/lib/countries/world.json")).default as any;
         const feature = worldData.features.find((f: any) => f.properties.name === country);
@@ -68,8 +75,8 @@ export function useGeoFilter() {
           });
         }
       } else {
-        const data = await GEO_LOADERS.world();
-        setCurrentCountryData(data);
+        const statesData = await GEO_LOADERS.world.states();
+        setCurrentCountryData({ states: statesData, districts: null });
       }
     } catch (e) {
       console.error("Failed to load map data in useGeoFilter:", e);
