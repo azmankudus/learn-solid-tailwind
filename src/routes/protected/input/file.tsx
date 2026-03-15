@@ -1,16 +1,16 @@
 import { createSignal } from 'solid-js';
 import { PageWrapper } from '~/components/layout/PageWrapper';
 import { HeadingText } from '~/components/content/Heading';
-import { Card } from '~/components/content/Card';
 import { Icon } from '@iconify-icon/solid';
-import { ICON_ARROW_DOWN_TRAY, ICON_SPARKLES } from '~/lib/icons';
+import { ICON_ARROW_DOWN_TRAY } from '~/lib/icons';
 import { FilePicker } from '~/components/input/FilePicker';
+import { ComponentViewer } from '~/components/content/ComponentViewer';
 
 export default function FilePage() {
   const [log, setLog] = createSignal<string>("No files selected");
 
   const handleUpload = (files: FileList) => {
-    setLog(`${files.length} file(s) ready for processing: ${Array.from(files).map(f => f.name).join(', ')}`);
+    setLog(`${files.length} file(s) ready: ${Array.from(files).map(f => f.name).join(', ')}`);
   };
 
   return (
@@ -22,43 +22,64 @@ export default function FilePage() {
         <HeadingText level={2} class="text-3xl">File Pickers</HeadingText>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Profile Picture */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Single Upload</HeadingText>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+        <ComponentViewer 
+          title="Single Upload"
+          code={`
+<FilePicker 
+  label="Profile Picture"
+  accept="image/*"
+  onFilesSelected={(files) => handle(files)}
+/>
+          `}
+        >
           <FilePicker 
             label="Profile Picture"
             accept="image/*"
             onFilesSelected={(f) => setLog(`Selected image: ${f[0].name}`)}
+            class="w-full"
           />
-        </Card>
+        </ComponentViewer>
 
-        {/* Documents */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Multi Batch</HeadingText>
+        <ComponentViewer 
+          title="Multi Batch"
+          code={`
+<FilePicker 
+  label="Documents"
+  multiple={true}
+  accept=".pdf,.doc"
+  onFilesSelected={(files) => handle(files)}
+/>
+          `}
+        >
           <FilePicker 
             label="Supporting Documents"
             multiple={true}
             accept=".pdf,.doc,.docx"
             onFilesSelected={handleUpload}
+            class="w-full"
           />
-        </Card>
+        </ComponentViewer>
 
-        {/* Global Space */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6 md:col-span-2">
-          <div class="flex items-center gap-2">
-            <Icon icon={ICON_SPARKLES} class="text-theme" />
-            <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Large Drop Space</HeadingText>
+        <ComponentViewer 
+          title="Large Drop Space"
+          code={`
+<FilePicker 
+  class="h-64"
+  onFilesSelected={(files) => handle(files)}
+/>
+          `}
+        >
+          <div class="flex flex-col gap-4 w-full">
+            <FilePicker 
+              class="h-64 w-full"
+              onFilesSelected={handleUpload}
+            />
+            <div class="p-3 bg-input rounded-xl border border-input-border">
+              <p class="text-[10px] font-mono text-theme break-all">{log()}</p>
+            </div>
           </div>
-          <FilePicker 
-            class="h-64"
-            onFilesSelected={handleUpload}
-          />
-          <div class="p-4 bg-surface rounded-2xl border border-input-border">
-            <div class="text-[10px] font-bold text-muted uppercase mb-1">Session Log</div>
-            <p class="text-xs font-mono text-theme break-all">{log()}</p>
-          </div>
-        </Card>
+        </ComponentViewer>
       </div>
     </PageWrapper>
   );

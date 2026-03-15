@@ -1,10 +1,10 @@
 import { createSignal } from 'solid-js';
 import { PageWrapper } from '~/components/layout/PageWrapper';
 import { HeadingText } from '~/components/content/Heading';
-import { Card } from '~/components/content/Card';
 import { Icon } from '@iconify-icon/solid';
-import { ICON_PAINT_BRUSH, ICON_SWATCH } from '~/lib/icons';
+import { ICON_PAINT_BRUSH } from '~/lib/icons';
 import { ColorPicker } from '~/components/input/ColorPicker';
+import { ComponentViewer } from '~/components/content/ComponentViewer';
 
 export default function ColorPage() {
   const [color1, setColor1] = createSignal("#4f46e5");
@@ -19,46 +19,54 @@ export default function ColorPage() {
         <HeadingText level={2} class="text-3xl">Color Pickers</HeadingText>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Brand Color */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <div class="flex items-center gap-2">
-            <Icon icon={ICON_SWATCH} class="text-theme" />
-            <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Brand Identity</HeadingText>
-          </div>
-          <ColorPicker 
-            label="Primary Theme Color"
-            value={color1()}
-            onChange={setColor1}
-          />
-          <div class="flex flex-col gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+        <ComponentViewer 
+          title="Brand Identity"
+          code={`
+<ColorPicker 
+  label="Theme Color"
+  value={color()}
+  onChange={setColor}
+/>
+          `}
+        >
+          <div class="flex flex-col gap-4 w-full">
+            <ColorPicker 
+              label="Primary Theme Color"
+              value={color1()}
+              onChange={setColor1}
+              class="w-full"
+            />
             <div 
-              class="h-12 w-full rounded-xl shadow-lg transition-colors duration-500" 
+              class="h-8 w-full rounded-xl shadow-inner border border-black/5" 
               style={{ "background-color": color1() }} 
             />
-            <span class="text-[10px] font-mono font-bold text-center text-muted">{color1()}</span>
           </div>
-        </Card>
+        </ComponentViewer>
 
-        {/* Accent Color */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <div class="flex items-center gap-2">
-            <Icon icon={ICON_PAINT_BRUSH} class="text-theme" />
-            <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">UI Accents</HeadingText>
+        <ComponentViewer 
+          title="UI Accents"
+          code={`
+<ColorPicker 
+  label="Accent Color"
+  value={color()}
+  onChange={setColor}
+/>
+          `}
+        >
+          <div class="flex flex-col gap-4 w-full">
+            <ColorPicker 
+              label="Secondary Success Color"
+              value={color2()}
+              onChange={setColor2}
+              class="w-full"
+            />
+            <div class="p-3 bg-surface rounded-xl border border-input-border flex items-center gap-3">
+               <div class="h-6 w-6 rounded-full shadow-inner border border-black/5" style={{ "background-color": color2() }} />
+               <span class="text-[10px] font-bold text-main uppercase italic">Accent Preview</span>
+            </div>
           </div>
-          <ColorPicker 
-            label="Secondary Success Color"
-            value={color2()}
-            onChange={setColor2}
-          />
-          <div class="mt-4 p-4 bg-surface rounded-2xl border border-input-border flex items-center gap-4">
-             <div class="h-10 w-10 rounded-full shadow-inner" style={{ "background-color": color2() }} />
-             <div class="flex flex-col">
-               <span class="text-xs font-bold text-main">Accent Preview</span>
-               <span class="text-[10px] text-muted">Applied to buttons and links</span>
-             </div>
-          </div>
-        </Card>
+        </ComponentViewer>
       </div>
     </PageWrapper>
   );

@@ -5,6 +5,7 @@ import { Card } from '~/components/content/Card';
 import { Icon } from '@iconify-icon/solid';
 import { ICON_SWATCH, ICON_BOLT, ICON_CHAT_BUBBLE } from '~/lib/icons';
 import { Toggle } from '~/components/input/Toggle';
+import { ComponentViewer } from '~/components/content/ComponentViewer';
 
 export default function TogglePage() {
   const [active1, setActive1] = createSignal(true);
@@ -20,43 +21,64 @@ export default function TogglePage() {
         <HeadingText level={2} class="text-3xl">Toggles</HeadingText>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Basic Toggle */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Simple Logic</HeadingText>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
+        <ComponentViewer 
+          title="Simple Logic"
+          code={`
+<Toggle 
+  label="Enable Night Mode"
+  active={active()}
+  onToggle={(val) => setActive(val)}
+/>
+          `}
+        >
           <Toggle 
             label="Enable Night Mode"
             active={active1()}
             onToggle={() => setActive1(!active1())}
           />
-          <p class="text-[10px] text-muted font-medium italic">Status: <span class={active1() ? "text-theme" : "text-rose-500"}>{active1() ? "ENABLED" : "DISABLED"}</span></p>
-        </Card>
+        </ComponentViewer>
 
-        {/* Toggle with Icon */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Feature Flags</HeadingText>
+        <ComponentViewer 
+          title="Feature Flags"
+          code={`
+<Toggle 
+  label="Accelerated Graphics"
+  icon={<Icon icon={ICON_BOLT} />}
+  active={active()}
+  onToggle={(val) => setActive(val)}
+/>
+          `}
+        >
           <Toggle 
             label="Accelerated Graphics"
             icon={<Icon icon={ICON_BOLT} width={18} height={18} />}
             active={active2()}
             onToggle={() => setActive2(!active2())}
           />
-        </Card>
+        </ComponentViewer>
 
-        {/* Notif Toggle */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Communications</HeadingText>
+        <ComponentViewer 
+          title="Communications"
+          code={`
+<Toggle 
+  label="Push Notifications"
+  icon={<Icon icon={ICON_CHAT_BUBBLE} />}
+  active={active()}
+  onToggle={(val) => setActive(val)}
+/>
+          `}
+        >
           <Toggle 
             label="Push Notifications"
             icon={<Icon icon={ICON_CHAT_BUBBLE} width={18} height={18} />}
             active={active3()}
             onToggle={() => setActive3(!active3())}
           />
-        </Card>
+        </ComponentViewer>
       </div>
 
-      {/* Info Sections */}
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
         <Card class="p-8 border-none shadow-sm bg-theme/5 border border-theme/10">
           <HeadingText level={4} class="text-xs font-bold text-theme mb-2 uppercase">Best Practices</HeadingText>
           <ul class="text-xs text-muted space-y-2 list-disc ml-4">

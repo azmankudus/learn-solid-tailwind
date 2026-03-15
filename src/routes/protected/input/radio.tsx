@@ -5,6 +5,7 @@ import { Card } from '~/components/content/Card';
 import { Icon } from '@iconify-icon/solid';
 import { ICON_MOON, ICON_SUN, ICON_BOOK_OPEN, ICON_COG } from '~/lib/icons';
 import { Radio } from '~/components/input/Radio';
+import { ComponentViewer } from '~/components/content/ComponentViewer';
 
 export default function RadioPage() {
   const [selected1, setSelected1] = createSignal("light");
@@ -19,40 +20,57 @@ export default function RadioPage() {
         <HeadingText level={2} class="text-3xl">Radio Buttons</HeadingText>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Theme Selection */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Theme Mode</HeadingText>
-          <div class="w-full max-w-xs">
-            <Radio 
-              value={selected1()} 
-              options={[
-                { id: "light", label: "Light", icon: () => <Icon icon={ICON_SUN} />, tooltip: "Switch to light mode" },
-                { id: "dark", label: "Dark", icon: () => <Icon icon={ICON_MOON} />, tooltip: "Switch to dark mode" }
-              ]} 
-              onChange={setSelected1} 
-            />
-          </div>
-          <p class="text-[10px] text-muted font-medium italic">Active mode: <span class="capitalize text-theme">{selected1()}</span></p>
-        </Card>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+        <ComponentViewer 
+          title="Theme Mode"
+          code={`
+<Radio 
+  value={theme()} 
+  onChange={setTheme}
+  options={[
+    { id: "light", label: "Light", icon: () => <Icon icon={ICON_SUN} /> },
+    { id: "dark", label: "Dark", icon: () => <Icon icon={ICON_MOON} /> }
+  ]} 
+/>
+          `}
+        >
+          <Radio 
+            class="w-full max-w-xs"
+            value={selected1()} 
+            options={[
+              { id: "light", label: "Light", icon: () => <Icon icon={ICON_SUN} />, tooltip: "Switch to light mode" },
+              { id: "dark", label: "Dark", icon: () => <Icon icon={ICON_MOON} />, tooltip: "Switch to dark mode" }
+            ]} 
+            onChange={setSelected1} 
+          />
+        </ComponentViewer>
 
-        {/* Subscription Plan */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Billing Cycle</HeadingText>
-          <div class="w-full max-w-xs">
-            <Radio 
-              value={selected2()} 
-              options={[
-                { id: "monthly", label: "Monthly", tooltip: "Pay month to month" },
-                { id: "yearly", label: "Yearly", tooltip: "Save 20% with annual billing" }
-              ]} 
-              onChange={setSelected2} 
-            />
-          </div>
-          <p class="text-[10px] text-muted font-medium italic">Selected cycle: <span class="capitalize text-theme">{selected2()}</span></p>
-        </Card>
+        <ComponentViewer 
+          title="Billing Cycle"
+          code={`
+<Radio 
+  value={cycle()} 
+  onChange={setCycle}
+  options={[
+    { id: "monthly", label: "Monthly" },
+    { id: "yearly", label: "Yearly" }
+  ]} 
+/>
+          `}
+        >
+          <Radio 
+            class="w-full max-w-xs"
+            value={selected2()} 
+            options={[
+              { id: "monthly", label: "Monthly", tooltip: "Pay month to month" },
+              { id: "yearly", label: "Yearly", tooltip: "Save 20% with annual billing" }
+            ]} 
+            onChange={setSelected2} 
+          />
+        </ComponentViewer>
+      </div>
 
-        {/* Informational Card */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
         <Card class="p-8 border-none shadow-sm flex flex-col gap-4 md:col-span-2 bg-theme/5 border-theme/10">
           <div class="flex items-center gap-3 text-theme">
             <Icon icon={ICON_BOOK_OPEN} width={20} height={20} />

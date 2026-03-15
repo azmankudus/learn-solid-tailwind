@@ -1,10 +1,10 @@
 import { createSignal } from 'solid-js';
 import { PageWrapper } from '~/components/layout/PageWrapper';
 import { HeadingText } from '~/components/content/Heading';
-import { Card } from '~/components/content/Card';
 import { Icon } from '@iconify-icon/solid';
 import { ICON_CHART_BAR, ICON_FLAG_US, ICON_FLAG_MY, ICON_FLAG_CN, ICON_FLAG_JP } from '~/lib/icons';
 import { Dropdown } from '~/components/input/Dropdown';
+import { ComponentViewer } from '~/components/content/ComponentViewer';
 
 export default function DropdownPage() {
   const [selected1, setSelected1] = createSignal("option1");
@@ -43,68 +43,89 @@ export default function DropdownPage() {
         <HeadingText level={2} class="text-3xl">Dropdowns</HeadingText>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Standard Dropdown */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Standard Dropdown</HeadingText>
-          <div class="w-full">
-            <Dropdown 
-              value={selected1()} 
-              options={options1} 
-              onChange={setSelected1} 
-              class="max-w-xs"
-            />
-          </div>
-          <p class="text-[10px] text-muted font-medium">Value: <span class="text-theme">{selected1()}</span></p>
-        </Card>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+        <ComponentViewer 
+          title="Standard Dropdown"
+          code={`
+<Dropdown 
+  value={selected()} 
+  options={options} 
+  onChange={setSelected} 
+/>
+          `}
+        >
+          <Dropdown 
+            value={selected1()} 
+            options={options1} 
+            onChange={setSelected1} 
+            class="max-w-xs w-full"
+          />
+        </ComponentViewer>
 
-        {/* Searchable with Icons */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Searchable with Icons</HeadingText>
-          <div class="w-full">
-            <Dropdown 
-              value={selected2()} 
-              options={countryOptions} 
-              onChange={setSelected2} 
-              renderIcon={renderCountryIcon}
-              searchable={true}
-              class="max-w-xs"
-            />
-          </div>
-          <p class="text-[10px] text-muted font-medium">Selected Country: <span class="text-theme uppercase">{selected2()}</span></p>
-        </Card>
+        <ComponentViewer 
+          title="Searchable with Icons"
+          code={`
+<Dropdown 
+  value={selected()} 
+  options={options} 
+  onChange={setSelected} 
+  renderIcon={(val) => <Icon icon={...} />}
+  searchable={true}
+/>
+          `}
+        >
+          <Dropdown 
+            value={selected2()} 
+            options={countryOptions} 
+            onChange={setSelected2} 
+            renderIcon={renderCountryIcon}
+            searchable={true}
+            class="max-w-xs w-full"
+          />
+        </ComponentViewer>
 
-        {/* Inline Variant */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Inline Variant</HeadingText>
-          <div class="w-full">
-            <Dropdown 
-              value={selected3()} 
-              options={[
-                { value: "item1", label: "Low Priority" },
-                { value: "item2", label: "Medium Priority" },
-                { value: "item3", label: "High Priority" },
-              ]} 
-              onChange={setSelected3} 
-              variant="inline"
-              class="max-w-xs"
-            />
-          </div>
-        </Card>
+        <ComponentViewer 
+          title="Inline Variant"
+          code={`
+<Dropdown 
+  value={selected()} 
+  options={options} 
+  onChange={setSelected} 
+  variant="inline"
+/>
+          `}
+        >
+          <Dropdown 
+            value={selected3()} 
+            options={[
+              { value: "item1", label: "Low Priority" },
+              { value: "item2", label: "Medium Priority" },
+              { value: "item3", label: "High Priority" },
+            ]} 
+            onChange={setSelected3} 
+            variant="inline"
+            class="max-w-xs w-full"
+          />
+        </ComponentViewer>
 
-        {/* Disabled State */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Disabled State</HeadingText>
-          <div class="w-full">
-            <Dropdown 
-              value="disabled" 
-              options={[{ value: "disabled", label: "Locked Option" }]} 
-              onChange={() => {}} 
-              disabled={true}
-              class="max-w-xs"
-            />
-          </div>
-        </Card>
+        <ComponentViewer 
+          title="Disabled State"
+          code={`
+<Dropdown 
+  value="locked" 
+  options={options} 
+  disabled={true}
+/>
+          `}
+        >
+          <Dropdown 
+            value="disabled" 
+            options={[{ value: "disabled", label: "Locked Option" }]} 
+            onChange={() => {}} 
+            disabled={true}
+            class="max-w-xs w-full"
+          />
+        </ComponentViewer>
       </div>
     </PageWrapper>
   );
