@@ -7,7 +7,7 @@ export interface ButtonProps extends ParentProps {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   tooltip?: string;
-  tooltipPosition?: "top" | "right" | "bottom";
+  tooltipPosition?: "top" | "right" | "bottom" | "left";
   variant?: "default" | "accent" | "info" | "success" | "warning" | "error";
   layout?: "default" | "text-icon" | "icon-text";
   icon?: JSX.Element;

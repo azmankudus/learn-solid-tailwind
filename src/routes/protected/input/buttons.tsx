@@ -67,21 +67,26 @@ export default function ButtonsPage() {
           </div>
         </Card>
 
-        {/* Full Width & Tooltips */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6 ">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Features</HeadingText>
+        {/* Tooltip Positions */}
+        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
+          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Tooltip Positions</HeadingText>
+          <div class="flex flex-wrap gap-4">
+            <Button tooltip="Tooltip on Top" tooltipPosition="top" variant="accent">Top</Button>
+            <Button tooltip="Tooltip on Right" tooltipPosition="right" variant="accent">Right</Button>
+            <Button tooltip="Tooltip on Bottom" tooltipPosition="bottom" variant="accent">Bottom</Button>
+            <Button tooltip="Tooltip on Left" tooltipPosition="left" variant="accent">Left</Button>
+          </div>
+        </Card>
+
+        {/* Sizing Options */}
+        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
+          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Sizing Options</HeadingText>
           <div class="flex flex-col gap-6">
-            <Button class="w-full" variant="default" icon={<Icon icon={ICON_BOLT} />} layout="text-icon">
-              Full Width with Icon
-            </Button>
-            <div class="flex gap-4">
-              <Button tooltip="Top tooltip position" tooltipPosition="top" variant="info">
-                Hover Me
-              </Button>
-              <Button tooltip="Right tooltip position" tooltipPosition="right" variant="accent">
-                Right Tooltip
-              </Button>
+            <div class="flex flex-wrap items-center gap-4">
+              <Button variant="info" class="w-fit">Fit Content</Button>
+              <Button variant="info" class="w-48">Fixed Width (48)</Button>
             </div>
+            <Button variant="info" class="w-full">Fluid / Full Width</Button>
           </div>
         </Card>
       </div>

@@ -4,7 +4,7 @@ import { Portal, isServer } from "solid-js/web";
 export interface TooltipProps {
   text: string;
   children: JSX.Element;
-  position?: "top" | "right" | "bottom";
+  position?: "top" | "right" | "bottom" | "left";
   disabled?: boolean;
   class?: string;
 }
@@ -22,6 +22,11 @@ export function Tooltip(props: TooltipProps) {
         setCoords({ 
           top: Math.round(rect.top + rect.height / 2), 
           left: Math.round(rect.right + 8) 
+        });
+      } else if (props.position === "left") {
+        setCoords({ 
+          top: Math.round(rect.top + rect.height / 2), 
+          left: Math.round(rect.left - 8) 
         });
       } else if (props.position === "bottom") {
         setCoords({ 
@@ -70,12 +75,14 @@ export function Tooltip(props: TooltipProps) {
             style={{
               top: `${coords().top}px`,
               left: `${coords().left}px`,
-              transform: props.position === "right" ? "translateY(-50%)" : "translateX(-50%)" + (props.position === "bottom" ? "" : " translateY(-100%)")
+              transform: (props.position === "right" || props.position === "left") 
+                ? "translateY(-50%)" + (props.position === "left" ? " translateX(-100%)" : "") 
+                : "translateX(-50%)" + (props.position === "bottom" ? "" : " translateY(-100%)")
             }}
           >
             <div
               class={`px-2.5 py-1.5 rounded-lg bg-nav border border-black/5 text-[10px] font-bold text-main text-left whitespace-nowrap shadow-xl tracking-wider backdrop-blur-xl flex items-center animate-fade-in animate-duration-150 ${
-                props.position === "right" ? "origin-left" : props.position === "bottom" ? "origin-top" : "origin-bottom"
+                props.position === "right" ? "origin-left" : props.position === "left" ? "origin-right" : props.position === "bottom" ? "origin-top" : "origin-bottom"
               }`}
             >
               {props.text}
