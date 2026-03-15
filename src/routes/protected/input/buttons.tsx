@@ -19,61 +19,68 @@ export default function ButtonsPage() {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Standard Buttons */}
+        {/* Semantic Variants */}
         <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Standard Buttons</HeadingText>
+          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Semantic Variants</HeadingText>
           <div class="flex flex-wrap gap-4">
-            <Button onClick={() => setClickCount(c => c + 1)}>
-              Default Button
-            </Button>
-            <Button class="bg-rose-500 shadow-rose-500/20">
-              Danger Button
-            </Button>
-            <Button class="bg-emerald-500 shadow-emerald-500/20">
-              Success Button
-            </Button>
-            <Button disabled>
-              Disabled
-            </Button>
+            <Button variant="default">Default</Button>
+            <Button variant="accent">Accent</Button>
+            <Button variant="info">Info</Button>
+            <Button variant="success">Success</Button>
+            <Button variant="warning">Warning</Button>
+            <Button variant="error">Error</Button>
           </div>
-          <div class="p-4 bg-surface rounded-xl border border-input-border text-xs text-center">
-            Clicks: <span class="font-bold text-theme">{clickCount()}</span>
+        </Card>
+
+        {/* Layouts with Icons */}
+        <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
+          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Icon Layouts</HeadingText>
+          <div class="flex flex-wrap gap-4 items-center">
+            <Button variant="default" icon={<Icon icon={ICON_HEART} />} layout="icon-text">
+              Favorite
+            </Button>
+            <Button variant="accent" icon={<Icon icon={ICON_BOLT} />} layout="text-icon">
+              Process
+            </Button>
+            <Button variant="success" icon={<Icon icon={ICON_CHECK} />} layout="icon-text">
+              Complete
+            </Button>
+            <Button variant="error" icon={<Icon icon={ICON_TRASH} />} layout="text-icon">
+              Delete
+            </Button>
           </div>
         </Card>
 
         {/* Icon Buttons */}
         <Card class="p-8 border-none shadow-sm flex flex-col gap-6">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Icon Buttons</HeadingText>
+          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Standalone Icons</HeadingText>
           <div class="flex flex-wrap gap-6 items-center">
-            <IconButton tooltip="Add to Favorites">
+            <IconButton tooltip="Add Contact">
+              <Icon icon={ICON_BOLT} width={20} height={20} class="text-theme" />
+            </IconButton>
+            <IconButton tooltip="Notifications">
               <Icon icon={ICON_HEART} width={20} height={20} class="text-rose-500" />
             </IconButton>
-            <IconButton tooltip="Delete Item" class="border-rose-500/20 hover:bg-rose-500/10">
-              <Icon icon={ICON_TRASH} width={20} height={20} class="text-rose-500" />
-            </IconButton>
-            <IconButton tooltip="Approve" class="border-emerald-500/20 hover:bg-emerald-500/10">
+            <IconButton tooltip="Settings" class="bg-theme/10 border-theme/20">
               <Icon icon={ICON_CHECK} width={20} height={20} class="text-emerald-500" />
-            </IconButton>
-            <IconButton tooltip="Reject" class="border-rose-500/20 hover:bg-rose-500/10">
-              <Icon icon={ICON_X_MARK} width={20} height={20} class="text-rose-500" />
             </IconButton>
           </div>
         </Card>
 
         {/* Full Width & Tooltips */}
-        <Card class="p-8 border-none shadow-sm flex flex-col gap-6 md:col-span-2">
-          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Variations & Features</HeadingText>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <div class="flex flex-col gap-4">
-              <span class="text-xs font-semibold text-muted">Full Width Button</span>
-              <Button class="w-full">Submit Application</Button>
-            </div>
-            <div class="flex flex-col gap-4">
-              <span class="text-xs font-semibold text-muted">Buttons with Tooltips</span>
-              <div class="flex gap-4">
-                <Button tooltip="This button has a tooltip" tooltipPosition="top">Hover me (Top)</Button>
-                <Button tooltip="Another tooltip here" tooltipPosition="right" class="bg-surface !text-main border border-input-border">Right Tooltip</Button>
-              </div>
+        <Card class="p-8 border-none shadow-sm flex flex-col gap-6 ">
+          <HeadingText level={4} class="text-sm uppercase tracking-widest text-muted font-bold">Features</HeadingText>
+          <div class="flex flex-col gap-6">
+            <Button class="w-full" variant="default" icon={<Icon icon={ICON_BOLT} />} layout="text-icon">
+              Full Width with Icon
+            </Button>
+            <div class="flex gap-4">
+              <Button tooltip="Top tooltip position" tooltipPosition="top" variant="info">
+                Hover Me
+              </Button>
+              <Button tooltip="Right tooltip position" tooltipPosition="right" variant="accent">
+                Right Tooltip
+              </Button>
             </div>
           </div>
         </Card>
