@@ -96,10 +96,34 @@ export const ICON_CHART_BAR_SQUARE = getIcon(hiIcons, "chart-bar-square-solid");
 export const ICON_HEART = getIcon(hiIcons, "heart-solid");
 export const ICON_TRASH = getIcon(hiIcons, "trash-solid");
 export const ICON_PLUS = getIcon(hiIcons, "plus-solid");
+export const ICON_CLOCK = getIcon(hiIcons, "clock-solid");
+export const ICON_NO_SYMBOL = getIcon(hiIcons, "no-symbol-solid");
+export const ICON_FACE_FROWN = getIcon(hiIcons, "face-frown-solid");
+export const ICON_FACE_SMILE = getIcon(hiIcons, "face-smile-solid");
+export const ICON_PUZZLE_PIECE = getIcon(hiIcons, "puzzle-piece-solid");
+export const ICON_SHIELD_EXCLAMATION = getIcon(hiIcons, "shield-exclamation-solid");
+export const ICON_SCALE = getIcon(hiIcons, "scale-solid");
+export const ICON_ARCHIVE_BOX = getIcon(hiIcons, "archive-box-solid");
+export const ICON_WRENCH_SCREWDRIVER = getIcon(hiIcons, "wrench-screwdriver-solid");
+export const ICON_HAND_RAISED = getIcon(hiIcons, "hand-raised-solid");
+export const ICON_LINK = getIcon(hiIcons, "link-solid");
+export const ICON_LINK_SLASH = getIcon(hiIcons, "link-slash-solid");
+export const ICON_ARROW_UP_CIRCLE = getIcon(hiIcons, "arrow-up-circle-solid");
+export const ICON_EXCLAMATION_CIRCLE = getIcon(hiIcons, "exclamation-circle-solid");
+export const ICON_INFORMATION_CIRCLE = getIcon(hiIcons, "information-circle-solid");
+export const ICON_STAR = getIcon(hiIcons, "star-solid");
+export const ICON_MINUS = getIcon(hiIcons, "minus-solid");
+export const ICON_EYE_SLASH = getIcon(hiIcons, "eye-slash-solid");
+export const ICON_FUNNEL = getIcon(hiIcons, "funnel-solid");
+export const ICON_UP_DOWN = getIcon(hiIcons, "arrows-up-down-solid");
+export const ICON_PENCIL_SQUARE = getIcon(hiIcons, "pencil-square-solid");
+export const ICON_FOLDER_PLUS = getIcon(hiIcons, "folder-plus-solid");
+export const ICON_TAG = getIcon(hiIcons, "tag-solid");
 
 // Tabler Icons
 export const ICON_PALETTE = getIcon(tbIcons, "palette");
 export const ICON_WINDOW = getIcon(tbIcons, "window");
+export const ICON_TEAPOT = getIcon(tbIcons, "teapot");
 
 // Flag Icons
 export const ICON_FLAG_US = getIcon(flagIcons, "us-4x3");
@@ -118,6 +142,24 @@ export const ICON_SERVER = getIcon(hiIcons, "server-solid");
 export const ICON_KEY = getIcon(hiIcons, "key-solid");
 export const ICON_USER_PLUS = getIcon(hiIcons, "user-plus-solid");
 export const ICON_LOCK_CLOSED = getIcon(hiIcons, "lock-closed-solid");
+export const ICON_PLAY = getIcon(hiIcons, "play-solid");
+export const ICON_DATABASE = getIcon(hiIcons, "database-solid");
+export const ICON_CODE = getIcon(hiIcons, "code-bracket-solid");
+export const ICON_ADJUSTMENTS = getIcon(hiIcons, "adjustments-vertical-solid");
+export const ICON_LIST = getIcon(hiIcons, "list-bullet-solid");
+export const ICON_SEARCH = getIcon(hiIcons, "magnifying-glass-solid");
+export const ICON_ACTIVITY = getIcon(hiIcons, "bolt-solid");
+export const ICON_BRANCH = getIcon(hiIcons, "swatch-solid");
+export const ICON_CUBE_TRANSPARENT = getIcon(hiIcons, "cube-transparent-solid");
+export const ICON_TERMINAL = getIcon(hiIcons, "command-line-solid");
+export const ICON_KEY_V2 = getIcon(hiIcons, "key-solid");
+export const ICON_POWER = getIcon(hiIcons, "power-solid");
+export const ICON_PAUSE = getIcon(hiIcons, "pause-solid");
+export const ICON_STOP_V2 = getIcon(hiIcons, "stop-circle-solid");
+export const ICON_PLUS_CIRCLE = getIcon(hiIcons, "plus-circle-solid");
+export const ICON_QUESTION_MARK_CIRCLE = getIcon(hiIcons, "question-mark-circle-solid");
+export const ICON_CLIPBOARD_DOCUMENT = getIcon(hiIcons, "clipboard-document-solid");
+export const ICON_PLAY_PAUSE = getIcon(hiIcons, "play-pause-solid");
 
 // Logos
 export const ICON_LOGO_GOOGLE = getIcon(logosIcons, "google-icon");
@@ -147,4 +189,9 @@ export const ICON_COLOR_FLUENT = getIcon(fluentIcons, "color-24-filled");
 export const ICON_BG_STYLE_FLUENT = getIcon(fluentIcons, "color-background-20-filled");
 export const ICON_CHART_COLOR_FLUENT = getIcon(fluentIcons, "chart-multiple-16-filled");
 export const ICON_LANG_FLUENT = getIcon(fluentIcons, "local-language-16-filled");
+export const ICON_SAVE = getIcon(hiIcons, "arrow-down-on-square-solid");
+export const ICON_FLOPPY = getIcon(fluentIcons, "save-20-filled");
+export const ICON_ZOOM_IN_FLUENT = getIcon(fluentIcons, "zoom-in-20-filled");
+export const ICON_ZOOM_OUT_FLUENT = getIcon(fluentIcons, "zoom-out-20-filled");
+export const ICON_CURSOR_FLOW_FLUENT = getIcon(fluentIcons, "cursor-click-20-filled");
 

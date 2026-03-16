@@ -9,7 +9,8 @@ import {
   ICON_CREDIT_CARD, ICON_WINDOW, ICON_CHAT_BUBBLE, ICON_TRENDING_UP,
   ICON_SPARKLES, ICON_CHEVRON_RIGHT, ICON_VIEW_COLUMNS, ICON_TABLE_CELLS,
   ICON_LIST_BULLET, ICON_CHART_BAR_SQUARE, ICON_VIEWFINDER_CIRCLE,
-  ICON_MAP, ICON_EXCLAMATION_TRIANGLE, ICON_HASHTAG
+  ICON_MAP, ICON_EXCLAMATION_TRIANGLE, ICON_HASHTAG, ICON_STAR,
+  ICON_LOCK_CLOSED, ICON_MINUS, ICON_USER, ICON_CLOCK, ICON_ARROW_PATH
 } from "./icons";
 import { text } from "./i18n";
 
@@ -41,21 +42,30 @@ export const SIDE_NAV_ITEMS: NavItem[] = [
       { href: "/protected/input/date-time", label: "Date & Time", icon: ICON_CALENDAR },
       { href: "/protected/input/color", label: "Color", icon: ICON_SWATCH },
       { href: "/protected/input/slider", label: "Slider", icon: ICON_ADJUSTMENTS_HORIZONTAL },
+      { href: "/protected/input/pin", label: "PIN", icon: ICON_LOCK_CLOSED },
+      { href: "/protected/input/textarea", label: "TextArea", icon: ICON_DOCUMENT_TEXT },
+      { href: "/protected/input/stepper", label: "Stepper", icon: ICON_ADJUSTMENTS_HORIZONTAL },
+      { href: "/protected/input/rating", label: "Rating", icon: ICON_STAR },
     ]
   },
   {
     label: "Display",
     icon: ICON_CUBE,
     children: [
-      { href: "/protected/content/card", label: "Card", icon: ICON_CREDIT_CARD },
-      { href: "/protected/content/grid", label: "Grid", icon: ICON_SQUARE_3_STACK },
-      { href: "/protected/content/modal", label: "Modal", icon: ICON_WINDOW },
-      { href: "/protected/content/tooltip", label: "Tooltip", icon: ICON_CHAT_BUBBLE },
-      { href: "/protected/content/progress", label: "Progress", icon: ICON_TRENDING_UP },
-      { href: "/protected/content/tree", label: "Tree", icon: ICON_QUEUE_LIST },
-      { href: "/protected/content/badge", label: "Badge", icon: ICON_SPARKLES },
-      { href: "/protected/content/toast", label: "Toast", icon: ICON_BOLT },
-      { href: "/protected/content/context", label: "Context", icon: ICON_IDENTIFICATION },
+      { href: "/protected/display/card", label: "Card", icon: ICON_CREDIT_CARD },
+      { href: "/protected/display/grid", label: "Grid", icon: ICON_SQUARE_3_STACK },
+      { href: "/protected/display/modal", label: "Modal", icon: ICON_WINDOW },
+      { href: "/protected/display/tooltip", label: "Tooltip", icon: ICON_CHAT_BUBBLE },
+      { href: "/protected/display/progress", label: "Progress", icon: ICON_TRENDING_UP },
+      { href: "/protected/display/tree", label: "Tree", icon: ICON_QUEUE_LIST },
+      { href: "/protected/display/badge", label: "Badge", icon: ICON_SPARKLES },
+      { href: "/protected/display/toast", label: "Toast", icon: ICON_BOLT },
+      { href: "/protected/display/avatar", label: "Avatar", icon: ICON_USER },
+      { href: "/protected/display/accordion", label: "Accordion", icon: ICON_SQUARE_3_STACK },
+      { href: "/protected/display/timeline", label: "Timeline", icon: ICON_CLOCK },
+      { href: "/protected/display/skeleton", label: "Skeleton", icon: ICON_CUBE },
+      { href: "/protected/display/divider", label: "Divider", icon: ICON_VIEW_COLUMNS },
+      { href: "/protected/display/workflow", label: "Workflow", icon: ICON_ARROW_PATH },
     ]
   },
   {
@@ -106,10 +116,7 @@ export const SIDE_NAV_ITEMS: NavItem[] = [
   {
     label: "Error",
     icon: ICON_EXCLAMATION_TRIANGLE,
-    children: [
-      { href: "/protected/error/404", label: "404 Not Found", icon: ICON_QUESTION },
-      { href: "/protected/error/500", label: "500 Server Error", icon: ICON_SHIELD_CHECK },
-    ]
+    href: "/protected/error"
   },
   {
     label: "Markdown",

@@ -158,3 +158,15 @@ export const NIGHTINGALE_DATA = [
   { value: 22, name: 'rose 7' },
   { value: 18, name: 'rose 8' }
 ];
+
+export const TABLE_DATA = Array.from({ length: 50 }, (_, i) => ({
+  id: `USR-${1000 + i}`,
+  name: ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel"][i % 8] + " " + ["Operator", "Commander", "Specialist", "Engineer"][i % 4],
+  status: ["Active", "Idle", "Suspended", "Offline"][i % 4],
+  role: ["Admin", "User", "Guest", "Root"][i % 4],
+  email: `operator${i}@system.core`,
+  reliability: Number((Math.random() * 100).toFixed(1)),
+  active: i % 2 === 0,
+  cycles: Math.floor(Math.random() * 5000),
+  lastActive: new Date(Date.now() - Math.random() * 1000000000).toISOString()
+}));

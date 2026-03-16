@@ -3,7 +3,13 @@
 @theme {
   --animate-fade-in: fade-in 0.6s ease-out;
   --animate-fade-in-left: fade-in-left 0.4s ease-out;
+  --animate-slide-in-right: slide-in-right 0.3s ease-out;
+  --animate-slide-in-left: slide-in-left 0.3s ease-out;
   --animate-bounce-subtle: bounce-subtle 2s infinite ease-in-out;
+  --animate-flicker: flicker 4s infinite ease-in-out;
+  --animate-fade-out: fade-out 0.3s ease-in forwards;
+  --animate-scale-in: scale-in 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  --animate-scale-out: scale-out 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 
   --color-base: var(--bg-base);
   --color-surface: var(--bg-surface);
@@ -26,9 +32,52 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
   @keyframes bounce-subtle {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    10% { opacity: 0.85; }
+    20% { opacity: 1; }
+    30% { opacity: 0.4; }
+    35% { opacity: 0.9; }
+    50% { opacity: 0.2; }
+    55% { opacity: 1; }
+    70% { opacity: 0.8; }
+    80% { opacity: 1; }
+    90% { opacity: 0.6; }
+  }
+
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+
+  @keyframes fade-out {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-8px); }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.9) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes scale-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
   }
 }
 
@@ -283,4 +332,46 @@ main {
 
 .dark .mobile-menu-overlay {
   background-color: rgba(15, 23, 42, 0.95);
+}
+
+.slider-range-input {
+  pointer-events: none;
+}
+.slider-range-input::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+.slider-range-input::-moz-range-thumb {
+  pointer-events: auto;
+}
+/* Toast Transitions for Solid Transition Group */
+.toast-item-move {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast-item-enter,
+.toast-item-enter-active,
+.toast-item-exit,
+.toast-item-exit-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast-item-enter {
+  opacity: 0;
+  transform: scale(0.9) translateY(10px);
+}
+
+.toast-item-enter-to {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.toast-item-exit-active {
+  position: absolute !important;
+  width: 20rem; /* Match w-80 */
+  z-index: 10;
+}
+
+.toast-item-exit-to {
+  opacity: 0;
+  transform: scale(0.95) translateY(-10px);
 }

@@ -17,7 +17,7 @@ export function Card(props: CardProps) {
       <Show when={props.themeTint}>
         <div class="absolute inset-0 bg-primary/[0.03] pointer-events-none" />
       </Show>
-      <div class="relative z-10">
+      <div class="relative">
         {props.children}
       </div>
     </div>

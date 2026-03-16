@@ -54,6 +54,14 @@ UI-DEN prioritizes developer velocity with integrated documentation tools:
   - `DatePicker`: Native-powered, theme-aware calendar selection.
   - `Radio`: Animated sliding selectors for binary or short-list choices.
 
+### 🧬 Advanced Workflow Architect (n8n Clone)
+A high-fidelity, industrial-grade orchestration engine implemented directly in SolidJS:
+- **Infinite Canvas**: Hardware-accelerated panning and smooth infinite zoom (Ctrl + Scroll).
+- **Functional Execution Engine**: Real-time Javascript execution for "Code" nodes and data flow simulation throughout the graph.
+- **Industrial Configuration**: Searchable resource catalog (Library) and a deep-dive Properties Panel for node customization.
+- **Animated Data Flow**: Reactive Bezier connections with "data pulses" that visualize execution status and information movement.
+- **High-Fidelity UI**: Exact 90x90 node architecture with brand-colored strips and intelligent input/output port hubs.
+
 ---
 
 ## 🛠️ Modern Tech Stack
@@ -66,6 +74,7 @@ UI-DEN prioritizes developer velocity with integrated documentation tools:
 | **Vitest** | Blazing fast unit testing with coverage for geographical hierarchy and i18n. |
 | **ECharts 6.0** | High-performance visualization engine for geographical and statistical data. |
 | **Nitro 3.0** | The powerful server engine powering high-performance builds. |
+| **Iconify** | Unified icon framework for 200,000+ vector icons. |
 
 ---
 

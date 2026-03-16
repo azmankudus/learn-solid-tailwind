@@ -59,3 +59,12 @@ File: `src/lib/geoLoaders.ts` & `src/lib/hooks/useGeoFilter.ts`
   2. **Hierarchy Prediction**: Selecting a country automatically updates its parent Continent/Subcontinent.
   3. **Lazy Loading**: GeoJSON data is loaded via `import()` only when needed.
 - **Utility Pattern**: Core geographical calculations (filtering, hierarchy lookup) must be kept pure in `src/lib/geoUtils.ts` and covered by Vitest in `*.test.ts`.
+62: 
+63: ## 🧬 Workflow Orchestration Pattern
+64: File: `src/components/content/WorkflowBoard.tsx`
+65: - **Pattern**: Heavyweight designer implementation utilizing SVG for dynamic connections and Absolute positioning for node placement.
+66: - **Interaction Logic**:
+67:   1. **Coordinate Conversion**: Canvas uses a `zoom` and `offset` signal. Mouse coordinates must be transformed via `(mouse - offset) / zoom` for accurate world-space interaction.
+68:   2. **Port System**: Input/Output ports use `onMouseDown` and `onMouseUp` on separate elements to initiate/terminate connection drafting.
+69:   3. **Execution Engine**: Implements a recursive `runSequence` function that passes `data` payloads between node signals, simulating real-world orchestration.
+70: - **Optimization**: Connection paths are pre-calculated via Bezier curve functions to minimize per-frame computation. Use `animateMotion` for high-performance SVG animations.

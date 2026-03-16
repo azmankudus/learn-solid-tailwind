@@ -3,90 +3,71 @@ import { PageWrapper } from '~/components/layout/PageWrapper';
 import { HeadingText } from '~/components/content/Heading';
 import { Card } from '~/components/content/Card';
 import { Icon } from '@iconify-icon/solid';
-import { ICON_SWATCH, ICON_BOLT, ICON_CHAT_BUBBLE } from '~/lib/icons';
+import { ICON_BOLT, ICON_SUN, ICON_MOON, ICON_ENVELOPE, ICON_SHIELD_CHECK } from '~/lib/icons';
 import { Toggle } from '~/components/input/Toggle';
 import { ComponentViewer } from '~/components/content/ComponentViewer';
 
 export default function TogglePage() {
-  const [active1, setActive1] = createSignal(true);
-  const [active2, setActive2] = createSignal(false);
-  const [active3, setActive3] = createSignal(false);
+  const [active, setActive] = createSignal(true);
+  const [notifications, setNotifications] = createSignal(true);
+  const [darkMode, setDarkMode] = createSignal(false);
 
   return (
     <PageWrapper class="flex flex-col space-y-6">
       <div class="flex items-center space-x-3 mb-4">
         <div class="h-10 w-10 rounded-xl bg-theme/10 text-theme flex items-center justify-center">
-          <Icon icon={ICON_SWATCH} width={24} height={24} />
+          <Icon icon={ICON_BOLT} width={24} height={24} />
         </div>
-        <HeadingText level={2} class="text-3xl">Toggles</HeadingText>
+        <HeadingText level={2} class="text-3xl font-bold">Toggle</HeadingText>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
+      <div class="flex flex-col gap-6 pb-12">
         <ComponentViewer 
-          title="Simple Logic"
+          title="Row Style"
+          icon={<Icon icon={active() ? ICON_SUN : ICON_MOON} />}
+          description="A row-based toggle that includes a label and an icon."
           code={`
 <Toggle 
-  label="Enable Night Mode"
-  active={active()}
-  onToggle={(val) => setActive(val)}
-/>
-          `}
-        >
-          <Toggle 
-            label="Enable Night Mode"
-            active={active1()}
-            onToggle={() => setActive1(!active1())}
-          />
-        </ComponentViewer>
-
-        <ComponentViewer 
-          title="Feature Flags"
-          code={`
-<Toggle 
-  label="Accelerated Graphics"
+  label="High Performance" 
   icon={<Icon icon={ICON_BOLT} />}
-  active={active()}
-  onToggle={(val) => setActive(val)}
+  active={active()} 
+  onChange={setActive} 
 />
           `}
         >
           <Toggle 
-            label="Accelerated Graphics"
-            icon={<Icon icon={ICON_BOLT} width={18} height={18} />}
-            active={active2()}
-            onToggle={() => setActive2(!active2())}
+            class="max-w-sm"
+            label={active() ? "Enabled" : "Disabled"} 
+            icon={<Icon icon={ICON_BOLT} />}
+            active={active()} 
+            onChange={setActive} 
           />
         </ComponentViewer>
 
         <ComponentViewer 
-          title="Communications"
+          title="Basic Switch"
+          icon={<Icon icon={ICON_ENVELOPE} />}
+          description="A simple switch used inside other components or custom layouts."
           code={`
-<Toggle 
-  label="Push Notifications"
-  icon={<Icon icon={ICON_CHAT_BUBBLE} />}
-  active={active()}
-  onToggle={(val) => setActive(val)}
-/>
+<div class="flex justify-between">
+  <span>Allow Notifications</span>
+  <Toggle 
+    active={notifications()} 
+    onChange={setNotifications} 
+  />
+</div>
           `}
         >
-          <Toggle 
-            label="Push Notifications"
-            icon={<Icon icon={ICON_CHAT_BUBBLE} width={18} height={18} />}
-            active={active3()}
-            onToggle={() => setActive3(!active3())}
-          />
+          <div class="flex items-center justify-between gap-8 p-4 bg-surface/50 rounded-2xl border border-input-border w-full max-w-sm">
+            <span class="text-xs font-bold uppercase tracking-widest text-main">
+              Push Notifications
+            </span>
+            <Toggle 
+              active={notifications()} 
+              onChange={setNotifications} 
+            />
+          </div>
         </ComponentViewer>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
-        <Card class="p-8 border-none shadow-sm bg-theme/5 border border-theme/10">
-          <HeadingText level={4} class="text-xs font-bold text-theme mb-2 uppercase">Best Practices</HeadingText>
-          <ul class="text-xs text-muted space-y-2 list-disc ml-4">
-            <li>Use toggles for settings that take effect immediately.</li>
-            <li>Always provide a clear label explaining the state change.</li>
-            <li>Maintain consistent visual feedback for active/inactive states.</li>
-          </ul>
-        </Card>
       </div>
     </PageWrapper>
   );

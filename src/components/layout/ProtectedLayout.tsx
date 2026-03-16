@@ -1,8 +1,9 @@
 import { ParentProps, createEffect, onMount, createSignal } from "solid-js";
 import { useLocation, useNavigate } from "@solidjs/router";
-import { isLoggedIn, setRedirectUrl, isLoaded, view } from "~/lib/store";
+import { isLoggedIn, setRedirectUrl, isLoaded, view, isSidebarCollapsed } from "~/lib/store";
 import { SideNav } from "../navigation/SideNav";
 import { PageWrapper } from "./PageWrapper";
+import { ToastContainer } from "../content/Toast";
 
 export function ProtectedLayout(props: ParentProps) {
   const location = useLocation();
@@ -24,7 +25,9 @@ export function ProtectedLayout(props: ParentProps) {
     <div
       class={`flex w-full relative text-main min-h-screen mx-auto pt-0 layout-view-transition ${!isLoggedIn() && isMounted() ? 'opacity-0' : 'opacity-100'}`}
       style={{
-        "max-width": view() === 'center' ? '1280px' : '100%'
+        "max-width": view() === 'center' ? '1280px' : '100%',
+        "--sidebar-width": isSidebarCollapsed() ? '80px' : '256px',
+        "--layout-max-width": view() === 'center' ? '1280px' : '100vw'
       }}
     >
       <SideNav />
@@ -33,6 +36,7 @@ export function ProtectedLayout(props: ParentProps) {
           {props.children}
         </PageWrapper>
       </main>
+      <ToastContainer />
     </div>
   );
 }

@@ -17,7 +17,9 @@ export default function App() {
           <Title>UI-DEN | Premium Design System</Title>
           <Meta name="description" content="A premium, modern design system built with SolidJS and Tailwind CSS v4." />
           <PublicLayout>
-            <Suspense>{props.children}</Suspense>
+            <Suspense>
+              {props.children}
+            </Suspense>
           </PublicLayout>
         </MetaProvider>
       )}

@@ -1,7 +1,7 @@
 import { createSignal, createEffect, createMemo, onCleanup, For, Show, JSX } from "solid-js";
 import { isServer } from "solid-js/web";
 import { Icon } from "@iconify-icon/solid";
-import { ICON_CHEVRON_DOWN, ICON_CHECK } from "~/lib/icons";
+import { ICON_CHEVRON_DOWN, ICON_CHECK, ICON_MAGNIFYING_GLASS, ICON_X_MARK } from "~/lib/icons";
 
 export interface DropdownOption {
   value: string;
@@ -9,24 +9,66 @@ export interface DropdownOption {
 }
 
 export interface DropdownProps {
-  value: string;
+  value: string | string[];
   options: DropdownOption[];
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
   renderIcon?: (value: string) => JSX.Element;
   class?: string;
+  placeholder?: string;
   variant?: "absolute" | "inline";
   disabled?: boolean;
   searchable?: boolean;
+  multiple?: boolean;
+  textAlign?: "left" | "right" | "center";
 }
 
 export function Dropdown(props: DropdownProps) {
   const variant = () => props.variant || "absolute";
   const [isOpen, setIsOpen] = createSignal(false);
   const [searchQuery, setSearchQuery] = createSignal("");
-  const selectedOption = () => props.options.find(o => o.value === props.value) || props.options[0];
+  const [placement, setPlacement] = createSignal<"bottom" | "top">("bottom");
 
   let dropdownRef: HTMLDivElement | undefined;
-  let optionsRef: HTMLDivElement | undefined;
+  let popupRef: HTMLDivElement | undefined;
+  let inputRef: HTMLInputElement | undefined;
+
+  const isSelected = (val: string) => {
+    if (Array.isArray(props.value)) {
+      return props.value.includes(val);
+    }
+    return props.value === val;
+  };
+
+  const selectedOptions = createMemo(() => {
+    if (Array.isArray(props.value)) {
+      return props.options.filter(o => props.value.includes(o.value));
+    }
+    const found = props.options.find(o => o.value === props.value);
+    return found ? [found] : [];
+  });
+
+  const handleSelect = (val: string) => {
+    if (props.multiple) {
+      const current = Array.isArray(props.value) ? [...props.value] : [];
+      const index = current.indexOf(val);
+      if (index > -1) {
+        current.splice(index, 1);
+      } else {
+        current.push(val);
+      }
+      props.onChange(current);
+    } else {
+      props.onChange(val);
+      setIsOpen(false);
+    }
+  };
+
+  const removeValue = (e: MouseEvent, val: string) => {
+    e.stopPropagation();
+    if (Array.isArray(props.value)) {
+      props.onChange(props.value.filter(v => v !== val));
+    }
+  };
 
   createEffect(() => {
     if (isServer) return;
@@ -41,15 +83,18 @@ export function Dropdown(props: DropdownProps) {
 
   createEffect(() => {
     if (isServer) return;
-    if (isOpen() && optionsRef) {
-      const selectedEl = optionsRef.querySelector('[data-selected="true"]');
-      if (selectedEl) {
-        selectedEl.scrollIntoView({ block: "nearest", behavior: "smooth" });
-      }
-      
-      // Auto-focus search input
-      const searchInput = dropdownRef?.querySelector('input');
-      if (searchInput) searchInput.focus();
+    if (isOpen() && dropdownRef) {
+      setPlacement("bottom");
+      requestAnimationFrame(() => {
+        if (!dropdownRef || !popupRef) return;
+        const rect = dropdownRef.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        const popupHeight = popupRef.scrollHeight;
+        if (spaceBelow < popupHeight && spaceAbove > popupHeight) {
+          setPlacement("top");
+        }
+      });
     } else if (!isOpen()) {
       setSearchQuery("");
     }
@@ -57,38 +102,95 @@ export function Dropdown(props: DropdownProps) {
 
   const filteredOptions = createMemo(() => {
     if (!props.searchable || !searchQuery()) return props.options;
-    
     const query = searchQuery().toLowerCase();
-    // Support wildcard * by converting to regex
-    const regexSource = query.split("*").map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join(".*");
-    const regex = new RegExp(regexSource, "i");
-
-    return props.options.filter(o => regex.test(o.label));
+    return props.options.filter(o => o.label.toLowerCase().includes(query));
   });
 
   return (
-    <div class={`relative w-full ${props.class || ""}`} ref={dropdownRef}>
-      <button
+    <div 
+      class={`relative w-full ${props.class || ""}`} 
+      ref={dropdownRef}
+      style={{ "z-index": isOpen() ? "100" : "1" }}
+    >
+      <div
         onClick={() => !props.disabled && setIsOpen(!isOpen())}
-        disabled={props.disabled}
-        class="w-full h-full flex items-center justify-between p-3 rounded-xl bg-input border border-input-border hover:bg-hover transition-all duration-300 text-xs font-semibold text-main text-left active:scale-[0.98] cursor-pointer"
+        class={`w-full min-h-[44px] flex items-center justify-between p-1.5 rounded-xl bg-input border border-input-border hover:border-theme/30 transition-all duration-300 text-sm font-semibold text-main cursor-pointer shadow-sm
+          ${(props.textAlign || "left") === "left" ? "text-left" : (props.textAlign === "right" ? "text-right" : "text-center")}`}
         classList={{
-          "opacity-50 pointer-events-none grayscale-[0.5]": props.disabled === true
+          "opacity-50 pointer-events-none grayscale-[0.5]": props.disabled === true,
+          "border-theme ring-2 ring-theme/10": isOpen()
         }}
-        style={{ "box-shadow": "var(--color-input-shadow)" }}
       >
-        <div class="flex items-center gap-3">
-          <div class="flex items-center justify-center w-5 h-5">
-            {props.renderIcon ? props.renderIcon(props.value) : <div class="h-5 w-5 rounded-full bg-theme"></div>}
-          </div>
-          <span>{selectedOption()?.label}</span>
-        </div>
-        <Icon icon={ICON_CHEVRON_DOWN} class={`transition-transform duration-200 ${isOpen() && !props.disabled ? 'rotate-180' : ''}`} width={20} height={20} />
-      </button>
+        <div class="flex flex-wrap gap-1.5 flex-1 min-w-0 px-2" classList={{
+          "justify-start": !props.textAlign || props.textAlign === "left",
+          "justify-end": props.textAlign === "right",
+          "justify-center": props.textAlign === "center"
+        }}>
+          <Show when={selectedOptions().length === 0 && !searchQuery()}>
+            <span class="text-muted/50 font-medium truncate">{props.placeholder || "Select Option"}</span>
+          </Show>
 
+          <For each={selectedOptions()}>
+            {(option) => (
+              <Show 
+                when={props.multiple} 
+                fallback={
+                  <div class="flex items-center gap-2 truncate">
+                    <Show when={props.renderIcon}>
+                      {props.renderIcon!(option.value)}
+                    </Show>
+                    {!props.searchable || !isOpen() ? (
+                        <span class="truncate">{option.label}</span>
+                    ) : null}
+                  </div>
+                }
+              >
+                <div class="inline-flex items-center gap-1.5 px-2 py-1 bg-theme/10 text-theme rounded-lg text-[10px] font-black uppercase tracking-wider animate-fade-in group/tag">
+                   <Show when={props.renderIcon}>
+                     {props.renderIcon!(option.value)}
+                   </Show>
+                   {option.label}
+                   <button 
+                    onClick={(e) => removeValue(e, option.value)}
+                    class="p-0.5 hover:bg-theme/20 rounded-md transition-colors"
+                   >
+                     <Icon icon={ICON_X_MARK} width={10} height={10} />
+                   </button>
+                </div>
+              </Show>
+            )}
+          </For>
+
+          <Show when={props.searchable && isOpen()}>
+            <input
+              ref={inputRef}
+              type="text"
+              autofocus
+              value={searchQuery()}
+              onInput={(e) => setSearchQuery(e.currentTarget.value)}
+              onClick={(e) => e.stopPropagation()}
+              placeholder={selectedOptions().length > 0 ? "" : props.placeholder}
+              class="flex-1 bg-transparent border-none outline-none text-sm font-bold text-main min-w-[60px]"
+            />
+          </Show>
+        </div>
+        
+        <div class="flex items-center gap-1 px-2 border-l border-input-border/50 ml-1">
+          <Icon 
+            icon={ICON_CHEVRON_DOWN} 
+            class={`transition-transform duration-300 ${isOpen() && !props.disabled ? 'rotate-180' : ''} text-muted/50`} 
+            width={18} 
+            height={18} 
+          />
+        </div>
+      </div>
+
+      {/* Popup */}
       <div
         classList={{
-          "absolute top-full left-0 right-0 z-[150]": variant() === "absolute",
+          "absolute left-0 right-0 z-[150]": variant() === "absolute",
+          "top-full": variant() === "absolute" && placement() === "bottom",
+          "bottom-full": variant() === "absolute" && placement() === "top",
           "relative": variant() === "inline"
         }}
       >
@@ -102,58 +204,39 @@ export function Dropdown(props: DropdownProps) {
         >
           <div class="overflow-hidden">
             <div
-              class="mt-2 flex flex-col rounded-2xl bg-solid border border-input-border shadow-2xl z-[150] overflow-hidden"
+              ref={popupRef}
+              class="flex flex-col rounded-2xl bg-solid border border-input-border shadow-2xl z-[150] overflow-hidden mt-2 mb-2"
             >
-              <Show when={props.searchable}>
-                <div class="relative flex items-center border-b border-input-border bg-input/50">
-                  <div class="absolute left-4 text-main/30">
-                    <Icon icon="heroicons:magnifying-glass" width={16} height={16} />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search options..."
-                    value={searchQuery()}
-                    onInput={(e) => setSearchQuery(e.currentTarget.value)}
-                    class="w-full h-12 pl-12 pr-4 bg-transparent text-xs font-semibold text-main focus:outline-none transition-colors"
-                  />
-                </div>
-              </Show>
-
-              <div
-                ref={optionsRef}
-                class="max-h-64 overflow-y-auto custom-scrollbar p-1.5 flex flex-col gap-1"
-              >
+              <div class="max-h-64 overflow-y-auto custom-scrollbar p-1.5 flex flex-col gap-0.5">
                 <For each={filteredOptions()}>
                   {(option) => (
                     <button
-                      onClick={() => {
-                        props.onChange(option.value);
-                        setIsOpen(false);
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelect(option.value);
                       }}
-                      data-selected={props.value === option.value}
-                      class="w-full flex items-center justify-between p-3 rounded-xl transition-all duration-300 text-xs font-medium text-left cursor-pointer border border-transparent shrink-0"
+                      class="w-full flex items-center justify-between p-3 rounded-xl transition-all duration-200 text-sm font-medium cursor-pointer border border-transparent shrink-0"
                       classList={{
-                        "hover:bg-black/5 dark:hover:bg-white/10": props.value !== option.value,
-                        "text-theme font-bold shadow-sm scale-[1.01]": props.value === option.value,
-                        "text-main": props.value !== option.value
+                        "hover:bg-hover": !isSelected(option.value),
+                        "text-theme font-black bg-theme/5 border-theme/10": isSelected(option.value),
+                        "text-muted hover:text-main": !isSelected(option.value)
                       }}
-                      style={props.value === option.value ? { "background-color": "color-mix(in srgb, var(--primary), transparent 85%)", "border-color": "color-mix(in srgb, var(--primary), transparent 80%)" } : {}}
                     >
-                      <div class="flex items-center gap-4">
-                        <div class="flex items-center justify-center w-5 h-5">
-                          {props.renderIcon ? props.renderIcon(option.value) : <div class="h-5 w-5 rounded-full bg-theme shadow-sm"></div>}
-                        </div>
-                        {option.label}
+                      <div class="flex items-center gap-3 flex-1">
+                        <Show when={props.renderIcon}>
+                          {props.renderIcon!(option.value)}
+                        </Show>
+                        <span class="whitespace-nowrap flex-1 text-left">{option.label}</span>
+                        <Show when={isSelected(option.value)}>
+                          <Icon icon={ICON_CHECK} class="text-theme" width={16} height={16} />
+                        </Show>
                       </div>
-                      <Show when={props.value === option.value}>
-                        <Icon icon={ICON_CHECK} width={16} height={16} class="text-theme" />
-                      </Show>
                     </button>
                   )}
                 </For>
                 <Show when={filteredOptions().length === 0}>
-                  <div class="p-8 text-center text-xs text-main/40 font-medium italic">
-                    No matching results
+                  <div class="p-8 text-center text-[10px] font-black uppercase tracking-widest text-muted/40 italic">
+                    No results found
                   </div>
                 </Show>
               </div>
