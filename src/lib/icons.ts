@@ -68,6 +68,7 @@ export const ICON_ARROW_TOP_RIGHT = getIcon(hiIcons, "arrow-top-right-on-square-
 export const ICON_ROCKET_LAUNCH = getIcon(hiIcons, "rocket-launch-solid");
 export const ICON_LIGHT_BULB = getIcon(hiIcons, "light-bulb-solid");
 export const ICON_ARROW_RIGHT = getIcon(hiIcons, "arrow-small-right-solid");
+export const ICON_ARROW_LEFT = getIcon(hiIcons, "arrow-small-left-solid");
 export const ICON_CHECK = getIcon(hiIcons, "check-solid");
 export const ICON_ARROWS_EXPAND = getIcon(hiIcons, "arrows-pointing-out-solid");
 
@@ -160,6 +161,8 @@ export const ICON_PLUS_CIRCLE = getIcon(hiIcons, "plus-circle-solid");
 export const ICON_QUESTION_MARK_CIRCLE = getIcon(hiIcons, "question-mark-circle-solid");
 export const ICON_CLIPBOARD_DOCUMENT = getIcon(hiIcons, "clipboard-document-solid");
 export const ICON_PLAY_PAUSE = getIcon(hiIcons, "play-pause-solid");
+export const ICON_COPY = getIcon(hiIcons, "document-duplicate-solid");
+export const ICON_BAN = getIcon(hiIcons, "no-symbol-solid");
 
 // Logos
 export const ICON_LOGO_GOOGLE = getIcon(logosIcons, "google-icon");
