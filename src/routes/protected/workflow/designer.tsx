@@ -1,10 +1,14 @@
-import { createSignal, onMount, Show } from 'solid-js';
+import { createSignal, onMount, Show, For, createMemo, createEffect } from 'solid-js';
 import { useSearchParams, useNavigate } from '@solidjs/router';
-import { WorkflowDesigner } from '~/components/workflow';
 import { createStore, produce } from 'solid-js/store';
 import { Workflow, DEFAULT_WORKFLOW_SETTINGS, createNode, getNodeTypeDefinition, NodeStatus } from '~/lib/workflow/types';
 import { Icon } from '@iconify-icon/solid';
 import { ICON_EXCLAMATION_TRIANGLE } from '~/lib/icons';
+import { WorkflowCanvas } from '~/components/workflow/WorkflowCanvas';
+import { NodePalette } from '~/components/workflow/NodePalette';
+import { WorkflowToolbar } from '~/components/workflow/WorkflowToolbar';
+import { ContextMenu, ContextMenuItem } from '~/components/workflow/ContextMenu';
+import { NodeConfigModal } from '~/components/workflow/NodeConfigModal';
 
 const STORAGE_KEY = 'workflows';
 
@@ -45,11 +49,11 @@ interface CanvasState {
   isConnecting: boolean;
   connectingFrom: { nodeId: string; outputIndex: number } | null;
   connectingTo: { x: number; y: number } | null;
-  selectionBox: { start: Position; end: Position } | null;
+  selectionBox: { start: { x: number; y: number }; end: { x: number; y: number } } | null;
   readOnly: boolean;
 }
 
-interface Position { x: number; y: number; }
+interface Position { x: number; y: number }
 
 interface HistoryState {
   nodes: Workflow['nodes'];
@@ -100,6 +104,15 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
     past: [],
     future: [],
   });
+
+  const [configNodeId, setConfigNodeId] = createSignal<string | null>(null);
+  const [paletteOpen, setPaletteOpen] = createSignal(false);
+  const [contextMenuState, setContextMenuState] = createSignal<{
+    isOpen: boolean;
+    position: { x: number; y: number };
+    items: ContextMenuItem[];
+    canvasPosition?: Position;
+  }>({ isOpen: false, position: { x: 0, y: 0 }, items: [] });
 
   const saveHistory = () => {
     setHistory(produce(h => {
@@ -233,13 +246,13 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
       maxY = Math.max(maxY, node.position.y + 100);
     }
     const contentWidth = maxX - minX + 200;
-    const contentHeight = maxY - minY + 200;
-    const zoom = Math.min(containerWidth / contentWidth, containerHeight / contentHeight, 1.5);
-    const centerX = (minX + maxX) / 2;
-    const centerY = (minY + maxY) / 2;
-    setCanvas('zoom', zoom);
+    const contentHeight = maxY - minY + 200
+    const zoom = Math.min(containerWidth / contentWidth, containerHeight / contentHeight, 1.5)
+    const centerX = (minX + maxX) / 2
+    const centerY = (minY + maxY) / 2
+    setCanvas('zoom', zoom)
     setCanvas('offset', { x: containerWidth / 2 - centerX * zoom, y: containerHeight / 2 - centerY * zoom });
-  };
+  }
 
   const startConnecting = (nodeId: string, outputIndex: number) => {
     setCanvas(produce(c => { c.isConnecting = true; c.connectingFrom = { nodeId, outputIndex }; }));
@@ -249,7 +262,7 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
 
   const endConnecting = () => {
     setCanvas(produce(c => { c.isConnecting = false; c.connectingFrom = null; c.connectingTo = null; }));
-  };
+  }
 
   const executeWorkflow = async () => {
     setExecution({
@@ -274,13 +287,13 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
     }
 
     setExecution(prev => prev ? { ...prev, status: 'completed', completedAt: Date.now() } : null);
-  };
+  }
 
   const executeFromNode = async (nodeId: string, input: any[]) => {
     const node = workflow.nodes.find(n => n.id === nodeId);
     if (!node || node.disabled) return;
     const def = getNodeTypeDefinition(node.type);
-    if (!def) return;
+    if (!def) return
 
     updateNode(nodeId, { status: 'running' });
     setExecution(prev => prev ? { ...prev, currentNodeId: nodeId } : null);
@@ -298,7 +311,7 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
           } catch (e: any) {
             throw new Error(`Code execution failed: ${e.message}`);
           }
-          break;
+          break
         default:
           output = [...input, { json: { processedBy: node.name, nodeId: node.id, timestamp: Date.now() } }];
       }
@@ -312,31 +325,31 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
     } catch (error: any) {
       updateNode(nodeId, { status: 'error', error: error.message });
     }
-  };
+  }
 
   const stopExecution = () => {
     setExecution(prev => prev ? { ...prev, status: 'cancelled', completedAt: Date.now() } : null);
     setWorkflow(produce(w => {
       for (const node of w.nodes) {
-        if (node.status === 'running') node.status = 'idle';
+        if (node.status === 'running') node.status = 'idle'
       }
     }));
-  };
+  }
 
   const loadWorkflowData = (data: Workflow) => {
     setWorkflow(data);
     setHistory({ past: [], future: [] });
     setCanvas(produce(c => { c.selectedNodeIds = new Set(); c.selectedConnectionIds = new Set(); }));
     setExecution(null);
-  };
+  }
 
   const updateWorkflowMeta = (updates: Partial<Pick<Workflow, 'name' | 'description' | 'tags'>>) => {
-    setWorkflow(produce(w => Object.assign(w, updates)));
-  };
+    setWorkflow(produce(w => Object.assign(w, updates));
+  }
 
   const updateWorkflowSettings = (settings: Partial<Workflow['settings']>) => {
-    setWorkflow(produce(w => Object.assign(w.settings, settings)));
-  };
+    setWorkflow(produce(w => Object.assign(w.settings, settings));
+  }
 
   const toggleReadOnly = () => setCanvas(produce(c => { c.readOnly = !c.readOnly; }));
 
@@ -345,14 +358,59 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
     const previous = history.past[history.past.length - 1];
     setHistory(produce(h => { h.past.pop(); h.future.unshift({ nodes: [...workflow.nodes], connections: [...workflow.connections] }); }));
     setWorkflow(produce(w => { w.nodes = previous.nodes; w.connections = previous.connections; }));
-  };
+  }
 
   const redo = () => {
-    if (history.future.length === 0) return;
+    if (history.future.length === 0) return
     const next = history.future[0];
     setHistory(produce(h => { h.future.shift(); h.past.push({ nodes: [...workflow.nodes], connections: [...workflow.connections] }); }));
     setWorkflow(produce(w => { w.nodes = next.nodes; w.connections = next.connections; }));
-  };
+  }
+
+  const openNodeConfig = (nodeId: string) => {
+    setConfigNodeId(nodeId);
+  }
+
+  const closeNodeConfig = () => {
+    setConfigNodeId(null);
+  }
+
+  const showContextMenu = (position: { x: number; y: number }, items: ContextMenuItem[], canvasPosition?: Position) => {
+    setContextMenuState({ isOpen: true, position, items, canvasPosition });
+  }
+
+  const hideContextMenu = () => {
+    setContextMenuState({ isOpen: false, position: { x: 0, y: 0 }, items: [] });
+  }
+
+  const handleCanvasContextMenu = (e: MouseEvent, canvasPos: Position) => {
+    e.preventDefault();
+    const selectedNode = workflow.nodes.find(n => canvas.selectedNodeIds.has(n.id));
+    
+    if (selectedNode) {
+      showContextMenu(
+        { x: e.clientX, y: e.clientY },
+        [
+          { id: 'duplicate', label: 'Duplicate', icon: 'mdi:content-copy', shortcut: 'Ctrl+D', onClick: () => duplicateNode(selectedNode.id) },
+          { id: 'delete', label: 'Delete', icon: 'mdi:delete', shortcut: 'Del', danger: true, onClick: () => deleteNode(selectedNode.id) },
+          { divider: true },
+          { id: 'disable', label: selectedNode.disabled ? 'Enable' : 'Disable', icon: selectedNode.disabled ? 'mdi:play' : 'mdi:pause', onClick: () => updateNode(selectedNode.id, { disabled: !selectedNode.disabled }) },
+          { id: 'configure', label: 'Configure', icon: 'mdi:cog', onClick: () => openNodeConfig(selectedNode.id) },
+        ],
+        canvasPos
+      );
+    } else {
+      showContextMenu(
+        { x: e.clientX, y: e.clientY },
+        [
+          { id: 'add-trigger', label: 'Add Trigger', icon: 'mdi:flash', onClick: () => { addNode('webhook', canvasPos); setPaletteOpen(false); } },
+          { id: 'add-action', label: 'Add Action', icon: 'mdi:flash', onClick: () => { addNode('http', canvasPos); setPaletteOpen(false); } },
+          { id: 'add-code', label: 'Add Code', icon: 'mdi:code-braces', onClick: () => { addNode('code', canvasPos); setPaletteOpen(false); } },
+        ],
+        canvasPos
+      );
+    }
+  }
 
   return {
     workflow, setWorkflow, canvas, setCanvas, execution, history, saveHistory,
@@ -362,10 +420,13 @@ function createWorkflowStore(initialWorkflow?: Workflow) {
     setZoom, setOffset, resetView, fitToScreen, startConnecting, updateConnectingPosition, endConnecting,
     executeWorkflow, stopExecution, loadWorkflow: loadWorkflowData,
     updateWorkflowMeta, updateWorkflowSettings, toggleReadOnly,
+    openNodeConfig, closeNodeConfig,
+    showContextMenu, hideContextMenu, handleCanvasContextMenu,
+    configNodeId, paletteOpen, contextMenuState,
   };
 }
 
-export type WorkflowStore = ReturnType<typeof createWorkflowStore>;
+export type WorkflowStore = ReturnType<typeof createWorkflowStore>
 
 export default function WorkflowDesignerPage() {
   const [searchParams] = useSearchParams();
@@ -391,7 +452,12 @@ export default function WorkflowDesignerPage() {
 
   const handleSave = (workflow: Workflow) => {
     saveWorkflowToStorage(workflow);
-  };
+  }
+
+  const selectedNode = createMemo(() => {
+    const id = store?.canvas.selectedNodeIds.values().next().value;
+    return store?.workflow.nodes.find(n => n.id === id) || null;
+  });
 
   return (
     <div class="h-screen bg-[#0a0d14]">
@@ -400,6 +466,7 @@ export default function WorkflowDesignerPage() {
           <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
         </div>
       </Show>
+
       <Show when={error()}>
         <div class="flex flex-col items-center justify-center h-screen">
           <div class="text-center">
@@ -408,14 +475,66 @@ export default function WorkflowDesignerPage() {
             </div>
             <h2 class="text-xl font-bold text-white mb-2">{error()}</h2>
             <p class="text-slate-400 mb-6">The workflow you're looking for doesn't exist.</p>
-            <button onClick={() => navigate('/workflow')} class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg">
+            <button onClick={() => navigate('/protected/workflow')} class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg">
               Back to Workflows
             </button>
           </div>
         </div>
       </Show>
-      <Show when={store() && !loading()}>
-        <WorkflowDesigner store={store()!} onSave={handleSave} />
+
+      <Show when={store()}>
+        <WorkflowCanvas
+          store={store!}
+          onOpenPalette={() => setPaletteOpen(true)}
+          onContextMenu={handleCanvasContextMenu}
+        />
+        <NodePalette
+          isOpen={paletteOpen()}
+          onClose={() => setPaletteOpen(false)}
+          onAddNode={(type, position) => {
+            store!.addNode(type, position);
+            setPaletteOpen(false);
+          }}
+          zoom={store!.canvas.zoom}
+          offset={store!.canvas.offset}
+        />
+        <WorkflowToolbar
+          workflowName={store!.workflow.name}
+          isRunning={store!.execution()?.status === 'running'}
+          isReadOnly={store!.canvas.readOnly}
+          canUndo={store!.canUndo()}
+          canRedo={store!.canRedo()}
+          zoom={store!.canvas.zoom}
+          nodeCount={store!.workflow.nodes.length}
+          connectionCount={store!.workflow.connections.length}
+          onRun={store!.executeWorkflow}
+          onStop={store!.stopExecution}
+          onSave={() => handleSave(store!.workflow)}
+          onUndo={store!.undo}
+          onRedo={store!.redo}
+          onAddNode={() => setPaletteOpen(true)}
+          onZoomIn={() => store!.setZoom(z => Math.min(z + 0.1, 3))}
+          onZoomOut={() => store!.setZoom(z => Math.max(z - 0.1, 0.1))}
+          onResetView={store!.resetView}
+          onFitToScreen={store!.fitToScreen}
+          onToggleReadOnly={store!.toggleReadOnly}
+          onNameChange={(name) => store!.updateWorkflowMeta({ name })}
+        />
+        <ContextMenu
+          isOpen={contextMenuState().isOpen}
+          position={contextMenuState().position}
+          items={contextMenuState().items}
+          onClose={() => setContextMenuState({ isOpen: false, position: { x: 0, y: 0 }, items: [] })}
+        />
+        <NodeConfigModal
+          isOpen={configNodeId() !== null}
+          node={selectedNode()}
+          onClose={() => setConfigNodeId(null)}
+          onSave={(id, updates) => store!.updateNode(id, updates)}
+          onDelete={(id) => store!.deleteNode(id)}
+          onDuplicate={(id) => store!.duplicateNode(id)}
+          isReadOnly={store!.canvas.readOnly}
+        />
       </Show>
     </div>
   );

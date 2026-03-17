@@ -65,7 +65,6 @@ export const SIDE_NAV_ITEMS: NavItem[] = [
       { href: "/protected/display/timeline", label: "Timeline", icon: ICON_CLOCK },
       { href: "/protected/display/skeleton", label: "Skeleton", icon: ICON_CUBE },
       { href: "/protected/display/divider", label: "Divider", icon: ICON_VIEW_COLUMNS },
-      { href: "/protected/display/workflow", label: "Workflow", icon: ICON_ARROW_PATH },
     ]
   },
   {
@@ -111,6 +110,14 @@ export const SIDE_NAV_ITEMS: NavItem[] = [
       { href: "/protected/chart/sunburst", label: "Sunburst Chart", icon: ICON_CUBE },
       { href: "/protected/chart/funnel", label: "Funnel Chart", icon: ICON_IDENTIFICATION },
       { href: "/protected/chart/gauge", label: "Gauge Chart", icon: ICON_BOLT },
+    ]
+  },
+  {
+    label: "Workflow",
+    icon: ICON_ARROW_PATH,
+    children: [
+      { href: "/protected/workflow", label: "Workflows", icon: ICON_QUEUE_LIST },
+      { href: "/protected/workflow/designer", label: "Designer", icon: ICON_BOLT },
     ]
   },
   {
